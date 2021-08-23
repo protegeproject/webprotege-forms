@@ -27,13 +27,13 @@ public abstract class FormGroupId {
         return get(UUID.randomUUID().toString());
     }
 
-    @JsonValue
-    @Nonnull
-    public abstract String getId();
-
     public static void checkFormat(@Nonnull String id) {
-        if(!UUIDUtil.isWellFormed(id)) {
+        if (!UUIDUtil.isWellFormed(id)) {
             throw new RuntimeException("Malformed FormGroupId.  FormGroupIds should be UUIDs");
         }
     }
+
+    @JsonValue
+    @Nonnull
+    public abstract String getId();
 }

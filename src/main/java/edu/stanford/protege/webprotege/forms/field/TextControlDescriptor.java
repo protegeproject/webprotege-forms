@@ -51,13 +51,11 @@ public class TextControlDescriptor implements FormControlDescriptor {
     }
 
     public static TextControlDescriptor getDefault() {
-        return new TextControlDescriptor(
-                LanguageMap.empty(),
-                StringType.SIMPLE_STRING,
-                LineMode.SINGLE_LINE,
-                "",
-                LanguageMap.empty()
-        );
+        return new TextControlDescriptor(LanguageMap.empty(),
+                                         StringType.SIMPLE_STRING,
+                                         LineMode.SINGLE_LINE,
+                                         "",
+                                         LanguageMap.empty());
     }
 
     @Override
@@ -67,29 +65,26 @@ public class TextControlDescriptor implements FormControlDescriptor {
 
     @Override
     public boolean equals(Object obj) {
-        if(obj == this) {
+        if (obj == this) {
             return true;
         }
-        if(!(obj instanceof TextControlDescriptor)) {
+        if (!(obj instanceof TextControlDescriptor)) {
             return false;
         }
         TextControlDescriptor other = (TextControlDescriptor) obj;
-        return this.placeholder.equals(other.placeholder)
-                && this.stringType.equals(other.stringType)
-                && this.pattern.equals(other.pattern)
-                && this.patternViolationErrorMessage.equals(other.patternViolationErrorMessage)
-                && this.lineMode.equals(other.lineMode);
+        return this.placeholder.equals(other.placeholder) && this.stringType.equals(other.stringType) && this.pattern.equals(
+                other.pattern) && this.patternViolationErrorMessage.equals(other.patternViolationErrorMessage) && this.lineMode.equals(
+                other.lineMode);
     }
 
     @Override
     public String toString() {
-        return toStringHelper("TextControlDescriptor")
-                .add("placeholder", placeholder)
-                .add("stringType", stringType)
-                .add("pattern", pattern)
-                .add("patternViolationErrorMessage", patternViolationErrorMessage)
-                .add("lineMode", lineMode)
-                .toString();
+        return toStringHelper("TextControlDescriptor").add("placeholder", placeholder)
+                                                      .add("stringType", stringType)
+                                                      .add("pattern", pattern)
+                                                      .add("patternViolationErrorMessage", patternViolationErrorMessage)
+                                                      .add("lineMode", lineMode)
+                                                      .toString();
     }
 
     @Nonnull

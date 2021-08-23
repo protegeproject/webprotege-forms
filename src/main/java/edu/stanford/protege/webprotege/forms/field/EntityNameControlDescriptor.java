@@ -39,17 +39,12 @@ public abstract class EntityNameControlDescriptor implements FormControlDescript
 
     @Nonnull
     public static EntityNameControlDescriptor getDefault() {
-        return new AutoValue_EntityNameControlDescriptor(LanguageMap.empty(),
-                                                         getDefaultEntityMatchCriteria());
+        return new AutoValue_EntityNameControlDescriptor(LanguageMap.empty(), getDefaultEntityMatchCriteria());
     }
 
     public static CompositeRootCriteria getDefaultEntityMatchCriteria() {
-        return CompositeRootCriteria.get(
-                ImmutableList.of(EntityTypeIsOneOfCriteria.get(
-                        ImmutableSet.of(EntityType.CLASS)
-                )),
-                MultiMatchType.ALL
-        );
+        return CompositeRootCriteria.get(ImmutableList.of(EntityTypeIsOneOfCriteria.get(ImmutableSet.of(EntityType.CLASS))),
+                                         MultiMatchType.ALL);
     }
 
     public static String getFieldTypeId() {

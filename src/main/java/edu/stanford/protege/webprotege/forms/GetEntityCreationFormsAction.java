@@ -21,8 +21,10 @@ public record GetEntityCreationFormsAction(@JsonProperty("projectId") @Nonnull P
                                            @JsonProperty("parentEntity") @Nonnull OWLEntity parentEntity,
                                            @JsonProperty("entityType") @Nonnull EntityType<?> entityType) implements Request<GetEntityCreationFormsResult> {
 
+    public static final String CHANNEL = "webprotege.forms.GetEntityCreationForms";
+
     @Override
     public String getChannel() {
-        return "forms.GetEntityCreationForms";
+        return CHANNEL;
     }
 }

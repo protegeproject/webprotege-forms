@@ -23,8 +23,7 @@ import java.util.Optional;
 public abstract class NumberControlData implements FormControlData {
 
     @JsonCreator
-    public static NumberControlData get(@Nonnull NumberControlDescriptor descriptor,
-                                        @Nullable OWLLiteral value) {
+    public static NumberControlData get(@Nonnull NumberControlDescriptor descriptor, @Nullable OWLLiteral value) {
         return new AutoValue_NumberControlData(descriptor, value);
     }
 

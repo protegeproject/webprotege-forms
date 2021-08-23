@@ -33,9 +33,6 @@ public abstract class MultiChoiceControlDescriptorDto implements FormControlDesc
 
     @Override
     public MultiChoiceControlDescriptor toFormControlDescriptor() {
-        return MultiChoiceControlDescriptor.get(
-            getChoiceListSourceDescriptor(),
-            ImmutableList.of()
-        );
+        return MultiChoiceControlDescriptor.get(getChoiceListSourceDescriptor(), ImmutableList.of());
     }
 }

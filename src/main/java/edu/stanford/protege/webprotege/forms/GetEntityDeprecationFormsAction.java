@@ -19,8 +19,10 @@ import javax.annotation.Nonnull;
 public record GetEntityDeprecationFormsAction(@JsonProperty("projectId") @Nonnull ProjectId projectId,
                                               @JsonProperty("term") @Nonnull OWLEntity entity) implements Request<GetEntityDeprecationFormsResult> {
 
+    public static final String CHANNEL = "webprotege.forms.GetEntityDeprecationForms";
+
     @Override
     public String getChannel() {
-        return "forms.GetEntityDeprecationForms";
+        return CHANNEL;
     }
 }

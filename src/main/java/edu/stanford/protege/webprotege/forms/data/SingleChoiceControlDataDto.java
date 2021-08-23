@@ -44,6 +44,7 @@ public abstract class SingleChoiceControlDataDto implements FormControlDataDto {
     @Override
     public SingleChoiceControlData toFormControlData() {
         return SingleChoiceControlData.get(getDescriptor(),
-                getChoice().map(PrimitiveFormControlDataDto::toPrimitiveFormControlData).orElse(null));
+                                           getChoice().map(PrimitiveFormControlDataDto::toPrimitiveFormControlData)
+                                                      .orElse(null));
     }
 }

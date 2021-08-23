@@ -12,4 +12,5 @@ import edu.stanford.protege.webprotege.common.Response;
 
 @JsonTypeName("DeleteForm")
 public record DeleteFormResult() implements Response {
+
 }

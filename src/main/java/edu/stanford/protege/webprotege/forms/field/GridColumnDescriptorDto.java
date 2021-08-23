@@ -16,11 +16,11 @@ public abstract class GridColumnDescriptorDto {
 
     @Nonnull
     public static GridColumnDescriptorDto get(@Nonnull GridColumnId columnId,
-                                                 @Nonnull Optionality optionality,
-                                                 @Nonnull Repeatability repeatability,
-                                                 @Nullable OwlBinding binding,
-                                                 @Nonnull LanguageMap label,
-                                                 @Nonnull FormControlDescriptorDto formControlDescriptorDto) {
+                                              @Nonnull Optionality optionality,
+                                              @Nonnull Repeatability repeatability,
+                                              @Nullable OwlBinding binding,
+                                              @Nonnull LanguageMap label,
+                                              @Nonnull FormControlDescriptorDto formControlDescriptorDto) {
         return new AutoValue_GridColumnDescriptorDto(columnId,
                                                      optionality,
                                                      repeatability,
@@ -55,20 +55,18 @@ public abstract class GridColumnDescriptorDto {
     public abstract FormControlDescriptorDto getFormControlDescriptor();
 
     public GridColumnDescriptor toGridColumnDescriptor() {
-        return GridColumnDescriptor.get(
-                getId(),
-                getOptionality(),
-                getRepeatability(),
-                getOwlBindingInternal(),
-                getLabel(),
-                getFormControlDescriptor().toFormControlDescriptor()
-        );
+        return GridColumnDescriptor.get(getId(),
+                                        getOptionality(),
+                                        getRepeatability(),
+                                        getOwlBindingInternal(),
+                                        getLabel(),
+                                        getFormControlDescriptor().toFormControlDescriptor());
     }
 
     @JsonIgnore
     public int getNestedColumnCount() {
         FormControlDescriptorDto formControlDescriptor = getFormControlDescriptor();
-        if(formControlDescriptor instanceof GridControlDescriptorDto) {
+        if (formControlDescriptor instanceof GridControlDescriptorDto) {
             return ((GridControlDescriptorDto) getFormControlDescriptor()).getNestedColumnCount();
         }
         else {
@@ -80,7 +78,7 @@ public abstract class GridColumnDescriptorDto {
     @JsonIgnore
     public Stream<GridColumnDescriptorDto> getLeafColumnDescriptors() {
         FormControlDescriptorDto formControlDescriptor = getFormControlDescriptor();
-        if(formControlDescriptor instanceof GridControlDescriptorDto) {
+        if (formControlDescriptor instanceof GridControlDescriptorDto) {
             // This is not a leaf column
             return ((GridControlDescriptorDto) formControlDescriptor).getLeafColumns();
         }

@@ -34,7 +34,8 @@ public abstract class SingleChoiceControlDescriptor implements FormControlDescri
                                                        @JsonProperty(DEFAULT_CHOICE) @Nullable ChoiceDescriptor defaultChoice,
                                                        @JsonProperty(SOURCE) @Nullable ChoiceListSourceDescriptor source) {
         return new AutoValue_SingleChoiceControlDescriptor(widgetType == null ? SingleChoiceControlType.COMBO_BOX : widgetType,
-                                                           source == null ? FixedChoiceListSourceDescriptor.get(ImmutableList.of()) : source,
+                                                           source == null ? FixedChoiceListSourceDescriptor.get(
+                                                                   ImmutableList.of()) : source,
                                                            defaultChoice);
     }
 

@@ -20,8 +20,10 @@ public record CreateEntityFromFormDataAction(@Nonnull ProjectId projectId,
                                              @Nonnull FreshEntityIri freshEntityIri,
                                              @Nonnull FormData formData) implements Request<CreateEntityFromFormDataResult> {
 
+    public static final String CHANNEL = "webprotege.forms.CreateEntityFromFormData";
+
     @Override
     public String getChannel() {
-        return "forms.CreateEntityFromFormData";
+        return CHANNEL;
     }
 }

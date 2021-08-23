@@ -14,8 +14,10 @@ import edu.stanford.protege.webprotege.common.Request;
 public record GetEntityFormDescriptorAction(@JsonProperty("projectId") ProjectId projectId,
                                             @JsonProperty("formId") FormId formId) implements Request<GetEntityFormDescriptorResult> {
 
+    public static final String CHANNEL = "webprotege.forms.GetEntityFormDescriptor";
+
     @Override
     public String getChannel() {
-        return "forms.GetEntityFormDescriptor";
+        return CHANNEL;
     }
 }

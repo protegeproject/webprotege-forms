@@ -31,19 +31,21 @@ public abstract class GridControlDescriptor implements FormControlDescriptor {
         return TYPE;
     }
 
-    @Nonnull
-    @Override
-    public String getAssociatedType() {
-        return getType();
-    }
-
     @JsonCreator
     @Nonnull
     public static GridControlDescriptor get(@Nonnull @JsonProperty("columns") ImmutableList<GridColumnDescriptor> columnDescriptors,
                                             @Nullable @JsonProperty("subjectFactoryDescriptor") FormSubjectFactoryDescriptor subjectFactoryDescriptor) {
         return new AutoValue_GridControlDescriptor(columnDescriptors == null ? ImmutableList.of() : columnDescriptors,
                                                    subjectFactoryDescriptor == null ? FormSubjectFactoryDescriptor.get(
-                                                           EntityType.CLASS, null, Optional.empty()) : subjectFactoryDescriptor);
+                                                           EntityType.CLASS,
+                                                           null,
+                                                           Optional.empty()) : subjectFactoryDescriptor);
+    }
+
+    @Nonnull
+    @Override
+    public String getAssociatedType() {
+        return getType();
     }
 
     @JsonProperty("columns")
@@ -58,7 +60,7 @@ public abstract class GridControlDescriptor implements FormControlDescriptor {
     @JsonIgnore
     public int getNestedColumnCount() {
         int count = 0;
-        for(GridColumnDescriptor columnDescriptor : getColumns()) {
+        for (GridColumnDescriptor columnDescriptor : getColumns()) {
             count += columnDescriptor.getNestedColumnCount();
         }
         return count;
@@ -76,9 +78,7 @@ public abstract class GridControlDescriptor implements FormControlDescriptor {
     @JsonIgnore
     @Nonnull
     public Stream<GridColumnDescriptor> getLeafColumns() {
-        return getColumns()
-                .stream()
-                .flatMap(GridColumnDescriptor::getLeafColumnDescriptors);
+        return getColumns().stream().flatMap(GridColumnDescriptor::getLeafColumnDescriptors);
     }
 
     /**
@@ -88,19 +88,17 @@ public abstract class GridControlDescriptor implements FormControlDescriptor {
     @JsonIgnore
     public ImmutableMap<GridColumnId, GridColumnId> getLeafColumnToTopLevelColumnMap() {
         ImmutableMap.Builder<GridColumnId, GridColumnId> builder = ImmutableMap.builder();
-        getColumns()
-                .forEach(topLevelColumn -> {
-                    topLevelColumn.getLeafColumnDescriptors()
-                                  .map(GridColumnDescriptor::getId)
-                                  .forEach(leafColumnId -> {
-                                      builder.put(leafColumnId, topLevelColumn.getId());
-                                  });
-                });
+        getColumns().forEach(topLevelColumn -> {
+            topLevelColumn.getLeafColumnDescriptors().map(GridColumnDescriptor::getId).forEach(leafColumnId -> {
+                builder.put(leafColumnId, topLevelColumn.getId());
+            });
+        });
         return builder.build();
     }
 
     /**
      * Gets the index of the specified columnId.
+     *
      * @param columnId The {@link GridColumnId}
      * @return The column index of the specified column Id.  A value of -1 is returned if the
      * {@link GridColumnId} does not identify a column in this grid.
@@ -108,8 +106,8 @@ public abstract class GridControlDescriptor implements FormControlDescriptor {
     @JsonIgnore
     public int getColumnIndex(GridColumnId columnId) {
         ImmutableList<GridColumnDescriptor> columns = getColumns();
-        for(int i = 0; i < columns.size(); i++) {
-            if(columns.get(i).getId().equals(columnId)) {
+        for (int i = 0; i < columns.size(); i++) {
+            if (columns.get(i).getId().equals(columnId)) {
                 return i;
             }
         }

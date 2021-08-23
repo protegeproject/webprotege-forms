@@ -31,10 +31,8 @@ public class FormPageRequestIndex {
     public static FormPageRequestIndex create(@Nonnull ImmutableList<FormPageRequest> pageRequests) {
         checkNotNull(pageRequests);
         Map<Key, FormPageRequest> map = new HashMap<>();
-        for(FormPageRequest pageRequest : pageRequests) {
-            map.put(Key.get(pageRequest.getSubject(),
-                            pageRequest.getFieldId(),
-                            pageRequest.getSourceType()),
+        for (FormPageRequest pageRequest : pageRequests) {
+            map.put(Key.get(pageRequest.getSubject(), pageRequest.getFieldId(), pageRequest.getSourceType()),
                     pageRequest);
         }
         return new FormPageRequestIndex(ImmutableMap.copyOf(map));
@@ -43,7 +41,7 @@ public class FormPageRequestIndex {
     @Nonnull
     public PageRequest getPageRequest(FormSubject formSubject, FormRegionId id, FormPageRequest.SourceType sourceType) {
         var formPageRequest = indexMap.get(Key.get(formSubject, id, sourceType));
-        if(formPageRequest != null) {
+        if (formPageRequest != null) {
             return formPageRequest.getPageRequest();
         }
         else {

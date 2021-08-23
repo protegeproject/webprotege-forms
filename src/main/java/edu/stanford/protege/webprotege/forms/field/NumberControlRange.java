@@ -39,10 +39,6 @@ public class NumberControlRange {
     private NumberControlRange() {
     }
 
-    public boolean isAnyNumber() {
-        return this.equals(ANY_NUMBER);
-    }
-
     public static NumberControlRange range(double lowerBound,
                                            BoundType lowerBoundType,
                                            double upperBound,
@@ -54,19 +50,21 @@ public class NumberControlRange {
         return ANY_NUMBER;
     }
 
+    public boolean isAnyNumber() {
+        return this.equals(ANY_NUMBER);
+    }
+
     @Override
     public boolean equals(Object obj) {
-        if(obj == this) {
+        if (obj == this) {
             return true;
         }
-        if(!(obj instanceof NumberControlRange)) {
+        if (!(obj instanceof NumberControlRange)) {
             return false;
         }
         NumberControlRange other = (NumberControlRange) obj;
-        return this.lowerBound.equals(other.lowerBound)
-                && this.lowerBoundType.equals(other.lowerBoundType)
-                && this.upperBound.equals(other.upperBound)
-                && this.upperBoundType.equals(other.upperBoundType);
+        return this.lowerBound.equals(other.lowerBound) && this.lowerBoundType.equals(other.lowerBoundType) && this.upperBound.equals(
+                other.upperBound) && this.upperBoundType.equals(other.upperBoundType);
     }
 
     @Override
@@ -75,12 +73,10 @@ public class NumberControlRange {
     }
 
     public Range<Double> toRange() {
-        return Range.range(
-                this.getLowerBound(),
-                this.getLowerBoundType() == NumberControlRange.BoundType.INCLUSIVE ? com.google.common.collect.BoundType.CLOSED : com.google.common.collect.BoundType.OPEN,
-                this.getUpperBound(),
-                this.getUpperBoundType() == NumberControlRange.BoundType.INCLUSIVE ? com.google.common.collect.BoundType.CLOSED : com.google.common.collect.BoundType.OPEN
-        );
+        return Range.range(this.getLowerBound(),
+                           this.getLowerBoundType() == NumberControlRange.BoundType.INCLUSIVE ? com.google.common.collect.BoundType.CLOSED : com.google.common.collect.BoundType.OPEN,
+                           this.getUpperBound(),
+                           this.getUpperBoundType() == NumberControlRange.BoundType.INCLUSIVE ? com.google.common.collect.BoundType.CLOSED : com.google.common.collect.BoundType.OPEN);
     }
 
     public double getLowerBound() {
@@ -101,17 +97,15 @@ public class NumberControlRange {
 
     @Override
     public String toString() {
-        return toStringHelper("NumberControlRange")
-                .add("lowerBound", lowerBound)
-                .add("lowerBoundType", lowerBoundType)
-                .add("upperBound", upperBound)
-                .add("upperBoundType", upperBoundType)
-                .toString();
+        return toStringHelper("NumberControlRange").add("lowerBound", lowerBound)
+                                                   .add("lowerBoundType", lowerBoundType)
+                                                   .add("upperBound", upperBound)
+                                                   .add("upperBoundType", upperBoundType)
+                                                   .toString();
     }
 
     public enum BoundType {
-        INCLUSIVE(">=", "<="),
-        EXCLUSIVE(">", "<");
+        INCLUSIVE(">=", "<="), EXCLUSIVE(">", "<");
 
         private final String lowerSymbol;
 

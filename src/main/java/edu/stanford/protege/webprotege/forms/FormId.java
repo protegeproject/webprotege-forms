@@ -28,17 +28,18 @@ public abstract class FormId implements Serializable, ValueObject {
     public static FormId valueOf(@Nonnull String id) {
         return get(id);
     }
+
     public static FormId generate() {
         return get(UUID.randomUUID().toString());
+    }
+
+    public static void checkFormat(@Nonnull String id) {
+        UUID.fromString(id);
     }
 
     @Override
     public String value() {
         return getId();
-    }
-
-    public static void checkFormat(@Nonnull String id) {
-        UUID.fromString(id);
     }
 
     @JsonValue

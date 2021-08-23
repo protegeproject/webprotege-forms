@@ -33,10 +33,10 @@ public class SubFormControlDescriptor implements FormControlDescriptor {
 
     @Override
     public boolean equals(Object obj) {
-        if(obj == this) {
+        if (obj == this) {
             return true;
         }
-        if(!(obj instanceof SubFormControlDescriptor)) {
+        if (!(obj instanceof SubFormControlDescriptor)) {
             return false;
         }
         SubFormControlDescriptor other = (SubFormControlDescriptor) obj;
@@ -67,8 +67,6 @@ public class SubFormControlDescriptor implements FormControlDescriptor {
 
     @Override
     public String toString() {
-        return MoreObjects.toStringHelper("SubFormControlDescriptor")
-                .add("formDescriptor", formDescriptor)
-                .toString();
+        return MoreObjects.toStringHelper("SubFormControlDescriptor").add("formDescriptor", formDescriptor).toString();
     }
 }

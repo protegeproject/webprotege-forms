@@ -5,11 +5,11 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.google.auto.value.AutoValue;
 import com.google.common.collect.ImmutableSet;
+import edu.stanford.protege.webprotege.common.Page;
 import edu.stanford.protege.webprotege.forms.FilterState;
 import edu.stanford.protege.webprotege.forms.HasFilterState;
 import edu.stanford.protege.webprotege.forms.field.FormRegionOrdering;
 import edu.stanford.protege.webprotege.forms.field.GridControlDescriptor;
-import edu.stanford.protege.webprotege.common.Page;
 
 import javax.annotation.Nonnull;
 
@@ -45,9 +45,7 @@ public abstract class GridControlDataDto implements FormControlDataDto, HasFilte
     @Nonnull
     @Override
     public GridControlData toFormControlData() {
-        return GridControlData.get(getDescriptor(),
-                                   getRows().transform(GridRowDataDto::toGridRowData),
-                                   getOrdering());
+        return GridControlData.get(getDescriptor(), getRows().transform(GridRowDataDto::toGridRowData), getOrdering());
     }
 
     @Nonnull
@@ -56,10 +54,10 @@ public abstract class GridControlDataDto implements FormControlDataDto, HasFilte
 
     /**
      * Determines whether this grid is empty because it has been filtered empty.
+     *
      * @return true if this grid is empty and this is due to filtering
      */
     public boolean isFilteredEmpty() {
-        return getFilterState().equals(FilterState.FILTERED) &&
-                getRows().getTotalElements() == 0;
+        return getFilterState().equals(FilterState.FILTERED) && getRows().getTotalElements() == 0;
     }
 }

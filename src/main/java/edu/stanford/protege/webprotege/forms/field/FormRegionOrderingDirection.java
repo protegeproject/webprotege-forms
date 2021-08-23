@@ -4,11 +4,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public enum FormRegionOrderingDirection {
 
-    @JsonProperty("asc")
-    ASC(1),
+    @JsonProperty("asc") ASC(1),
 
-    @JsonProperty("desc")
-    DESC(-1);
+    @JsonProperty("desc") DESC(-1);
 
     int dir;
 

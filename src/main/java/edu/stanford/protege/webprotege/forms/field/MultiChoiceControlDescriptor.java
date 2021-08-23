@@ -27,8 +27,14 @@ public abstract class MultiChoiceControlDescriptor implements FormControlDescrip
     public static MultiChoiceControlDescriptor get(@JsonProperty("source") ChoiceListSourceDescriptor source,
                                                    @JsonProperty("defaultChoices") @Nullable ImmutableList<ChoiceDescriptor> defaultChoices) {
 
-        return new AutoValue_MultiChoiceControlDescriptor(source == null ? FixedChoiceListSourceDescriptor.get(ImmutableList.of()) : source,
-                                                          defaultChoices == null ? ImmutableList.of() : defaultChoices);
+        return new AutoValue_MultiChoiceControlDescriptor(source == null ? FixedChoiceListSourceDescriptor.get(
+                ImmutableList.of()) : source, defaultChoices == null ? ImmutableList.of() : defaultChoices);
+    }
+
+    @JsonIgnore
+    @Nonnull
+    public static String getType() {
+        return TYPE;
     }
 
     @Nonnull
@@ -36,13 +42,6 @@ public abstract class MultiChoiceControlDescriptor implements FormControlDescrip
 
     @Nonnull
     public abstract ImmutableList<ChoiceDescriptor> getDefaultChoices();
-
-
-    @JsonIgnore
-    @Nonnull
-    public static String getType() {
-        return TYPE;
-    }
 
     @Nonnull
     @Override

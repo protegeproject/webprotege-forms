@@ -25,19 +25,19 @@ public abstract class FormFieldId implements FormRegionId {
         return new AutoValue_FormFieldId(id);
     }
 
-    @Override
-    public String value() {
-        return getId();
-    }
-
     public static FormFieldId valueOf(String id) {
         return get(id);
     }
 
     private static void checkFormat(@Nonnull String id) {
-        if(!UUIDUtil.isWellFormed(id)) {
+        if (!UUIDUtil.isWellFormed(id)) {
             throw new IllegalArgumentException("Malformed FormFieldId: " + id);
         }
+    }
+
+    @Override
+    public String value() {
+        return getId();
     }
 
     @Override

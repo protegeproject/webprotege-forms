@@ -18,4 +18,5 @@ import javax.annotation.Nonnull;
 public record GetProjectFormDescriptorsResult(@Nonnull ProjectId projectId,
                                               @Nonnull ImmutableList<FormDescriptor> formDescriptors,
                                               @Nonnull ImmutableList<EntityFormSelector> formSelectors) implements Response {
+
 }

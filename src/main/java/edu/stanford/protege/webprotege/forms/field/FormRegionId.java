@@ -10,10 +10,7 @@ import edu.stanford.protege.webprotege.common.ValueObject;
  * Stanford Center for Biomedical Informatics Research
  * 2020-04-22
  */
-@JsonSubTypes({
-        @Type(FormFieldId.class),
-        @Type(GridColumnId.class)
-})
+@JsonSubTypes({@Type(FormFieldId.class), @Type(GridColumnId.class)})
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "type")
 public interface FormRegionId extends ValueObject {
 

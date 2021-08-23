@@ -16,14 +16,13 @@ import java.util.Comparator;
 @AutoValue
 public abstract class FormDescriptorRecord implements Comparable<FormDescriptorRecord> {
 
-    private static final Comparator<FormDescriptorRecord> comparingByOrdinal = Comparator.comparing(FormDescriptorRecord::getOrdinal);
-
     public static final String PROJECT_ID = "projectId";
 
     public static final String FORM_DESCRIPTOR = "formDescriptor";
 
     public static final String ORDINAL = "ordinal";
 
+    private static final Comparator<FormDescriptorRecord> comparingByOrdinal = Comparator.comparing(FormDescriptorRecord::getOrdinal);
 
     @JsonCreator
     public static FormDescriptorRecord get(@JsonProperty(PROJECT_ID) @Nonnull ProjectId projectId,
@@ -48,7 +47,6 @@ public abstract class FormDescriptorRecord implements Comparable<FormDescriptorR
 
     @Override
     public int compareTo(@Nonnull FormDescriptorRecord o) {
-        return comparingByOrdinal
-                .compare(this, o);
+        return comparingByOrdinal.compare(this, o);
     }
 }

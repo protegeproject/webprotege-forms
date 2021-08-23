@@ -48,8 +48,7 @@ public abstract class NumberControlDataDto implements FormControlDataDto, Compar
     @Nonnull
     @Override
     public NumberControlData toFormControlData() {
-        return NumberControlData.get(getDescriptor(),
-                                     getValueInternal());
+        return NumberControlData.get(getDescriptor(), getValueInternal());
     }
 
     private Double getNumericValue() {
@@ -57,7 +56,8 @@ public abstract class NumberControlDataDto implements FormControlDataDto, Compar
             OWLLiteral literal = getValueInternal();
             if (literal == null) {
                 numericValue = Double.MIN_VALUE;
-            } else {
+            }
+            else {
                 try {
                     numericValue = Double.parseDouble(literal.getLiteral().trim());
                 } catch (NumberFormatException e) {

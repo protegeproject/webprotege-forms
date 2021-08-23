@@ -22,11 +22,6 @@ public abstract class FormPageRequest {
 
     public static final int DEFAULT_PAGE_SIZE = 10;
 
-    public enum SourceType {
-        CONTROL_STACK,
-        GRID_CONTROL
-    }
-
     @JsonCreator
     @Nonnull
     public static FormPageRequest get(@JsonProperty("formId") @Nonnull FormId formId,
@@ -52,4 +47,8 @@ public abstract class FormPageRequest {
 
     @Nonnull
     public abstract PageRequest getPageRequest();
+
+    public enum SourceType {
+        CONTROL_STACK, GRID_CONTROL
+    }
 }

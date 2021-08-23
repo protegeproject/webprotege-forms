@@ -9,12 +9,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 public enum SingleChoiceControlType {
 
-    @JsonProperty("RadioButton")
-    RADIO_BUTTON,
+    @JsonProperty("RadioButton") RADIO_BUTTON,
 
-    @JsonProperty("ComboBox")
-    COMBO_BOX,
+    @JsonProperty("ComboBox") COMBO_BOX,
 
-    @JsonProperty("SegmentedButton")
-    SEGMENTED_BUTTON
+    @JsonProperty("SegmentedButton") SEGMENTED_BUTTON
 }

@@ -1,9 +1,8 @@
 package edu.stanford.protege.webprotege.forms;
 
 
-
-import edu.stanford.protege.webprotege.forms.field.FormFieldId;
 import edu.stanford.protege.webprotege.common.LanguageMap;
+import edu.stanford.protege.webprotege.forms.field.FormFieldId;
 
 import javax.annotation.Nonnull;
 
@@ -18,8 +17,7 @@ public class FormFieldBindingMissingException extends RuntimeException {
 
     private FormFieldId formFieldId;
 
-    public FormFieldBindingMissingException(@Nonnull FormFieldId formFieldId,
-                                            @Nonnull LanguageMap label) {
+    public FormFieldBindingMissingException(@Nonnull FormFieldId formFieldId, @Nonnull LanguageMap label) {
         super("Form field binding is missing for " + formFieldId + "(" + label + ").  Improperly configured form.");
         this.formFieldId = checkNotNull(formFieldId);
     }

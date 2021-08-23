@@ -18,8 +18,10 @@ import javax.annotation.Nonnull;
 public record DeleteFormAction(@JsonProperty("projectId") @Nonnull ProjectId projectId,
                                @JsonProperty("formId") @Nonnull FormId formId) implements Request<DeleteFormResult> {
 
+    public static final String CHANNEL = "webprotege.forms.DeleteForm";
+
     @Override
     public String getChannel() {
-        return "forms.DeleteForm";
+        return CHANNEL;
     }
 }

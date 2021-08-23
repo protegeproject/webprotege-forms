@@ -17,7 +17,6 @@ import java.util.stream.Stream;
 import static com.google.common.collect.ImmutableList.toImmutableList;
 
 
-
 @AutoValue
 @JsonTypeName("GridControlDescriptorDto")
 public abstract class GridControlDescriptorDto implements FormControlDescriptorDto {
@@ -47,28 +46,25 @@ public abstract class GridControlDescriptorDto implements FormControlDescriptorD
 
     @Override
     public GridControlDescriptor toFormControlDescriptor() {
-        return GridControlDescriptor.get(
-                getColumns().stream().map(GridColumnDescriptorDto::toGridColumnDescriptor).collect(toImmutableList()),
-                getSubjectFactoryDescriptorInternal()
-        );
+        return GridControlDescriptor.get(getColumns().stream()
+                                                     .map(GridColumnDescriptorDto::toGridColumnDescriptor)
+                                                     .collect(toImmutableList()),
+                                         getSubjectFactoryDescriptorInternal());
     }
 
     public int getNestedColumnCount() {
         int count = 0;
-        for(GridColumnDescriptorDto columnDescriptor : getColumns()) {
+        for (GridColumnDescriptorDto columnDescriptor : getColumns()) {
             count += columnDescriptor.getNestedColumnCount();
         }
         return count;
     }
 
 
-
     @JsonIgnore
     @Nonnull
     public Stream<GridColumnDescriptorDto> getLeafColumns() {
-        return getColumns()
-                .stream()
-                .flatMap(GridColumnDescriptorDto::getLeafColumnDescriptors);
+        return getColumns().stream().flatMap(GridColumnDescriptorDto::getLeafColumnDescriptors);
     }
 
     /**
@@ -78,19 +74,17 @@ public abstract class GridControlDescriptorDto implements FormControlDescriptorD
     @JsonIgnore
     public ImmutableMap<GridColumnId, GridColumnId> getLeafColumnToTopLevelColumnMap() {
         ImmutableMap.Builder<GridColumnId, GridColumnId> builder = ImmutableMap.builder();
-        getColumns()
-                .forEach(topLevelColumn -> {
-                    topLevelColumn.getLeafColumnDescriptors()
-                                  .map(GridColumnDescriptorDto::getId)
-                                  .forEach(leafColumnId -> {
-                                      builder.put(leafColumnId, topLevelColumn.getId());
-                                  });
-                });
+        getColumns().forEach(topLevelColumn -> {
+            topLevelColumn.getLeafColumnDescriptors().map(GridColumnDescriptorDto::getId).forEach(leafColumnId -> {
+                builder.put(leafColumnId, topLevelColumn.getId());
+            });
+        });
         return builder.build();
     }
 
     /**
      * Gets the index of the specified columnId.
+     *
      * @param columnId The {@link GridColumnId}
      * @return The column index of the specified column Id.  A value of -1 is returned if the
      * {@link GridColumnId} does not identify a column in this grid.
@@ -98,8 +92,8 @@ public abstract class GridControlDescriptorDto implements FormControlDescriptorD
     @JsonIgnore
     public int getColumnIndex(GridColumnId columnId) {
         ImmutableList<GridColumnDescriptorDto> columns = getColumns();
-        for(int i = 0; i < columns.size(); i++) {
-            if(columns.get(i).getId().equals(columnId)) {
+        for (int i = 0; i < columns.size(); i++) {
+            if (columns.get(i).getId().equals(columnId)) {
                 return i;
             }
         }

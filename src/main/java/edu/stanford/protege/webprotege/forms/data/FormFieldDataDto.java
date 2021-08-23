@@ -4,8 +4,8 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.auto.value.AutoValue;
-import edu.stanford.protege.webprotege.forms.field.FormFieldDescriptorDto;
 import edu.stanford.protege.webprotege.common.Page;
+import edu.stanford.protege.webprotege.forms.field.FormFieldDescriptorDto;
 
 import javax.annotation.Nonnull;
 
@@ -31,15 +31,14 @@ public abstract class FormFieldDataDto {
 
     @Nonnull
     public FormFieldData toFormFieldData() {
-        return FormFieldData.get(
-                getFormFieldDescriptor().toFormFieldDescriptor(),
-                getFormControlData().transform(FormControlDataDto::toFormControlData));
+        return FormFieldData.get(getFormFieldDescriptor().toFormFieldDescriptor(),
+                                 getFormControlData().transform(FormControlDataDto::toFormControlData));
     }
 
     @JsonIgnore
     @Nonnull
     public FormFieldData getFormFieldData() {
         return FormFieldData.get(getFormFieldDescriptor().toFormFieldDescriptor(),
-                getFormControlData().transform(FormControlDataDto::toFormControlData));
+                                 getFormControlData().transform(FormControlDataDto::toFormControlData));
     }
 }

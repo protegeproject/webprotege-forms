@@ -19,14 +19,16 @@ import static com.google.common.base.Preconditions.checkNotNull;
  */
 public class DeprecateEntityByFormAction implements Request<DeprecateEntityByFormResult> {
 
-    private OWLEntity entity;
+    public static final String CHANNEL = "webprotege.forms.DeprecateEntityByFormAction";
+
+    private final OWLEntity entity;
 
     @Nullable
-    private FormData deprecationFormData;
+    private final FormData deprecationFormData;
 
-    private OWLEntity replacementEntity;
+    private final OWLEntity replacementEntity;
 
-    private ProjectId projectId;
+    private final ProjectId projectId;
 
     public DeprecateEntityByFormAction(OWLEntity entity,
                                        Optional<FormData> deprecationFormData,
@@ -36,19 +38,18 @@ public class DeprecateEntityByFormAction implements Request<DeprecateEntityByFor
         this.deprecationFormData = checkNotNull(deprecationFormData).orElse(null);
         this.replacementEntity = checkNotNull(replacementEntity).orElse(null);
         this.projectId = checkNotNull(projectId);
-        if(replacementEntity.isPresent()) {
-            boolean entityTypesAreTheSame = replacementEntity.get()
-                             .getEntityType()
-                             .equals(entity.getEntityType());
-            if(!entityTypesAreTheSame) {
-                throw new IllegalArgumentException("Entity types for the term being deprecated and the replacement term must be the same");
+        if (replacementEntity.isPresent()) {
+            boolean entityTypesAreTheSame = replacementEntity.get().getEntityType().equals(entity.getEntityType());
+            if (!entityTypesAreTheSame) {
+                throw new IllegalArgumentException(
+                        "Entity types for the term being deprecated and the replacement term must be the same");
             }
         }
     }
 
     @Override
     public String getChannel() {
-        return "forms.DeprecateEntityByFormAction";
+        return CHANNEL;
     }
 
     @Nonnull

@@ -34,7 +34,7 @@ public abstract class LiteralFormControlData implements PrimitiveFormControlData
     @JsonIgnore
     public boolean isNumber() {
         OWLDatatype datatype = getLiteral().getDatatype();
-        if(!datatype.isBuiltIn()) {
+        if (!datatype.isBuiltIn()) {
             return false;
         }
         return datatype.getBuiltInDatatype().isNumeric();

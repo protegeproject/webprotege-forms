@@ -19,8 +19,11 @@ import java.util.Optional;
 public abstract class TextControlDataDto implements FormControlDataDto, Comparable<TextControlDataDto> {
 
     private static final Comparator<OWLLiteral> literalComparator = Comparator.nullsLast(Comparator.comparing(OWLLiteral::getLang)
-                                                                                                   .thenComparing(OWLLiteral::getLiteral, String::compareToIgnoreCase)
-                                                                                                   .thenComparing(OWLLiteral::getDatatype));
+                                                                                                   .thenComparing(
+                                                                                                           OWLLiteral::getLiteral,
+                                                                                                           String::compareToIgnoreCase)
+                                                                                                   .thenComparing(
+                                                                                                           OWLLiteral::getDatatype));
 
     @JsonCreator
     @Nonnull
@@ -52,8 +55,7 @@ public abstract class TextControlDataDto implements FormControlDataDto, Comparab
     @Nonnull
     @Override
     public TextControlData toFormControlData() {
-        return TextControlData.get(getDescriptor(),
-                getValueInternal());
+        return TextControlData.get(getDescriptor(), getValueInternal());
     }
 
     @Override

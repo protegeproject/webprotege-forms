@@ -5,9 +5,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.google.auto.value.AutoValue;
+import edu.stanford.protege.webprotege.common.LanguageMap;
 import edu.stanford.protege.webprotege.forms.ExpansionState;
 import edu.stanford.protege.webprotege.forms.HasFormFieldId;
-import edu.stanford.protege.webprotege.common.LanguageMap;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -88,7 +88,17 @@ public abstract class FormFieldDescriptor implements HasFormFieldId, HasRepeatab
                                                   @JsonProperty(INITIAL_EXPANSIONS_STATE) @Nullable ExpansionState expansionState,
                                                   @JsonProperty(HELP) @Nullable LanguageMap help) {
         final FormFieldId formFieldId = FormFieldId.get(checkNotNull(id));
-        return get(formFieldId, owlBinding, formLabel, fieldRun, deprecationStrategy, fieldDescriptor, repeatability, optionality, readOnly, expansionState, help);
+        return get(formFieldId,
+                   owlBinding,
+                   formLabel,
+                   fieldRun,
+                   deprecationStrategy,
+                   fieldDescriptor,
+                   repeatability,
+                   optionality,
+                   readOnly,
+                   expansionState,
+                   help);
     }
 
     @Nonnull

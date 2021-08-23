@@ -9,4 +9,5 @@ import edu.stanford.protege.webprotege.common.Response;
  * 2019-11-01
  */
 public record SetEntityFormDataResult() implements Response {
+
 }

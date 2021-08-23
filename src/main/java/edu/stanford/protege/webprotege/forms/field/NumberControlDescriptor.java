@@ -61,18 +61,15 @@ public class NumberControlDescriptor implements FormControlDescriptor {
 
     @Override
     public boolean equals(Object obj) {
-        if(obj == this) {
+        if (obj == this) {
             return true;
         }
-        if(!(obj instanceof NumberControlDescriptor)) {
+        if (!(obj instanceof NumberControlDescriptor)) {
             return false;
         }
         NumberControlDescriptor other = (NumberControlDescriptor) obj;
-        return this.format.equals(other.format)
-                && this.range.equals(other.range)
-                && this.widgetType.equals(other.widgetType)
-                && this.length == other.length
-                && this.placeholder.equals(other.placeholder);
+        return this.format.equals(other.format) && this.range.equals(other.range) && this.widgetType.equals(other.widgetType) && this.length == other.length && this.placeholder.equals(
+                other.placeholder);
     }
 
     @Nonnull

@@ -1,8 +1,6 @@
 package edu.stanford.protege.webprotege.forms;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.google.common.collect.ImmutableList;
 import edu.stanford.protege.webprotege.common.ProjectId;
 import edu.stanford.protege.webprotege.common.Request;
 
@@ -20,8 +18,10 @@ public record CopyFormDescriptorsFromProjectAction(ProjectId toProject,
                                                    ProjectId fromProject,
                                                    List<FormId> formIds) implements Request<CopyFormDescriptorsFromProjectResult> {
 
+    public static final String CHANNEL = "webprotege.forms.CopyFormDescriptorsFromProject";
+
     @Override
     public String getChannel() {
-        return "forms.CopryFormDescriptorsFromProject";
+        return CHANNEL;
     }
 }

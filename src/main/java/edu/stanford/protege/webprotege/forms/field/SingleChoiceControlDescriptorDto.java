@@ -38,7 +38,6 @@ public abstract class SingleChoiceControlDescriptorDto implements FormControlDes
 
     @Override
     public SingleChoiceControlDescriptor toFormControlDescriptor() {
-        return SingleChoiceControlDescriptor.get(getWidgetType(),
-                                                 getChoiceListSourceDescriptor());
+        return SingleChoiceControlDescriptor.get(getWidgetType(), getChoiceListSourceDescriptor());
     }
 }

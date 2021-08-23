@@ -9,9 +9,7 @@ import org.semanticweb.owlapi.model.IRI;
 
 import javax.annotation.Nonnull;
 
-@JsonSubTypes({
-        @JsonSubTypes.Type(FormEntitySubjectDto.class)
-})
+@JsonSubTypes({@JsonSubTypes.Type(FormEntitySubjectDto.class)})
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "type")
 public abstract class FormSubjectDto {
 
@@ -20,14 +18,14 @@ public abstract class FormSubjectDto {
         return new AutoValue_FormEntitySubjectDto(entity);
     }
 
+    public static FormSubjectDto getFormSubject(OWLEntityData root) {
+        return FormSubjectDto.get(root);
+    }
+
     @JsonIgnore
     @Nonnull
     public abstract IRI getIri();
 
     @Nonnull
     public abstract FormEntitySubject toFormSubject();
-
-    public static FormSubjectDto getFormSubject(OWLEntityData root) {
-        return FormSubjectDto.get(root);
-    }
 }

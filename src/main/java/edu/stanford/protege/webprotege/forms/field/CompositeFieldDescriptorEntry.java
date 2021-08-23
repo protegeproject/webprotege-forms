@@ -28,7 +28,8 @@ public class CompositeFieldDescriptorEntry implements Serializable {
 
     public CompositeFieldDescriptorEntry(double flexGrow,
                                          double flexShrink,
-                                         FormFieldDescriptor descriptor, double flexBasis) {
+                                         FormFieldDescriptor descriptor,
+                                         double flexBasis) {
         this.descriptor = checkNotNull(descriptor);
         this.flexGrow = flexGrow;
         this.flexShrink = flexShrink;
@@ -37,17 +38,14 @@ public class CompositeFieldDescriptorEntry implements Serializable {
 
     @Override
     public boolean equals(Object obj) {
-        if(obj == this) {
+        if (obj == this) {
             return true;
         }
-        if(!(obj instanceof CompositeFieldDescriptorEntry)) {
+        if (!(obj instanceof CompositeFieldDescriptorEntry)) {
             return false;
         }
         CompositeFieldDescriptorEntry other = (CompositeFieldDescriptorEntry) obj;
-        return this.descriptor.equals(other.descriptor)
-                && this.flexBasis == other.flexBasis
-                && this.flexGrow == other.flexGrow
-                && this.flexShrink == other.flexShrink;
+        return this.descriptor.equals(other.descriptor) && this.flexBasis == other.flexBasis && this.flexGrow == other.flexGrow && this.flexShrink == other.flexShrink;
     }
 
     public double getBasis() {

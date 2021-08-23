@@ -19,11 +19,7 @@ import java.util.Optional;
  * Stanford Center for Biomedical Informatics Research
  * 2020-01-08
  */
-@JsonSubTypes({
-        @JsonSubTypes.Type(EntityFormControlData.class),
-        @JsonSubTypes.Type(IriFormControlData.class),
-        @JsonSubTypes.Type(LiteralFormControlData.class)
-})
+@JsonSubTypes({@JsonSubTypes.Type(EntityFormControlData.class), @JsonSubTypes.Type(IriFormControlData.class), @JsonSubTypes.Type(LiteralFormControlData.class)})
 public interface PrimitiveFormControlData {
 
 
@@ -44,11 +40,13 @@ public interface PrimitiveFormControlData {
     }
 
     static PrimitiveFormControlData get(double value) {
-        return LiteralFormControlData.get(new OWLLiteralImplDouble(value, new OWL2DatatypeImpl(OWL2Datatype.XSD_DECIMAL)));
+        return LiteralFormControlData.get(new OWLLiteralImplDouble(value,
+                                                                   new OWL2DatatypeImpl(OWL2Datatype.XSD_DECIMAL)));
     }
 
     static PrimitiveFormControlData get(boolean value) {
-        return LiteralFormControlData.get(new OWLLiteralImplBoolean(value, new OWL2DatatypeImpl(OWL2Datatype.XSD_BOOLEAN)));
+        return LiteralFormControlData.get(new OWLLiteralImplBoolean(value,
+                                                                    new OWL2DatatypeImpl(OWL2Datatype.XSD_BOOLEAN)));
     }
 
     @Nonnull

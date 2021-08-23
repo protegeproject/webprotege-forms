@@ -3,9 +3,9 @@ package edu.stanford.protege.webprotege.forms.data;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.google.auto.value.AutoValue;
 import com.google.common.collect.ImmutableSet;
+import edu.stanford.protege.webprotege.common.Page;
 import edu.stanford.protege.webprotege.forms.field.FormRegionOrdering;
 import edu.stanford.protege.webprotege.forms.field.GridControlDescriptor;
-import edu.stanford.protege.webprotege.common.Page;
 
 import javax.annotation.Nonnull;
 

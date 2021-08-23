@@ -3,8 +3,8 @@ package edu.stanford.protege.webprotege.forms;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.common.base.Objects;
-import edu.stanford.protege.webprotege.forms.field.FormFieldDescriptor;
 import edu.stanford.protege.webprotege.common.LanguageMap;
+import edu.stanford.protege.webprotege.forms.field.FormFieldDescriptor;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -25,11 +25,11 @@ import static com.google.common.base.Preconditions.checkNotNull;
  */
 public class FormDescriptor {
 
+    private final List<FormFieldDescriptor> elements;
+
     private FormId formId;
 
     private LanguageMap label = LanguageMap.empty();
-
-    private final List<FormFieldDescriptor> elements;
 
     @Nullable
     private FormSubjectFactoryDescriptor subjectFactoryDescriptor;
@@ -50,16 +50,16 @@ public class FormDescriptor {
     }
 
     public static FormDescriptor empty(FormId formId) {
-        return new FormDescriptor(formId, LanguageMap.empty(), Collections.emptyList(),
-                                  Optional.empty());
+        return new FormDescriptor(formId, LanguageMap.empty(), Collections.emptyList(), Optional.empty());
+    }
+
+    public static Builder builder(FormId formId) {
+        return new Builder(formId);
     }
 
     public FormDescriptor withFields(Predicate<FormFieldDescriptor> test) {
         List<FormFieldDescriptor> filteredFields = elements.stream().filter(test).collect(Collectors.toList());
-        return new FormDescriptor(formId,
-                                  label,
-                                  filteredFields,
-                                  getSubjectFactoryDescriptor());
+        return new FormDescriptor(formId, label, filteredFields, getSubjectFactoryDescriptor());
     }
 
     public FormId getFormId() {
@@ -79,10 +79,6 @@ public class FormDescriptor {
         return elements;
     }
 
-    public static Builder builder(FormId formId) {
-        return new Builder(formId);
-    }
-
     @Override
     public int hashCode() {
         return Objects.hashCode(formId, label, elements);
@@ -97,49 +93,34 @@ public class FormDescriptor {
             return false;
         }
         FormDescriptor other = (FormDescriptor) obj;
-        return this.formId.equals(other.formId)
-                && this.label.equals(other.label)
-                && this.elements.equals(other.elements)
-                && Objects.equal(this.subjectFactoryDescriptor, other.subjectFactoryDescriptor);
+        return this.formId.equals(other.formId) && this.label.equals(other.label) && this.elements.equals(other.elements) && Objects.equal(
+                this.subjectFactoryDescriptor,
+                other.subjectFactoryDescriptor);
     }
 
 
     @Override
     public String toString() {
-        return toStringHelper("FormDescriptor")
-                .addValue(formId)
-                .addValue(label)
-                .addValue(elements)
-                .toString();
+        return toStringHelper("FormDescriptor").addValue(formId).addValue(label).addValue(elements).toString();
     }
 
     @Nonnull
     public FormDescriptor withFormId(@Nonnull FormId formId) {
-        return new FormDescriptor(
-                formId,
-                label,
-                getFields(),
-                getSubjectFactoryDescriptor()
-        );
+        return new FormDescriptor(formId, label, getFields(), getSubjectFactoryDescriptor());
     }
 
     @Nonnull
     public FormDescriptor withLabel(@Nonnull LanguageMap newLabel) {
-        return new FormDescriptor(
-                formId,
-                newLabel,
-                getFields(),
-                getSubjectFactoryDescriptor()
-        );
+        return new FormDescriptor(formId, newLabel, getFields(), getSubjectFactoryDescriptor());
     }
 
     public static class Builder {
 
         private final FormId formId;
 
-        private LanguageMap label = LanguageMap.empty();
-
         private final List<FormFieldDescriptor> builder_elementDescriptors = new ArrayList<>();
+
+        private LanguageMap label = LanguageMap.empty();
 
 
         public Builder(FormId formId) {

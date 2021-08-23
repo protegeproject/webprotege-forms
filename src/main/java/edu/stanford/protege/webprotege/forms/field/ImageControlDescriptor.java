@@ -20,10 +20,10 @@ public class ImageControlDescriptor implements FormControlDescriptor {
 
     @Override
     public boolean equals(Object obj) {
-        if(obj == this) {
+        if (obj == this) {
             return true;
         }
-        if(!(obj instanceof ImageControlDescriptor)) {
+        if (!(obj instanceof ImageControlDescriptor)) {
             return false;
         }
         ImageControlDescriptor other = (ImageControlDescriptor) obj;

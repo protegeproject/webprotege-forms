@@ -29,36 +29,35 @@ public class FormControlValueDeserializer extends StdDeserializer<PrimitiveFormC
     }
 
     @Override
-    public PrimitiveFormControlData deserialize(JsonParser p,
-                                                DeserializationContext ctxt) throws IOException {
+    public PrimitiveFormControlData deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
 
         JsonNode node = p.readValueAsTree();
-        if(node.isTextual()) {
+        if (node.isTextual()) {
             return PrimitiveFormControlData.get(node.asText());
         }
-        else if(node.isNumber()) {
+        else if (node.isNumber()) {
             return PrimitiveFormControlData.get(node.asDouble());
         }
-        else if(node.isBoolean()) {
+        else if (node.isBoolean()) {
             return PrimitiveFormControlData.get(node.asBoolean());
         }
-        else if(node.isObject()) {
-            if(node.has("iri")) {
-                if(node.has("type")) {
+        else if (node.isObject()) {
+            if (node.has("iri")) {
+                if (node.has("type")) {
                     IRI iri = IRI.create(node.get("iri").asText());
                     String type = node.get("type").asText();
                     switch (type) {
-                        case "owl:Class" :
+                        case "owl:Class":
                             return PrimitiveFormControlData.get(dataFactory.getOWLClass(iri));
                         case "owl:ObjectProperty":
                             return PrimitiveFormControlData.get(dataFactory.getOWLObjectProperty(iri));
-                        case "owl:DatatypeProperty" :
+                        case "owl:DatatypeProperty":
                             return PrimitiveFormControlData.get(dataFactory.getOWLDataProperty(iri));
                         case "owl:AnnotationProperty":
                             return PrimitiveFormControlData.get(dataFactory.getOWLAnnotationProperty(iri));
-                        case "rdfs:Datatype" :
+                        case "rdfs:Datatype":
                             return PrimitiveFormControlData.get(dataFactory.getOWLDatatype(iri));
-                        case "owl:NamedIndividual" :
+                        case "owl:NamedIndividual":
                             return PrimitiveFormControlData.get(dataFactory.getOWLNamedIndividual(iri));
                     }
                     throw new JsonParseException(p, "Unrecognised term type: " + type);
@@ -68,16 +67,19 @@ public class FormControlValueDeserializer extends StdDeserializer<PrimitiveFormC
                 }
             }
             // literal supported for legacy reasons
-            else if(node.has("value") || node.has("literal")) {
+            else if (node.has("value") || node.has("literal")) {
                 JsonNode literalNode = node.get("value");
-                if(literalNode == null) {
+                if (literalNode == null) {
                     literalNode = node.get("literal");
                 }
                 String literal = literalNode.asText();
                 JsonNode langNode = node.get("lang");
                 JsonNode typeNode = node.get("type");
-                if(typeNode != null && !typeNode.asText().equals(OWLRDFVocabulary.RDF_PLAIN_LITERAL.getIRI().toString())) {
-                    return PrimitiveFormControlData.get(dataFactory.getOWLLiteral(literal, dataFactory.getOWLDatatype(IRI.create(typeNode.asText()))));
+                if (typeNode != null && !typeNode.asText()
+                                                 .equals(OWLRDFVocabulary.RDF_PLAIN_LITERAL.getIRI().toString())) {
+                    return PrimitiveFormControlData.get(dataFactory.getOWLLiteral(literal,
+                                                                                  dataFactory.getOWLDatatype(IRI.create(
+                                                                                          typeNode.asText()))));
                 }
                 else {
                     return PrimitiveFormControlData.get(dataFactory.getOWLLiteral(literal, langNode.asText("")));

@@ -14,13 +14,15 @@ import javax.annotation.Nonnull;
  * 2019-11-01
  */
 public record SetEntityFormsDataAction(@Nonnull ProjectId projectId,
-                                      @Nonnull OWLEntity entity,
-                                      @Nonnull ImmutableMap<FormId, FormData> pristineFormsData,
-                                      @Nonnull FormDataByFormId editedFormsData) implements Request<SetEntityFormDataResult> {
+                                       @Nonnull OWLEntity entity,
+                                       @Nonnull ImmutableMap<FormId, FormData> pristineFormsData,
+                                       @Nonnull FormDataByFormId editedFormsData) implements Request<SetEntityFormDataResult> {
+
+    public static final String CHANNEL = "webprotege.forms.SetEntityFormsData";
 
     @Override
     public String getChannel() {
-        return "forms.SetEntityFormsData";
+        return CHANNEL;
     }
 }
 

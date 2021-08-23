@@ -30,7 +30,9 @@ public abstract class GridColumnDescriptor implements BoundControlDescriptor {
         return new AutoValue_GridColumnDescriptor(id,
                                                   optionality == null ? Optionality.REQUIRED : optionality,
                                                   repeatability == null ? Repeatability.NON_REPEATABLE : repeatability,
-                                                  owlBinding, columnLabel, formControlDescriptor);
+                                                  owlBinding,
+                                                  columnLabel,
+                                                  formControlDescriptor);
     }
 
     @JsonCreator
@@ -44,7 +46,9 @@ public abstract class GridColumnDescriptor implements BoundControlDescriptor {
         return new AutoValue_GridColumnDescriptor(GridColumnId.get(id),
                                                   optionality == null ? Optionality.REQUIRED : optionality,
                                                   repeatability == null ? Repeatability.NON_REPEATABLE : repeatability,
-                                                  owlBinding, columnLabel, formControlDescriptor);
+                                                  owlBinding,
+                                                  columnLabel,
+                                                  formControlDescriptor);
     }
 
     @JsonIgnore
@@ -59,7 +63,7 @@ public abstract class GridColumnDescriptor implements BoundControlDescriptor {
     @JsonIgnore
     public Stream<GridColumnDescriptor> getLeafColumnDescriptors() {
         FormControlDescriptor formControlDescriptor = getFormControlDescriptor();
-        if(formControlDescriptor instanceof GridControlDescriptor) {
+        if (formControlDescriptor instanceof GridControlDescriptor) {
             // This is not a leaf column
             return ((GridControlDescriptor) formControlDescriptor).getLeafColumns();
         }
@@ -105,7 +109,7 @@ public abstract class GridColumnDescriptor implements BoundControlDescriptor {
     @JsonIgnore
     public int getNestedColumnCount() {
         FormControlDescriptor formControlDescriptor = getFormControlDescriptor();
-        if(formControlDescriptor instanceof GridControlDescriptor) {
+        if (formControlDescriptor instanceof GridControlDescriptor) {
             return ((GridControlDescriptor) getFormControlDescriptor()).getNestedColumnCount();
         }
         else {

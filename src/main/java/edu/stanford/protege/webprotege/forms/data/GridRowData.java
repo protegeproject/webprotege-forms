@@ -16,8 +16,7 @@ import java.util.Optional;
 
 public abstract class GridRowData implements Comparable<GridRowData> {
 
-    public static GridRowData get(@Nullable FormEntitySubject subject,
-                                  @Nonnull ImmutableList<GridCellData> cellData) {
+    public static GridRowData get(@Nullable FormEntitySubject subject, @Nonnull ImmutableList<GridCellData> cellData) {
         return new AutoValue_GridRowData(subject, cellData);
     }
 
@@ -37,11 +36,11 @@ public abstract class GridRowData implements Comparable<GridRowData> {
     public int compareTo(GridRowData o) {
         ImmutableList<GridCellData> cells = getCells();
         ImmutableList<GridCellData> otherCells = o.getCells();
-        for(int i = 0; i < cells.size() && i < otherCells.size(); i++) {
+        for (int i = 0; i < cells.size() && i < otherCells.size(); i++) {
             GridCellData cellData = cells.get(i);
             GridCellData otherCellData = otherCells.get(i);
             int diff = cellData.compareTo(otherCellData);
-            if(diff != 0) {
+            if (diff != 0) {
                 return diff;
             }
         }

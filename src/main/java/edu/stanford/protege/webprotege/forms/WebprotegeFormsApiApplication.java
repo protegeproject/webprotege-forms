@@ -10,13 +10,13 @@ import uk.ac.manchester.cs.owl.owlapi.OWLDataFactoryImpl;
 @SpringBootApplication
 public class WebprotegeFormsApiApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(WebprotegeFormsApiApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(WebprotegeFormsApiApplication.class, args);
+    }
 
-	@Bean
-	@ConditionalOnMissingBean
-	OWLDataFactory dataFactory() {
-		return new OWLDataFactoryImpl();
-	}
+    @Bean
+    @ConditionalOnMissingBean
+    OWLDataFactory dataFactory() {
+        return new OWLDataFactoryImpl();
+    }
 }

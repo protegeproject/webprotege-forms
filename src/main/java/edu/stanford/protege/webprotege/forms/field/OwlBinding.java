@@ -13,16 +13,8 @@ import java.util.Optional;
  * Stanford Center for Biomedical Informatics Research
  * 2019-11-24
  */
-@JsonTypeInfo(
-        use = JsonTypeInfo.Id.NAME,
-        include = JsonTypeInfo.As.PROPERTY,
-        property = "type")
-@JsonSubTypes({
-                      @JsonSubTypes.Type(value = OwlPropertyBinding.class, name = OwlPropertyBinding.TYPE),
-                      @JsonSubTypes.Type(value = OwlClassBinding.class, name = OwlClassBinding.TYPE),
-                      @JsonSubTypes.Type(value = OwlInstanceBinding.class, name = OwlInstanceBinding.TYPE),
-                      @JsonSubTypes.Type(value = OwlSubClassBinding.class, name = OwlSubClassBinding.TYPE)
-              })
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
+@JsonSubTypes({@JsonSubTypes.Type(value = OwlPropertyBinding.class, name = OwlPropertyBinding.TYPE), @JsonSubTypes.Type(value = OwlClassBinding.class, name = OwlClassBinding.TYPE), @JsonSubTypes.Type(value = OwlInstanceBinding.class, name = OwlInstanceBinding.TYPE), @JsonSubTypes.Type(value = OwlSubClassBinding.class, name = OwlSubClassBinding.TYPE)})
 public interface OwlBinding {
 
     String VALUES_CRITERIA = "valuesCriteria";

@@ -22,4 +22,5 @@ public record GetEntityFormDescriptorResult(@JsonProperty("projectId") @Nonnull 
                                             @JsonProperty("formDescriptor") @Nullable FormDescriptor formDescriptor,
                                             @JsonProperty("purpose") @Nonnull FormPurpose purpose,
                                             @Nullable CompositeRootCriteria selectorCriteria) implements Response {
+
 }

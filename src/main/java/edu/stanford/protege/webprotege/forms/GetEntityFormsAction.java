@@ -22,7 +22,7 @@ import javax.annotation.Nonnull;
  *
  * @param projectId        The project id
  * @param entity           The term
- * @param filters       A list of {@link FormId}s.  If the list is empty then all forms that are applicable
+ * @param filters          A list of {@link FormId}s.  If the list is empty then all forms that are applicable
  *                         to the term will be retrieved.  If the list is non-empty then the only the applicable
  *                         forms that have form Ids in the list will be retrieved.
  * @param formPageRequests A list of page requests pertaining to various regions on the form.
@@ -39,9 +39,11 @@ public record GetEntityFormsAction(@Nonnull ProjectId projectId,
                                    @Nonnull ImmutableSet<FormId> filters,
                                    ImmutableSet<FormRegionFilter> formRegionFilters) implements Request<GetEntityFormsResult> {
 
+    public static final String CHANNEL = "webprotege.forms.GetEntityForms";
+
     @Override
     public String getChannel() {
-        return "forms.GetEntityForms";
+        return CHANNEL;
     }
 }
 

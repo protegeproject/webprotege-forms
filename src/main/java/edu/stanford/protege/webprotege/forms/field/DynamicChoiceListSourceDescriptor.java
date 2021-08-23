@@ -31,10 +31,7 @@ public abstract class DynamicChoiceListSourceDescriptor implements ChoiceListSou
             return new AutoValue_DynamicChoiceListSourceDescriptor((CompositeRootCriteria) criteria);
         }
         else {
-            CompositeRootCriteria wrapped = CompositeRootCriteria.get(
-                    ImmutableList.of(criteria),
-                    MultiMatchType.ALL
-            );
+            CompositeRootCriteria wrapped = CompositeRootCriteria.get(ImmutableList.of(criteria), MultiMatchType.ALL);
             return new AutoValue_DynamicChoiceListSourceDescriptor(wrapped);
         }
     }

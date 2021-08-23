@@ -27,9 +27,7 @@ public abstract class FormGroup {
     public static FormGroup get(@Nonnull @JsonProperty(ID) FormGroupId formGroupId,
                                 @Nonnull @JsonProperty(DESCRIPTION) String description,
                                 @Nonnull @JsonProperty(FORM_IDS) ImmutableList<FormId> formIds) {
-        return new AutoValue_FormGroup(formGroupId,
-                                       description,
-                                       formIds);
+        return new AutoValue_FormGroup(formGroupId, description, formIds);
     }
 
     @JsonProperty(ID)

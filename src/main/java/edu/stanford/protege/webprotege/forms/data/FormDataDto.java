@@ -6,9 +6,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.google.auto.value.AutoValue;
 import com.google.common.collect.ImmutableList;
+import edu.stanford.protege.webprotege.common.Page;
 import edu.stanford.protege.webprotege.forms.FormDescriptorDto;
 import edu.stanford.protege.webprotege.forms.FormId;
-import edu.stanford.protege.webprotege.common.Page;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -32,19 +32,20 @@ public abstract class FormDataDto implements FormControlDataDto {
 
     /**
      * Create a form with empty data
-     * @param subject The form subject
+     *
+     * @param subject        The form subject
      * @param formDescriptor The form descriptor
-     * @param depth The depth of nesting
+     * @param depth          The depth of nesting
      */
     @Nonnull
     public static FormDataDto get(@Nonnull FormSubjectDto subject,
                                   @Nonnull FormDescriptorDto formDescriptor,
                                   int depth) {
         ImmutableList<FormFieldDataDto> emptyFields = formDescriptor.getFields()
-                                                                .stream()
-                                                                .map(field -> FormFieldDataDto.get(field,
-                                                                                                   Page.emptyPage()))
-                                                                .collect(toImmutableList());
+                                                                    .stream()
+                                                                    .map(field -> FormFieldDataDto.get(field,
+                                                                                                       Page.emptyPage()))
+                                                                    .collect(toImmutableList());
         return new AutoValue_FormDataDto(depth, subject, formDescriptor, emptyFields);
     }
 
@@ -80,15 +81,19 @@ public abstract class FormDataDto implements FormControlDataDto {
     @Override
     public FormControlData toFormControlData() {
         return FormData.get(getSubject().map(FormSubjectDto::toFormSubject),
-                getFormDescriptor().toFormDescriptor(),
-                getFormFieldData().stream().map(FormFieldDataDto::getFormFieldData).collect(toImmutableList()));
+                            getFormDescriptor().toFormDescriptor(),
+                            getFormFieldData().stream()
+                                              .map(FormFieldDataDto::getFormFieldData)
+                                              .collect(toImmutableList()));
     }
 
     @Nonnull
     public FormData toFormData() {
         return FormData.get(getSubject().map(FormSubjectDto::toFormSubject),
-                getFormDescriptor().toFormDescriptor(),
-                getFormFieldData().stream().map(FormFieldDataDto::toFormFieldData).collect(toImmutableList()));
+                            getFormDescriptor().toFormDescriptor(),
+                            getFormFieldData().stream()
+                                              .map(FormFieldDataDto::toFormFieldData)
+                                              .collect(toImmutableList()));
     }
 
     @Nonnull

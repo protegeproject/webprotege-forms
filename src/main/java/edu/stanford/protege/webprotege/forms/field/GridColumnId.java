@@ -25,19 +25,19 @@ public abstract class GridColumnId implements FormRegionId {
         return new AutoValue_GridColumnId(id);
     }
 
-    @Override
-    public String value() {
-        return getId();
-    }
-
     public static GridColumnId valueOf(String id) {
         return get(id);
     }
 
     private static void checkFormat(@Nonnull String id) {
-        if(!UUIDUtil.isWellFormed(id)) {
+        if (!UUIDUtil.isWellFormed(id)) {
             throw new IllegalArgumentException("Malformed GridColumnId: " + id);
         }
+    }
+
+    @Override
+    public String value() {
+        return getId();
     }
 
     @Override

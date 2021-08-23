@@ -1,10 +1,10 @@
 package edu.stanford.protege.webprotege.forms.data;
 
 import com.google.auto.value.AutoValue;
+import edu.stanford.protege.webprotege.common.Page;
 import edu.stanford.protege.webprotege.forms.FilterState;
 import edu.stanford.protege.webprotege.forms.HasFilterState;
 import edu.stanford.protege.webprotege.forms.field.GridColumnId;
-import edu.stanford.protege.webprotege.common.Page;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -31,16 +31,15 @@ public abstract class GridCellDataDto implements HasFilterState {
 
     /**
      * Determines whether this cell data is filtered empty
+     *
      * @return true if this cel data is filtered empty (all values have been filtered out)
      * otherwise false.
      */
     public boolean isFilteredEmpty() {
-        return getFilterState().equals(FilterState.FILTERED)
-                && getValues().getPageElements().isEmpty();
+        return getFilterState().equals(FilterState.FILTERED) && getValues().getPageElements().isEmpty();
     }
 
     public GridCellData toGridCellData() {
-        return GridCellData.get(getColumnId(),
-                getValues().transform(FormControlDataDto::toFormControlData));
+        return GridCellData.get(getColumnId(), getValues().transform(FormControlDataDto::toFormControlData));
     }
 }

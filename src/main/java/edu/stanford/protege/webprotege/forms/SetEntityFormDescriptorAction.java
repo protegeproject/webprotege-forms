@@ -16,12 +16,14 @@ import javax.annotation.Nullable;
  */
 @JsonTypeName("SetEntityFormDescriptor")
 public record SetEntityFormDescriptorAction(@Nonnull ProjectId projectId,
-                                           @Nonnull FormDescriptor formDescriptor,
-                                           @Nonnull FormPurpose purpose,
-                                           @Nullable CompositeRootCriteria selectorCriteria) implements Request<SetEntityFormDescriptorResult> {
+                                            @Nonnull FormDescriptor formDescriptor,
+                                            @Nonnull FormPurpose purpose,
+                                            @Nullable CompositeRootCriteria selectorCriteria) implements Request<SetEntityFormDescriptorResult> {
+
+    public static final String CHANNEL = "webprotege.forms.SetEntityFormDescriptor";
 
     @Override
     public String getChannel() {
-        return "forms.SetEntityFormDescriptor";
+        return CHANNEL;
     }
 }

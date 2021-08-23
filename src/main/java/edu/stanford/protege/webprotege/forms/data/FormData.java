@@ -31,11 +31,8 @@ public abstract class FormData implements FormControlData {
         return new AutoValue_FormData(subject.orElse(null), formDescriptor, formFieldData);
     }
 
-    public static FormData empty(@Nonnull OWLEntity entity,
-                                 @Nonnull FormId formId) {
-        return get(Optional.of(FormSubject.get(entity)),
-                   FormDescriptor.empty(formId),
-                   ImmutableList.of());
+    public static FormData empty(@Nonnull OWLEntity entity, @Nonnull FormId formId) {
+        return get(Optional.of(FormSubject.get(entity)), FormDescriptor.empty(formId), ImmutableList.of());
     }
 
     @Override

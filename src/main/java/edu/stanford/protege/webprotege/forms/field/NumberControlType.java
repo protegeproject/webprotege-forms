@@ -9,12 +9,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 public enum NumberControlType {
 
-    @JsonProperty("Plain")
-    PLAIN,
+    @JsonProperty("Plain") PLAIN,
 
-    @JsonProperty("Stepper")
-    STEPPER,
+    @JsonProperty("Stepper") STEPPER,
 
-    @JsonProperty("Slider")
-    SLIDER
+    @JsonProperty("Slider") SLIDER
 }

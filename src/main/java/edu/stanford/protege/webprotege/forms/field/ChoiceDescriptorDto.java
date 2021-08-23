@@ -1,8 +1,8 @@
 package edu.stanford.protege.webprotege.forms.field;
 
 import com.google.auto.value.AutoValue;
-import edu.stanford.protege.webprotege.forms.data.PrimitiveFormControlDataDto;
 import edu.stanford.protege.webprotege.common.LanguageMap;
+import edu.stanford.protege.webprotege.forms.data.PrimitiveFormControlDataDto;
 
 import javax.annotation.Nonnull;
 
@@ -11,8 +11,7 @@ import javax.annotation.Nonnull;
 public abstract class ChoiceDescriptorDto {
 
     @Nonnull
-    public static ChoiceDescriptorDto get(@Nonnull PrimitiveFormControlDataDto value,
-                                          @Nonnull LanguageMap label) {
+    public static ChoiceDescriptorDto get(@Nonnull PrimitiveFormControlDataDto value, @Nonnull LanguageMap label) {
         return new AutoValue_ChoiceDescriptorDto(label, value);
     }
 

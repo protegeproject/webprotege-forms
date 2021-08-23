@@ -12,8 +12,10 @@ import edu.stanford.protege.webprotege.common.Request;
 @JsonTypeName("GetProjectFormDescriptors")
 public record GetProjectFormDescriptorsAction(ProjectId projectId) implements Request<GetProjectFormDescriptorsResult> {
 
+    public static final String CHANNEL = "webprotege.forms.GetProjectFormDescriptors";
+
     @Override
     public String getChannel() {
-        return "forms.GetProjectFormDescriptors";
+        return CHANNEL;
     }
 }

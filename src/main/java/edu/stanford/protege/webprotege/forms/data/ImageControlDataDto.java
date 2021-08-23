@@ -45,7 +45,6 @@ public abstract class ImageControlDataDto implements FormControlDataDto {
     @Nonnull
     @Override
     public FormControlData toFormControlData() {
-        return ImageControlData.get(getDescriptor(),
-                getIriInternal());
+        return ImageControlData.get(getDescriptor(), getIriInternal());
     }
 }

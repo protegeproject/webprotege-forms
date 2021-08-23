@@ -10,14 +10,9 @@ import javax.annotation.Nonnull;
  * Stanford Center for Biomedical Informatics Research
  * 2020-06-16
  */
-@JsonSubTypes(
-        {
-                @JsonSubTypes.Type(EntityFormControlDataMatchCriteria.class),
-                @JsonSubTypes.Type(LiteralFormControlDataMatchCriteria.class)
-        }
-)
+@JsonSubTypes({@JsonSubTypes.Type(EntityFormControlDataMatchCriteria.class), @JsonSubTypes.Type(LiteralFormControlDataMatchCriteria.class)})
 public interface PrimitiveFormControlDataMatchCriteria extends Criteria {
 
-        <R> R accept(@Nonnull PrimitiveFormControlDataMatchCriteriaVisitor<R> visitor);
+    <R> R accept(@Nonnull PrimitiveFormControlDataMatchCriteriaVisitor<R> visitor);
 
 }

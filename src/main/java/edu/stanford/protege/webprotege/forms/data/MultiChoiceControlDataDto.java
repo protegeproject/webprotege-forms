@@ -41,6 +41,8 @@ public abstract class MultiChoiceControlDataDto implements FormControlDataDto {
     @Override
     public MultiChoiceControlData toFormControlData() {
         return MultiChoiceControlData.get(getDescriptor(),
-                getValues().stream().map(PrimitiveFormControlDataDto::toPrimitiveFormControlData).collect(toImmutableList()));
+                                          getValues().stream()
+                                                     .map(PrimitiveFormControlDataDto::toPrimitiveFormControlData)
+                                                     .collect(toImmutableList()));
     }
 }

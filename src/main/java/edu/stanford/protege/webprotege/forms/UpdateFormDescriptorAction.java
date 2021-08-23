@@ -18,8 +18,10 @@ import javax.annotation.Nonnull;
 public record UpdateFormDescriptorAction(@JsonProperty("projectId") @Nonnull ProjectId projectId,
                                          @JsonProperty("formDescriptor") @Nonnull FormDescriptor descriptor) implements Request<UpdateFormDescriptorResult> {
 
+    public static final String CHANNEL = "webprotege.forms.UpdateFormDescriptor";
+
     @Override
     public String getChannel() {
-        return "forms.UpdateFormDescriptor";
+        return CHANNEL;
     }
 }

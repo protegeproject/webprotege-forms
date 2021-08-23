@@ -16,4 +16,5 @@ import javax.annotation.Nonnull;
 @JsonTypeName("CreateEntityFromFormData")
 public record CreateEntityFromFormDataResult(@Nonnull ProjectId projectId,
                                              ImmutableCollection<OWLEntityData> entities) implements Response {
+
 }

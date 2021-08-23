@@ -25,9 +25,7 @@ public abstract class FormSubjectFactoryDescriptor {
     public static FormSubjectFactoryDescriptor get(@Nonnull @JsonProperty("entityType") EntityType entityType,
                                                    @Nullable @JsonProperty("parent") OWLClass parent,
                                                    @Nonnull @JsonProperty("targetOntologyIri") Optional<IRI> targetOntologyIri) {
-        return new AutoValue_FormSubjectFactoryDescriptor(entityType,
-                                                          parent,
-                                                          targetOntologyIri.orElse(null));
+        return new AutoValue_FormSubjectFactoryDescriptor(entityType, parent, targetOntologyIri.orElse(null));
     }
 
     public static String getDefaultGeneratedNamePattern() {

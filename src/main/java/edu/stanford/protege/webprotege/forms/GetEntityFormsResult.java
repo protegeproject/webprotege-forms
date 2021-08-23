@@ -17,4 +17,5 @@ import edu.stanford.protege.webprotege.forms.data.FormDataDto;
 public record GetEntityFormsResult(OWLEntityData entityData,
                                    ImmutableList<FormId> filteredFormIds,
                                    ImmutableList<FormDataDto> formData) implements Response {
+
 }

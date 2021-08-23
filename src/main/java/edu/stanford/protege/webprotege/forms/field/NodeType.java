@@ -9,9 +9,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 public enum NodeType {
 
-    @JsonProperty("Any")
-    ANY,
+    @JsonProperty("Any") ANY,
 
-    @JsonProperty("Leaf")
-    LEAF
+    @JsonProperty("Leaf") LEAF
 }

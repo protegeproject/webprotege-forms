@@ -27,9 +27,9 @@ public abstract class EntityFormSelector {
 
     @JsonCreator
     protected static EntityFormSelector create(@Nonnull @JsonProperty("projectId") ProjectId projectId,
-                                         @Nonnull @JsonProperty("criteria") CompositeRootCriteria criteria,
-                                         @Nullable @JsonProperty("purpose") FormPurpose purpose,
-                                         @Nonnull @JsonProperty("formId") FormId formId) {
+                                               @Nonnull @JsonProperty("criteria") CompositeRootCriteria criteria,
+                                               @Nullable @JsonProperty("purpose") FormPurpose purpose,
+                                               @Nonnull @JsonProperty("formId") FormId formId) {
         FormPurpose normFormPurpose = purpose == null ? FormPurpose.ENTITY_EDITING : purpose;
         return get(projectId, criteria, normFormPurpose, formId);
     }
