@@ -11,7 +11,7 @@ import edu.stanford.protege.webprotege.common.Response;
  */
 
 
-@JsonTypeName("CopyFormDescriptorsFromProject")
-public record CopyFormDescriptorsFromProjectResult(ImmutableList<FormDescriptor> copiedFormDescriptors) implements Response {
+@JsonTypeName("CopyFormDescriptors")
+public record CopyFormDescriptorsResult(ImmutableList<FormDescriptor> copiedFormDescriptors) implements Response {
 
 }

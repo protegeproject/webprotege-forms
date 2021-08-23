@@ -21,7 +21,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class CopyFormDescriptorsFromProject_Serialization_TestCase {
 
     @Autowired
-    private JacksonTester<CopyFormDescriptorsFromProjectAction> tester;
+    private JacksonTester<CopyFormDescriptorsAction> tester;
 
 
     @Test
@@ -29,8 +29,8 @@ public class CopyFormDescriptorsFromProject_Serialization_TestCase {
         var toProjectId = ProjectId.generate();
         var fromProjectId = ProjectId.generate();
         var formId = FormId.generate();
-        var action = new CopyFormDescriptorsFromProjectAction(fromProjectId, toProjectId,
-                                                              ImmutableList.of(formId));
+        var action = new CopyFormDescriptorsAction(fromProjectId, toProjectId,
+                                                   ImmutableList.of(formId));
         var json = tester.write(action);
         assertThat(json).hasJsonPathValue("fromProject", fromProjectId);
         assertThat(json).hasJsonPathValue("toProject", toProjectId);

@@ -13,12 +13,12 @@ import java.util.List;
  */
 
 
-@JsonTypeName("CopyFormDescriptorsFromProject")
-public record CopyFormDescriptorsFromProjectAction(ProjectId toProject,
-                                                   ProjectId fromProject,
-                                                   List<FormId> formIds) implements Request<CopyFormDescriptorsFromProjectResult> {
+@JsonTypeName("CopyFormDescriptors")
+public record CopyFormDescriptorsAction(ProjectId toProject,
+                                        ProjectId fromProject,
+                                        List<FormId> formIds) implements Request<CopyFormDescriptorsResult> {
 
-    public static final String CHANNEL = "webprotege.forms.CopyFormDescriptorsFromProject";
+    public static final String CHANNEL = "webprotege.forms.CopyFormDescriptors";
 
     @Override
     public String getChannel() {
