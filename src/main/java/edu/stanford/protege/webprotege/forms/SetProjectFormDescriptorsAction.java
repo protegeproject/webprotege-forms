@@ -12,7 +12,7 @@ import edu.stanford.protege.webprotege.common.Request;
 public record SetProjectFormDescriptorsAction(ProjectId projectId,
                                               ImmutableList<FormDescriptor> formDescriptors) implements Request<SetProjectFormDescriptorsResult> {
 
-    public static final String CHANNEL = "webprotege.forms.GetProjectFormDescriptors";
+    public static final String CHANNEL = "webprotege.forms.SetProjectFormDescriptors";
 
     @Override
     public String getChannel() {

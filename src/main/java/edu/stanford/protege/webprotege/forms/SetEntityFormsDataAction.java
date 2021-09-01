@@ -16,7 +16,7 @@ import javax.annotation.Nonnull;
 public record SetEntityFormsDataAction(@Nonnull ProjectId projectId,
                                        @Nonnull OWLEntity entity,
                                        @Nonnull ImmutableMap<FormId, FormData> pristineFormsData,
-                                       @Nonnull FormDataByFormId editedFormsData) implements Request<SetEntityFormDataResult> {
+                                       @Nonnull FormDataByFormId editedFormsData) implements Request<SetEntityFormsDataResult> {
 
     public static final String CHANNEL = "webprotege.forms.SetEntityFormsData";
 
