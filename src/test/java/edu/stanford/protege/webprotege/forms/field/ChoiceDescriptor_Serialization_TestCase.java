@@ -21,7 +21,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
  * 2019-11-09
  */
 @SpringBootTest
-@Import(edu.stanford.protege.webprotege.jackson.WebprotegeOwlApiJacksonApplication.class)
+@Import(edu.stanford.protege.webprotege.jackson.WebProtegeJacksonApplication.class)
 public class ChoiceDescriptor_Serialization_TestCase {
 
     @Autowired
