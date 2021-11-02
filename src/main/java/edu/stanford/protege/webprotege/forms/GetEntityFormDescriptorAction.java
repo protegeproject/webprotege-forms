@@ -3,6 +3,7 @@ package edu.stanford.protege.webprotege.forms;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import edu.stanford.protege.webprotege.common.ProjectId;
+import edu.stanford.protege.webprotege.common.ProjectRequest;
 import edu.stanford.protege.webprotege.common.Request;
 
 /**
@@ -10,9 +11,9 @@ import edu.stanford.protege.webprotege.common.Request;
  * Stanford Center for Biomedical Informatics Research
  * 2020-01-16
  */
-@JsonTypeName("GetEntityFormDescriptor")
+@JsonTypeName("webprotege.forms.GetEntityFormDescriptor")
 public record GetEntityFormDescriptorAction(@JsonProperty("projectId") ProjectId projectId,
-                                            @JsonProperty("formId") FormId formId) implements Request<GetEntityFormDescriptorResult> {
+                                            @JsonProperty("formId") FormId formId) implements ProjectRequest<GetEntityFormDescriptorResult> {
 
     public static final String CHANNEL = "webprotege.forms.GetEntityFormDescriptor";
 

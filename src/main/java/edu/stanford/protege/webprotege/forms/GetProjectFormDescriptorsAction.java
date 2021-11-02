@@ -2,6 +2,7 @@ package edu.stanford.protege.webprotege.forms;
 
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import edu.stanford.protege.webprotege.common.ProjectId;
+import edu.stanford.protege.webprotege.common.ProjectRequest;
 import edu.stanford.protege.webprotege.common.Request;
 
 /**
@@ -9,8 +10,8 @@ import edu.stanford.protege.webprotege.common.Request;
  * Stanford Center for Biomedical Informatics Research
  * 2019-11-20
  */
-@JsonTypeName("GetProjectFormDescriptors")
-public record GetProjectFormDescriptorsAction(ProjectId projectId) implements Request<GetProjectFormDescriptorsResult> {
+@JsonTypeName("webprotege.forms.GetProjectFormDescriptors")
+public record GetProjectFormDescriptorsAction(ProjectId projectId) implements ProjectRequest<GetProjectFormDescriptorsResult> {
 
     public static final String CHANNEL = "webprotege.forms.GetProjectFormDescriptors";
 

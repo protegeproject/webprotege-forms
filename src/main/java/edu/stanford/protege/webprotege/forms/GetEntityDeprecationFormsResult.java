@@ -17,7 +17,7 @@ import java.util.Optional;
  */
 
 
-@JsonTypeName("GetEntityDeprecationForms")
+@JsonTypeName("webprotege.forms.GetEntityDeprecationForms")
 public record GetEntityDeprecationFormsResult(@Nonnull ImmutableList<FormDescriptorDto> formDtos,
                                               long referencesCount,
                                               @Nullable CompositeRootCriteria replacementEntityCriteria) implements Response {

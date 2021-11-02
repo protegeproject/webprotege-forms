@@ -10,7 +10,7 @@ import edu.stanford.protege.webprotege.common.Response;
  */
 
 
-@JsonTypeName("UpdateFormDescriptor")
+@JsonTypeName("webprotege.forms.UpdateFormDescriptor")
 public record UpdateFormDescriptorResult() implements Response {
 
 }

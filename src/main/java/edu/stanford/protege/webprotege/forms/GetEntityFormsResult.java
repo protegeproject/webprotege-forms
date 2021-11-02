@@ -13,7 +13,7 @@ import edu.stanford.protege.webprotege.forms.data.FormDataDto;
  */
 
 
-@JsonTypeName("GetEntityForms")
+@JsonTypeName("webprotege.forms.GetEntityForms")
 public record GetEntityFormsResult(OWLEntityData entityData,
                                    ImmutableList<FormId> filteredFormIds,
                                    ImmutableList<FormDataDto> formData) implements Response {

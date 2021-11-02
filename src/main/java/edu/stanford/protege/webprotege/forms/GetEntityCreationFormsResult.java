@@ -11,7 +11,7 @@ import edu.stanford.protege.webprotege.common.Response;
  */
 
 
-@JsonTypeName("GetEntityCreationForms")
+@JsonTypeName("webprotege.forms.GetEntityCreationForms")
 public record GetEntityCreationFormsResult(ImmutableList<FormDescriptorDto> formDescriptors) implements Response {
 
 }

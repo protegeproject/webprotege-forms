@@ -3,6 +3,7 @@ package edu.stanford.protege.webprotege.forms;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import edu.stanford.protege.webprotege.common.ProjectId;
+import edu.stanford.protege.webprotege.common.ProjectRequest;
 import edu.stanford.protege.webprotege.common.Request;
 import org.semanticweb.owlapi.model.OWLEntity;
 
@@ -15,9 +16,9 @@ import javax.annotation.Nonnull;
  */
 
 
-@JsonTypeName("GetEntityDeprecationForms")
+@JsonTypeName("webprotege.forms.GetEntityDeprecationForms")
 public record GetEntityDeprecationFormsAction(@JsonProperty("projectId") @Nonnull ProjectId projectId,
-                                              @JsonProperty("term") @Nonnull OWLEntity entity) implements Request<GetEntityDeprecationFormsResult> {
+                                              @JsonProperty("term") @Nonnull OWLEntity entity) implements ProjectRequest<GetEntityDeprecationFormsResult> {
 
     public static final String CHANNEL = "webprotege.forms.GetEntityDeprecationForms";
 

@@ -3,6 +3,7 @@ package edu.stanford.protege.webprotege.forms;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import edu.stanford.protege.webprotege.common.ProjectId;
+import edu.stanford.protege.webprotege.common.ProjectRequest;
 import edu.stanford.protege.webprotege.common.Request;
 
 import javax.annotation.Nonnull;
@@ -14,9 +15,9 @@ import javax.annotation.Nonnull;
  */
 
 
-@JsonTypeName("DeleteForm")
+@JsonTypeName("webprotege.forms.DeleteForm")
 public record DeleteFormAction(@JsonProperty("projectId") @Nonnull ProjectId projectId,
-                               @JsonProperty("formId") @Nonnull FormId formId) implements Request<DeleteFormResult> {
+                               @JsonProperty("formId") @Nonnull FormId formId) implements ProjectRequest<DeleteFormResult> {
 
     public static final String CHANNEL = "webprotege.forms.DeleteForm";
 

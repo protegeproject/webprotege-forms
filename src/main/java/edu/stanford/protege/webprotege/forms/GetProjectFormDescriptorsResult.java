@@ -14,7 +14,7 @@ import javax.annotation.Nonnull;
  */
 
 
-@JsonTypeName("GetProjectFormDescriptors")
+@JsonTypeName("webprotege.forms.GetProjectFormDescriptors")
 public record GetProjectFormDescriptorsResult(@Nonnull ProjectId projectId,
                                               @Nonnull ImmutableList<FormDescriptor> formDescriptors,
                                               @Nonnull ImmutableList<EntityFormSelector> formSelectors) implements Response {

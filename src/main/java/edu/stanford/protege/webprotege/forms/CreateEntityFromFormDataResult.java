@@ -13,7 +13,7 @@ import javax.annotation.Nonnull;
  * Stanford Center for Biomedical Informatics Research
  * 2021-08-12
  */
-@JsonTypeName("CreateEntityFromFormData")
+@JsonTypeName("webprotege.forms.CreateEntityFromFormData")
 public record CreateEntityFromFormDataResult(@Nonnull ProjectId projectId,
                                              ImmutableCollection<OWLEntityData> entities) implements Response {
 

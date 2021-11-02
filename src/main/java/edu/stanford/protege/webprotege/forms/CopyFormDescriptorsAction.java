@@ -13,7 +13,7 @@ import java.util.List;
  */
 
 
-@JsonTypeName("CopyFormDescriptors")
+@JsonTypeName("webprotege.forms.CopyFormDescriptors")
 public record CopyFormDescriptorsAction(ProjectId toProject,
                                         ProjectId fromProject,
                                         List<FormId> formIds) implements Request<CopyFormDescriptorsResult> {

@@ -2,6 +2,7 @@ package edu.stanford.protege.webprotege.forms;
 
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import edu.stanford.protege.webprotege.common.ProjectId;
+import edu.stanford.protege.webprotege.common.ProjectRequest;
 import edu.stanford.protege.webprotege.common.Request;
 import edu.stanford.protege.webprotege.entity.FreshEntityIri;
 import edu.stanford.protege.webprotege.forms.data.FormData;
@@ -14,11 +15,11 @@ import javax.annotation.Nonnull;
  * Stanford Center for Biomedical Informatics Research
  * 2020-09-30
  */
-@JsonTypeName("CreateEntityFromFormData")
+@JsonTypeName("webprotege.forms.CreateEntityFromFormData")
 public record CreateEntityFromFormDataAction(@Nonnull ProjectId projectId,
                                              @Nonnull EntityType<?> entityType,
                                              @Nonnull FreshEntityIri freshEntityIri,
-                                             @Nonnull FormData formData) implements Request<CreateEntityFromFormDataResult> {
+                                             @Nonnull FormData formData) implements ProjectRequest<CreateEntityFromFormDataResult> {
 
     public static final String CHANNEL = "webprotege.forms.CreateEntityFromFormData";
 

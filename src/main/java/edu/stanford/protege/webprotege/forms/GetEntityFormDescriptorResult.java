@@ -16,7 +16,7 @@ import javax.annotation.Nullable;
  */
 
 
-@JsonTypeName("GetEntityFormDescriptor")
+@JsonTypeName("webprotege.forms.GetEntityFormDescriptor")
 public record GetEntityFormDescriptorResult(@JsonProperty("projectId") @Nonnull ProjectId projectId,
                                             @JsonProperty("formId") @Nonnull FormId formId,
                                             @JsonProperty("formDescriptor") @Nullable FormDescriptor formDescriptor,

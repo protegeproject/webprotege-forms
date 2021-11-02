@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.google.common.collect.ImmutableSet;
 import edu.stanford.protege.webprotege.common.LangTagFilter;
 import edu.stanford.protege.webprotege.common.ProjectId;
+import edu.stanford.protege.webprotege.common.ProjectRequest;
 import edu.stanford.protege.webprotege.common.Request;
 import edu.stanford.protege.webprotege.forms.data.FormRegionFilter;
 import edu.stanford.protege.webprotege.forms.field.FormRegionOrdering;
@@ -30,14 +31,14 @@ import javax.annotation.Nonnull;
  * @param orderings        A set of region orderings that can be used to specify the ordering of specific regions of
  * @param filters          A set of region filters that can be used to filter values
  */
-@JsonTypeName("GetEntityForms")
+@JsonTypeName("webprotege.forms.GetEntityForms")
 public record GetEntityFormsAction(@Nonnull ProjectId projectId,
                                    @Nonnull OWLEntity entity,
                                    @Nonnull ImmutableSet<FormPageRequest> formPageRequests,
                                    @Nonnull LangTagFilter langTagFilter,
                                    @Nonnull ImmutableSet<FormRegionOrdering> orderings,
                                    @Nonnull ImmutableSet<FormId> filters,
-                                   ImmutableSet<FormRegionFilter> formRegionFilters) implements Request<GetEntityFormsResult> {
+                                   ImmutableSet<FormRegionFilter> formRegionFilters) implements ProjectRequest<GetEntityFormsResult> {
 
     public static final String CHANNEL = "webprotege.forms.GetEntityForms";
 

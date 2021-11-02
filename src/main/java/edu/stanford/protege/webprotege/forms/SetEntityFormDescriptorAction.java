@@ -3,6 +3,7 @@ package edu.stanford.protege.webprotege.forms;
 
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import edu.stanford.protege.webprotege.common.ProjectId;
+import edu.stanford.protege.webprotege.common.ProjectRequest;
 import edu.stanford.protege.webprotege.common.Request;
 import edu.stanford.protege.webprotege.criteria.CompositeRootCriteria;
 
@@ -14,11 +15,11 @@ import javax.annotation.Nullable;
  * Stanford Center for Biomedical Informatics Research
  * 2020-01-16
  */
-@JsonTypeName("SetEntityFormDescriptor")
+@JsonTypeName("webprotege.forms.SetEntityFormDescriptor")
 public record SetEntityFormDescriptorAction(@Nonnull ProjectId projectId,
                                             @Nonnull FormDescriptor formDescriptor,
                                             @Nonnull FormPurpose purpose,
-                                            @Nullable CompositeRootCriteria selectorCriteria) implements Request<SetEntityFormDescriptorResult> {
+                                            @Nullable CompositeRootCriteria selectorCriteria) implements ProjectRequest<SetEntityFormDescriptorResult> {
 
     public static final String CHANNEL = "webprotege.forms.SetEntityFormDescriptor";
 

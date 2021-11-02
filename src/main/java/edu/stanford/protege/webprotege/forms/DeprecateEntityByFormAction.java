@@ -1,7 +1,9 @@
 package edu.stanford.protege.webprotege.forms;
 
 
+import com.fasterxml.jackson.annotation.JsonTypeName;
 import edu.stanford.protege.webprotege.common.ProjectId;
+import edu.stanford.protege.webprotege.common.ProjectRequest;
 import edu.stanford.protege.webprotege.common.Request;
 import edu.stanford.protege.webprotege.forms.data.FormData;
 import org.semanticweb.owlapi.model.OWLEntity;
@@ -17,7 +19,8 @@ import static com.google.common.base.Preconditions.checkNotNull;
  * Stanford Center for Biomedical Informatics Research
  * 2020-10-22
  */
-public class DeprecateEntityByFormAction implements Request<DeprecateEntityByFormResult> {
+@JsonTypeName("webprotege.forms.DeprecateEntityByForm")
+public class DeprecateEntityByFormAction implements ProjectRequest<DeprecateEntityByFormResult> {
 
     public static final String CHANNEL = "webprotege.forms.DeprecateEntityByFormAction";
 

@@ -9,7 +9,7 @@ import edu.stanford.protege.webprotege.common.Response;
  * Stanford Center for Biomedical Informatics Research
  * 2019-11-01
  */
-@JsonTypeName("SetEntityFormsDataResult")
+@JsonTypeName("webprotege.forms.SetEntityFormsData")
 public record SetEntityFormsDataResult() implements Response {
 
 }

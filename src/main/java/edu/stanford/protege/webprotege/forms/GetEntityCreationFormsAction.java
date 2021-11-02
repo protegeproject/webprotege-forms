@@ -3,6 +3,7 @@ package edu.stanford.protege.webprotege.forms;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import edu.stanford.protege.webprotege.common.ProjectId;
+import edu.stanford.protege.webprotege.common.ProjectRequest;
 import edu.stanford.protege.webprotege.common.Request;
 import org.semanticweb.owlapi.model.EntityType;
 import org.semanticweb.owlapi.model.OWLEntity;
@@ -16,10 +17,10 @@ import javax.annotation.Nonnull;
  */
 
 
-@JsonTypeName("GetEntityCreationForms")
+@JsonTypeName("webprotege.forms.GetEntityCreationForms")
 public record GetEntityCreationFormsAction(@JsonProperty("projectId") @Nonnull ProjectId projectId,
                                            @JsonProperty("parentEntity") @Nonnull OWLEntity parentEntity,
-                                           @JsonProperty("entityType") @Nonnull EntityType<?> entityType) implements Request<GetEntityCreationFormsResult> {
+                                           @JsonProperty("entityType") @Nonnull EntityType<?> entityType) implements ProjectRequest<GetEntityCreationFormsResult> {
 
     public static final String CHANNEL = "webprotege.forms.GetEntityCreationForms";
 
