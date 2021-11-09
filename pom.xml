@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>edu.stanford.protege</groupId>
-	<artifactId>webprotege-forms-api</artifactId>
+	<artifactId>webprotege-forms</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
-	<name>webprotege-forms-api</name>
-	<description>Demo project for Spring Boot</description>
+	<name>webprotege-forms</name>
+	<description>Data structures and request/responses for forms</description>
 	<properties>
 		<java.version>16</java.version>
 	</properties>
@@ -52,12 +52,12 @@
 		</dependency>
 		<dependency>
 			<groupId>edu.stanford.protege</groupId>
-			<artifactId>webprotege-entity-frames-api</artifactId>
+			<artifactId>webprotege-entity-frames</artifactId>
 			<version>1.0.0-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>edu.stanford.protege</groupId>
-			<artifactId>webprotege-criteria-api</artifactId>
+			<artifactId>webprotege-criteria</artifactId>
 			<version>1.0.0-SNAPSHOT</version>
 		</dependency>
 		<dependency>
