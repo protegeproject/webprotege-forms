@@ -1,2 +1,2 @@
-# webprotege-forms-api
+# webprotege-forms
 The Forms API for WebProtege
