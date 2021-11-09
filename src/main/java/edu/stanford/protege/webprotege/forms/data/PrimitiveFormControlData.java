@@ -1,6 +1,11 @@
 package edu.stanford.protege.webprotege.forms.data;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonSubTypes.Type;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import org.semanticweb.owlapi.model.IRI;
 import org.semanticweb.owlapi.model.OWLEntity;
 import org.semanticweb.owlapi.model.OWLLiteral;
@@ -19,9 +24,9 @@ import java.util.Optional;
  * Stanford Center for Biomedical Informatics Research
  * 2020-01-08
  */
-@JsonSubTypes({@JsonSubTypes.Type(EntityFormControlData.class), @JsonSubTypes.Type(IriFormControlData.class), @JsonSubTypes.Type(LiteralFormControlData.class)})
+@JsonSerialize(converter = PrimitiveFormControlData2ProxyConverter.class)
+@JsonDeserialize(converter = Proxy2PrimitiveFormControlDataConverter.class)
 public interface PrimitiveFormControlData {
-
 
     static PrimitiveFormControlData get(OWLEntity entity) {
         return EntityFormControlData.get(entity);
@@ -60,4 +65,6 @@ public interface PrimitiveFormControlData {
 
     @Nonnull
     OWLPrimitive getPrimitive();
+
+    PrimitiveFormControlDataProxy toPrimitiveFormControlDataProxy();
 }

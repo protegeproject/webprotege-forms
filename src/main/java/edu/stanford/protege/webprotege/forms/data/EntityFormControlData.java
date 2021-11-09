@@ -50,4 +50,13 @@ public abstract class EntityFormControlData implements PrimitiveFormControlData 
     public OWLPrimitive getPrimitive() {
         return getEntity();
     }
+
+    @Override
+    public PrimitiveFormControlDataProxy toPrimitiveFormControlDataProxy() {
+        return new PrimitiveFormControlDataProxy(getEntity().getIRI().toString(),
+                                                 getEntity().getEntityType().getName(),
+                                                 null,
+                                                 null,
+                                                 null);
+    }
 }

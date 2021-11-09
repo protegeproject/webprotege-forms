@@ -5,11 +5,13 @@ import edu.stanford.protege.webprotege.forms.ExpansionState;
 import edu.stanford.protege.webprotege.forms.FormDescriptor;
 import edu.stanford.protege.webprotege.forms.FormId;
 import edu.stanford.protege.webprotege.common.LanguageMap;
+import edu.stanford.protege.webprotege.jackson.WebProtegeJacksonApplication;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.semanticweb.owlapi.vocab.OWLRDFVocabulary;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.annotation.Import;
 import uk.ac.manchester.cs.owl.owlapi.OWLObjectPropertyImpl;
 
 import java.io.IOException;
@@ -26,6 +28,7 @@ import static org.hamcrest.Matchers.is;
  * 2019-11-09
  */
 @SpringBootTest
+@Import(WebProtegeJacksonApplication.class)
 public class SubFormControlDescriptor_IT {
 
     @Autowired

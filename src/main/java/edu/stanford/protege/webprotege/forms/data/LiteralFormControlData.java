@@ -63,4 +63,18 @@ public abstract class LiteralFormControlData implements PrimitiveFormControlData
     public OWLPrimitive getPrimitive() {
         return getLiteral();
     }
+
+    @Override
+    public PrimitiveFormControlDataProxy toPrimitiveFormControlDataProxy() {
+        String dt = null;
+        if(!getLiteral().getDatatype().isRDFPlainLiteral()) {
+            dt = getLiteral().getDatatype().getIRI().toString();
+        }
+        String lang = null;
+        if(!getLiteral().getLang().isEmpty()) {
+            lang = getLiteral().getLang();
+        }
+        return new PrimitiveFormControlDataProxy(null, null, getLiteral().getLiteral(),
+                                                 dt, lang);
+    }
 }

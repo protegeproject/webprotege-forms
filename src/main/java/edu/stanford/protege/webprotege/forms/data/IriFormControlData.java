@@ -48,4 +48,9 @@ public abstract class IriFormControlData implements PrimitiveFormControlData {
     public OWLPrimitive getPrimitive() {
         return getIri();
     }
+
+    @Override
+    public PrimitiveFormControlDataProxy toPrimitiveFormControlDataProxy() {
+        return new PrimitiveFormControlDataProxy(getIri().toString(), null, null, null, null);
+    }
 }
