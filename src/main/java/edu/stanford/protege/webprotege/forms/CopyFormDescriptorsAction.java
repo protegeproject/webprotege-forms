@@ -1,9 +1,12 @@
 package edu.stanford.protege.webprotege.forms;
 
 import com.fasterxml.jackson.annotation.JsonTypeName;
+import edu.stanford.protege.webprotege.common.ChangeRequest;
+import edu.stanford.protege.webprotege.common.ChangeRequestId;
 import edu.stanford.protege.webprotege.common.ProjectId;
 import edu.stanford.protege.webprotege.common.Request;
 
+import javax.annotation.Nonnull;
 import java.util.List;
 
 /**
@@ -14,9 +17,10 @@ import java.util.List;
 
 
 @JsonTypeName("webprotege.forms.CopyFormDescriptors")
-public record CopyFormDescriptorsAction(ProjectId toProject,
+public record CopyFormDescriptorsAction(ChangeRequestId changeRequestId,
+                                        ProjectId toProject,
                                         ProjectId fromProject,
-                                        List<FormId> formIds) implements Request<CopyFormDescriptorsResult> {
+                                        List<FormId> formIds) implements Request<CopyFormDescriptorsResult>, ChangeRequest {
 
     public static final String CHANNEL = "webprotege.forms.CopyFormDescriptors";
 

@@ -1,6 +1,7 @@
 package edu.stanford.protege.webprotege.forms;
 
 
+import edu.stanford.protege.webprotege.common.ChangeRequestId;
 import edu.stanford.protege.webprotege.common.ProjectId;
 import org.junit.jupiter.api.Test;
 
@@ -17,7 +18,8 @@ public class DeleteForm_Serialization_TestCase {
 
     @Test
     public void shouldSerializeAction() throws IOException {
-        var action = new DeleteFormAction(ProjectId.generate(),
+        var action = new DeleteFormAction(ChangeRequestId.generate(),
+                                          ProjectId.generate(),
                                           FormId.generate());
 
     }

@@ -2,9 +2,7 @@ package edu.stanford.protege.webprotege.forms;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeName;
-import edu.stanford.protege.webprotege.common.ProjectId;
-import edu.stanford.protege.webprotege.common.ProjectRequest;
-import edu.stanford.protege.webprotege.common.Request;
+import edu.stanford.protege.webprotege.common.*;
 
 import javax.annotation.Nonnull;
 
@@ -16,8 +14,9 @@ import javax.annotation.Nonnull;
 
 
 @JsonTypeName("webprotege.forms.UpdateFormDescriptor")
-public record UpdateFormDescriptorAction(@JsonProperty("projectId") @Nonnull ProjectId projectId,
-                                         @JsonProperty("formDescriptor") @Nonnull FormDescriptor descriptor) implements ProjectRequest<UpdateFormDescriptorResult> {
+public record UpdateFormDescriptorAction(@JsonProperty("changeRequestId") ChangeRequestId changeRequestId,
+                                         @JsonProperty("projectId") @Nonnull ProjectId projectId,
+                                         @JsonProperty("formDescriptor") @Nonnull FormDescriptor descriptor) implements ProjectRequest<UpdateFormDescriptorResult>, ChangeRequest {
 
     public static final String CHANNEL = "webprotege.forms.UpdateFormDescriptor";
 

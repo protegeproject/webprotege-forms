@@ -2,9 +2,7 @@ package edu.stanford.protege.webprotege.forms;
 
 
 import com.fasterxml.jackson.annotation.JsonTypeName;
-import edu.stanford.protege.webprotege.common.ProjectId;
-import edu.stanford.protege.webprotege.common.ProjectRequest;
-import edu.stanford.protege.webprotege.common.Request;
+import edu.stanford.protege.webprotege.common.*;
 import edu.stanford.protege.webprotege.forms.data.FormData;
 import org.semanticweb.owlapi.model.OWLEntity;
 
@@ -20,7 +18,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
  * 2020-10-22
  */
 @JsonTypeName("webprotege.forms.DeprecateEntityByForm")
-public class DeprecateEntityByFormAction implements ProjectRequest<DeprecateEntityByFormResult> {
+public class DeprecateEntityByFormAction implements ProjectRequest<DeprecateEntityByFormResult>, ContentChangeRequest {
 
     public static final String CHANNEL = "webprotege.forms.DeprecateEntityByFormAction";
 
@@ -33,10 +31,14 @@ public class DeprecateEntityByFormAction implements ProjectRequest<DeprecateEnti
 
     private final ProjectId projectId;
 
-    public DeprecateEntityByFormAction(OWLEntity entity,
+    private final ChangeRequestId changeRequestId;
+
+    public DeprecateEntityByFormAction(@Nonnull ChangeRequestId changeRequestId,
+                                       OWLEntity entity,
                                        Optional<FormData> deprecationFormData,
                                        Optional<OWLEntity> replacementEntity,
                                        ProjectId projectId) {
+        this.changeRequestId = checkNotNull(changeRequestId);
         this.entity = checkNotNull(entity);
         this.deprecationFormData = checkNotNull(deprecationFormData).orElse(null);
         this.replacementEntity = checkNotNull(replacementEntity).orElse(null);
@@ -48,6 +50,11 @@ public class DeprecateEntityByFormAction implements ProjectRequest<DeprecateEnti
                         "Entity types for the term being deprecated and the replacement term must be the same");
             }
         }
+    }
+
+    @Override
+    public ChangeRequestId changeRequestId() {
+        return changeRequestId;
     }
 
     @Override

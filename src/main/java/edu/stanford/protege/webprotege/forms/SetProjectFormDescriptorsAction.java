@@ -2,9 +2,9 @@ package edu.stanford.protege.webprotege.forms;
 
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.google.common.collect.ImmutableList;
-import edu.stanford.protege.webprotege.common.ProjectId;
-import edu.stanford.protege.webprotege.common.ProjectRequest;
-import edu.stanford.protege.webprotege.common.Request;
+import edu.stanford.protege.webprotege.common.*;
+
+import javax.annotation.Nonnull;
 
 /**
  * Matthew Horridge
@@ -12,8 +12,9 @@ import edu.stanford.protege.webprotege.common.Request;
  * 2019-11-23
  */
 @JsonTypeName("webprotege.forms.SetProjectFormDescriptors")
-public record SetProjectFormDescriptorsAction(ProjectId projectId,
-                                              ImmutableList<FormDescriptor> formDescriptors) implements ProjectRequest<SetProjectFormDescriptorsResult> {
+public record SetProjectFormDescriptorsAction(@Nonnull ChangeRequestId changeRequestId,
+                                              ProjectId projectId,
+                                              ImmutableList<FormDescriptor> formDescriptors) implements ProjectRequest<SetProjectFormDescriptorsResult>, ChangeRequest {
 
     public static final String CHANNEL = "webprotege.forms.SetProjectFormDescriptors";
 

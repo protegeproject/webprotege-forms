@@ -1,9 +1,7 @@
 package edu.stanford.protege.webprotege.forms;
 
 import com.fasterxml.jackson.annotation.JsonTypeName;
-import edu.stanford.protege.webprotege.common.ProjectId;
-import edu.stanford.protege.webprotege.common.ProjectRequest;
-import edu.stanford.protege.webprotege.common.Request;
+import edu.stanford.protege.webprotege.common.*;
 import edu.stanford.protege.webprotege.entity.FreshEntityIri;
 import edu.stanford.protege.webprotege.forms.data.FormData;
 import org.semanticweb.owlapi.model.EntityType;
@@ -16,10 +14,11 @@ import javax.annotation.Nonnull;
  * 2020-09-30
  */
 @JsonTypeName("webprotege.forms.CreateEntityFromFormData")
-public record CreateEntityFromFormDataAction(@Nonnull ProjectId projectId,
+public record CreateEntityFromFormDataAction(@Nonnull ChangeRequestId changeRequestId,
+                                             @Nonnull ProjectId projectId,
                                              @Nonnull EntityType<?> entityType,
                                              @Nonnull FreshEntityIri freshEntityIri,
-                                             @Nonnull FormData formData) implements ProjectRequest<CreateEntityFromFormDataResult> {
+                                             @Nonnull FormData formData) implements ProjectRequest<CreateEntityFromFormDataResult>, ContentChangeRequest {
 
     public static final String CHANNEL = "webprotege.forms.CreateEntityFromFormData";
 

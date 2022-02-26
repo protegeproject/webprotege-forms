@@ -2,6 +2,7 @@ package edu.stanford.protege.webprotege.forms;
 
 import com.google.common.collect.ImmutableList;
 
+import edu.stanford.protege.webprotege.common.ChangeRequestId;
 import edu.stanford.protege.webprotege.common.ProjectId;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +30,8 @@ public class CopyFormDescriptorsFromProject_Serialization_TestCase {
         var toProjectId = ProjectId.generate();
         var fromProjectId = ProjectId.generate();
         var formId = FormId.generate();
-        var action = new CopyFormDescriptorsAction(fromProjectId, toProjectId,
+        var action = new CopyFormDescriptorsAction(ChangeRequestId.generate(),
+                                                   fromProjectId, toProjectId,
                                                    ImmutableList.of(formId));
         var json = tester.write(action);
         assertThat(json).hasJsonPathValue("fromProject", fromProjectId);

@@ -2,9 +2,7 @@ package edu.stanford.protege.webprotege.forms;
 
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.google.common.collect.ImmutableMap;
-import edu.stanford.protege.webprotege.common.ProjectId;
-import edu.stanford.protege.webprotege.common.ProjectRequest;
-import edu.stanford.protege.webprotege.common.Request;
+import edu.stanford.protege.webprotege.common.*;
 import edu.stanford.protege.webprotege.forms.data.FormData;
 import org.semanticweb.owlapi.model.OWLEntity;
 
@@ -16,10 +14,11 @@ import javax.annotation.Nonnull;
  * 2019-11-01
  */
 @JsonTypeName("webprotege.forms.SetEntityFormsData")
-public record SetEntityFormsDataAction(@Nonnull ProjectId projectId,
+public record SetEntityFormsDataAction(@Nonnull ChangeRequestId changeRequestId,
+                                       @Nonnull ProjectId projectId,
                                        @Nonnull OWLEntity entity,
                                        @Nonnull ImmutableMap<FormId, FormData> pristineFormsData,
-                                       @Nonnull FormDataByFormId editedFormsData) implements ProjectRequest<SetEntityFormsDataResult> {
+                                       @Nonnull FormDataByFormId editedFormsData) implements ProjectRequest<SetEntityFormsDataResult>, ChangeRequest {
 
     public static final String CHANNEL = "webprotege.forms.SetEntityFormsData";
 
