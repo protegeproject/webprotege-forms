@@ -1,5 +1,6 @@
 package edu.stanford.protege.webprotege.forms;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.google.common.collect.ImmutableList;
 import edu.stanford.protege.webprotege.common.Response;
@@ -14,8 +15,8 @@ import edu.stanford.protege.webprotege.forms.data.FormDataDto;
 
 
 @JsonTypeName("webprotege.forms.GetEntityForms")
-public record GetEntityFormsResult(OWLEntityData entityData,
-                                   ImmutableList<FormId> filteredFormIds,
-                                   ImmutableList<FormDataDto> formData) implements Response {
+public record GetEntityFormsResult(@JsonProperty("entity") OWLEntityData entityData,
+                                   @JsonProperty("filteredFormIds") ImmutableList<FormId> filteredFormIds,
+                                   @JsonProperty("formData") ImmutableList<FormDataDto> formData) implements Response {
 
 }
