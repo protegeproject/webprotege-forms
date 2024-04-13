@@ -12,7 +12,7 @@ import javax.annotation.Nonnull;
  * 2019-11-30
  */
 @JsonSubTypes({@Type(EntityNameControlData.class), @Type(FormData.class), @Type(GridControlData.class), @Type(ImageControlData.class), @Type(MultiChoiceControlData.class), @Type(NumberControlData.class), @Type(SingleChoiceControlData.class), @Type(TextControlData.class)})
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "type")
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME)
 public interface FormControlData {
 
     <R> R accept(@Nonnull FormControlDataVisitorEx<R> visitor);

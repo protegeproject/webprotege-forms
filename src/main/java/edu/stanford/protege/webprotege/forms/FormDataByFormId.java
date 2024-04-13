@@ -1,5 +1,7 @@
 package edu.stanford.protege.webprotege.forms;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 import com.google.common.collect.ImmutableSet;
 import edu.stanford.protege.webprotege.forms.data.FormData;
 
@@ -13,10 +15,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
  * Stanford Center for Biomedical Informatics Research
  * 2021-05-24
  */
-public class FormDataByFormId {
-
-
-    private Map<FormId, FormData> map;
+public record FormDataByFormId(Map<FormId, FormData> map) {
 
     /**
      * Map FormIds to FormData.  This map should not contain null keys, but it
@@ -26,7 +25,15 @@ public class FormDataByFormId {
         this.map = new LinkedHashMap<>(checkNotNull(map));
     }
 
-    private FormDataByFormId() {
+    @JsonCreator
+    public static FormDataByFormId valueOf(Map<FormId, FormData> map) {
+        return new FormDataByFormId(map);
+    }
+
+    @Override
+    @JsonValue
+    public Map<FormId, FormData> map() {
+        return new LinkedHashMap<>(map);
     }
 
     @Nonnull
@@ -53,11 +60,6 @@ public class FormDataByFormId {
         }
         FormDataByFormId that = (FormDataByFormId) o;
         return map.equals(that.map);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(map);
     }
 
     @Override

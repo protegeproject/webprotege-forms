@@ -20,7 +20,7 @@ import javax.annotation.Nonnull;
 public abstract class FormEntitySubject implements FormSubject {
 
     @JsonCreator
-    public static FormEntitySubject get(@JsonProperty("term") @Nonnull OWLEntity entity) {
+    public static FormEntitySubject get(@JsonProperty("entity") @Nonnull OWLEntity entity) {
         return new AutoValue_FormEntitySubject(entity);
     }
 

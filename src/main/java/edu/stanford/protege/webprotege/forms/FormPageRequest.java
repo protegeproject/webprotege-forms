@@ -15,10 +15,12 @@ import javax.annotation.Nonnull;
  * Stanford Center for Biomedical Informatics Research
  * 2020-04-22
  */
-@AutoValue
-
 @JsonTypeName("FormPageRequest")
-public abstract class FormPageRequest {
+public record FormPageRequest(FormId formId,
+                              FormSubject subject,
+                              FormRegionId regionId,
+                              SourceType sourceType,
+                              PageRequest pageRequest) {
 
     public static final int DEFAULT_PAGE_SIZE = 10;
 
@@ -29,24 +31,8 @@ public abstract class FormPageRequest {
                                       @JsonProperty("regionId") @Nonnull FormRegionId formFieldId,
                                       @JsonProperty("sourceType") @Nonnull SourceType sourceType,
                                       @JsonProperty("pageRequest") @Nonnull PageRequest pageRequest) {
-        return new AutoValue_FormPageRequest(formId, subject, formFieldId, sourceType, pageRequest);
+        return new FormPageRequest(formId, subject, formFieldId, sourceType, pageRequest);
     }
-
-    @Nonnull
-    public abstract FormId getFormId();
-
-    @Nonnull
-    public abstract FormSubject getSubject();
-
-    @JsonProperty("regionId")
-    @Nonnull
-    public abstract FormRegionId getFieldId();
-
-    @Nonnull
-    public abstract SourceType getSourceType();
-
-    @Nonnull
-    public abstract PageRequest getPageRequest();
 
     public enum SourceType {
         CONTROL_STACK, GRID_CONTROL

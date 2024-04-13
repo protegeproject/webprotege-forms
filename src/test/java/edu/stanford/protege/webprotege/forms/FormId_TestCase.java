@@ -1,9 +1,16 @@
 
 package edu.stanford.protege.webprotege.forms;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.guava.GuavaModule;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.runners.MockitoJUnitRunner;
+import org.springframework.boot.test.json.JacksonTester;
+import org.springframework.core.ResolvableType;
+
+import java.io.IOException;
+import java.io.StringReader;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
@@ -54,4 +61,23 @@ public class FormId_TestCase {
         assertThat(formId.toString(), startsWith("FormId"));
     }
 
+    @Test
+    void shouldSerialize() throws IOException {
+        var objectMapper = new ObjectMapper();
+        objectMapper.registerModule(new GuavaModule());
+        var tester = new JacksonTester<>(FormId_TestCase.class,
+                                     ResolvableType.forClass(FormId.class), objectMapper);
+        var formId = FormId.generate();
+        var written = tester.write(formId);
+        assertThat(written.getJson(), equalTo("\"" + formId.getId() + "\""));
+    }
+    @Test
+    void shouldDeserialize() throws IOException {
+        var objectMapper = new ObjectMapper();
+        objectMapper.registerModule(new GuavaModule());
+        var tester = new JacksonTester<>(FormId_TestCase.class,
+                                     ResolvableType.forClass(FormId.class), objectMapper);
+        var read = tester.read(new StringReader("\"12345678-1234-1234-1234-123456789abc\""));
+        assertThat(read.getObject(), equalTo(FormId.valueOf("12345678-1234-1234-1234-123456789abc")));
+    }
 }
