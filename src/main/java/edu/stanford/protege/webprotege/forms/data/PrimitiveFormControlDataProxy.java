@@ -24,25 +24,25 @@ public record PrimitiveFormControlDataProxy(@JsonInclude(JsonInclude.Include.NON
             if(iri == null) {
                 throw new RuntimeException("Missing iri");
             }
-            if(EntityType.CLASS.getName().equals(type)) {
+            if(EntityType.CLASS.getName().equals(type) || EntityType.CLASS.getPrefixedName().equals(type)) {
                 return PrimitiveFormControlData.get(new OWLClassImpl(IRI.create(iri)));
             }
-            else if(EntityType.OBJECT_PROPERTY.getName().equals(type)) {
+            else if(EntityType.OBJECT_PROPERTY.getName().equals(type) || EntityType.OBJECT_PROPERTY.getPrefixedName().equals(type)) {
                 return PrimitiveFormControlData.get(new OWLObjectPropertyImpl(IRI.create(iri)));
 
             }
-            else if(EntityType.DATA_PROPERTY.getName().equals(type)) {
+            else if(EntityType.DATA_PROPERTY.getName().equals(type) || EntityType.DATA_PROPERTY.getPrefixedName().equals(type)) {
                 return PrimitiveFormControlData.get(new OWLDataPropertyImpl(IRI.create(iri)));
 
             }
-            else if(EntityType.ANNOTATION_PROPERTY.getName().equals(type)) {
+            else if(EntityType.ANNOTATION_PROPERTY.getName().equals(type) || EntityType.ANNOTATION_PROPERTY.getPrefixedName().equals(type)) {
                 return PrimitiveFormControlData.get(new OWLAnnotationPropertyImpl(IRI.create(iri)));
 
             }
-            else if(EntityType.DATATYPE.getName().equals(type)) {
+            else if(EntityType.DATATYPE.getName().equals(type) || EntityType.DATATYPE.getPrefixedName().equals(type)) {
                 return PrimitiveFormControlData.get(new OWLDatatypeImpl(IRI.create(iri)));
             }
-            else if(EntityType.NAMED_INDIVIDUAL.getName().equals(type)) {
+            else if(EntityType.NAMED_INDIVIDUAL.getName().equals(type) || EntityType.NAMED_INDIVIDUAL.getPrefixedName().equals(type)) {
                 return PrimitiveFormControlData.get(new OWLNamedIndividualImpl(IRI.create(iri)));
             }
             else {
