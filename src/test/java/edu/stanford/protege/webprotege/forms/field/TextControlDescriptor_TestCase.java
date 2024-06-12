@@ -21,6 +21,8 @@ public class TextControlDescriptor_TestCase {
 
     private final StringType stringType = StringType.SIMPLE_STRING;
 
+    private final String specificLangTag = "";
+
     private final LineMode lineMode = LineMode.SINGLE_LINE;
 
     private final String pattern = "The pattern";
@@ -31,14 +33,14 @@ public class TextControlDescriptor_TestCase {
     public void setUp()
         throws Exception
     {
-        textFieldDescriptor = new TextControlDescriptor(placeholder, stringType, lineMode, pattern, patternViolationErrorMessage);
+        textFieldDescriptor = new TextControlDescriptor(placeholder, stringType, specificLangTag, lineMode, pattern, patternViolationErrorMessage);
     }
 
     @SuppressWarnings("ConstantConditions")
     @Test
     public void shouldThrowNullPointerExceptionIf_placeholder_IsNull() {
         assertThrows(NullPointerException.class, () -> {
-            new TextControlDescriptor(null, stringType, lineMode, pattern, patternViolationErrorMessage);
+            new TextControlDescriptor(null, stringType, specificLangTag, lineMode, pattern, patternViolationErrorMessage);
         });
     }
 
@@ -50,7 +52,7 @@ public class TextControlDescriptor_TestCase {
     @SuppressWarnings("ConstantConditions")
 //    @Test(expected = NullPointerException.class)
     public void shouldThrowNullPointerExceptionIf_stringType_IsNull() {
-        new TextControlDescriptor(placeholder, null, lineMode, pattern, patternViolationErrorMessage);
+        new TextControlDescriptor(placeholder, null, specificLangTag, lineMode, pattern, patternViolationErrorMessage);
     }
 
     @Test
@@ -61,7 +63,7 @@ public class TextControlDescriptor_TestCase {
     @SuppressWarnings("ConstantConditions")
 //    @Test(expected = NullPointerException.class)
     public void shouldThrowNullPointerExceptionIf_lineMode_IsNull() {
-        new TextControlDescriptor(placeholder, stringType, null, pattern, patternViolationErrorMessage);
+        new TextControlDescriptor(placeholder, stringType, specificLangTag, null, pattern, patternViolationErrorMessage);
     }
 
     @Test
@@ -72,7 +74,7 @@ public class TextControlDescriptor_TestCase {
     @SuppressWarnings("ConstantConditions")
 //    @Test(expected = NullPointerException.class)
     public void shouldThrowNullPointerExceptionIf_pattern_IsNull() {
-        new TextControlDescriptor(placeholder, stringType, lineMode, null, patternViolationErrorMessage);
+        new TextControlDescriptor(placeholder, stringType, specificLangTag, lineMode, null, patternViolationErrorMessage);
     }
 
     @Test
@@ -83,7 +85,7 @@ public class TextControlDescriptor_TestCase {
     @SuppressWarnings("ConstantConditions")
 //    @Test(expected = NullPointerException.class)
     public void shouldThrowNullPointerExceptionIf_patternViolationErrorMessage_IsNull() {
-        new TextControlDescriptor(placeholder, stringType, lineMode, pattern, null);
+        new TextControlDescriptor(placeholder, stringType, specificLangTag, lineMode, pattern, null);
     }
 
     @Test
@@ -104,37 +106,37 @@ public class TextControlDescriptor_TestCase {
 
     @Test
     public void shouldBeEqualToOther() {
-        assertThat(textFieldDescriptor, is(new TextControlDescriptor(placeholder, stringType, lineMode, pattern, patternViolationErrorMessage)));
+        assertThat(textFieldDescriptor, is(new TextControlDescriptor(placeholder, stringType, specificLangTag, lineMode, pattern, patternViolationErrorMessage)));
     }
 
     @Test
     public void shouldNotBeEqualToOtherThatHasDifferent_placeholder() {
-        assertThat(textFieldDescriptor, is(not(new TextControlDescriptor(LanguageMap.of("en", "String-1a3f1304-8c2f-48b2-8c60-3407b27d579f"), stringType, lineMode, pattern, patternViolationErrorMessage))));
+        assertThat(textFieldDescriptor, is(not(new TextControlDescriptor(LanguageMap.of("en", "String-1a3f1304-8c2f-48b2-8c60-3407b27d579f"), stringType, specificLangTag, lineMode, pattern, patternViolationErrorMessage))));
     }
 
     @Test
     public void shouldNotBeEqualToOtherThatHasDifferent_stringType() {
-        assertThat(textFieldDescriptor, is(not(new TextControlDescriptor(placeholder, StringType.LANG_STRING, lineMode, pattern, patternViolationErrorMessage))));
+        assertThat(textFieldDescriptor, is(not(new TextControlDescriptor(placeholder, StringType.LANG_STRING, "de",  lineMode, pattern, patternViolationErrorMessage))));
     }
 
     @Test
     public void shouldNotBeEqualToOtherThatHasDifferent_lineMode() {
-        assertThat(textFieldDescriptor, is(not(new TextControlDescriptor(placeholder, stringType, LineMode.MULTI_LINE, pattern, patternViolationErrorMessage))));
+        assertThat(textFieldDescriptor, is(not(new TextControlDescriptor(placeholder, stringType, specificLangTag, LineMode.MULTI_LINE, pattern, patternViolationErrorMessage))));
     }
 
     @Test
     public void shouldNotBeEqualToOtherThatHasDifferent_pattern() {
-        assertThat(textFieldDescriptor, is(not(new TextControlDescriptor(placeholder, stringType, lineMode, "String-ac3398da-4b52-48b5-a858-1f8571134db7", patternViolationErrorMessage))));
+        assertThat(textFieldDescriptor, is(not(new TextControlDescriptor(placeholder, stringType, specificLangTag, lineMode, "String-ac3398da-4b52-48b5-a858-1f8571134db7", patternViolationErrorMessage))));
     }
 
     @Test
     public void shouldNotBeEqualToOtherThatHasDifferent_patternViolationErrorMessage() {
-        assertThat(textFieldDescriptor, is(not(new TextControlDescriptor(placeholder, stringType, lineMode, pattern, LanguageMap.of("en", "String-1abd718d-0eb4-4530-b465-02aed8dd66a2")))));
+        assertThat(textFieldDescriptor, is(not(new TextControlDescriptor(placeholder, stringType, specificLangTag, lineMode, pattern, LanguageMap.of("en", "String-1abd718d-0eb4-4530-b465-02aed8dd66a2")))));
     }
 
     @Test
     public void shouldBeEqualToOtherHashCode() {
-        assertThat(textFieldDescriptor.hashCode(), is(new TextControlDescriptor(placeholder, stringType, lineMode, pattern, patternViolationErrorMessage).hashCode()));
+        assertThat(textFieldDescriptor.hashCode(), is(new TextControlDescriptor(placeholder, stringType, specificLangTag, lineMode, pattern, patternViolationErrorMessage).hashCode()));
     }
 
     @Test

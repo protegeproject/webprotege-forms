@@ -50,6 +50,7 @@ public class SubFormControlDescriptor_IT {
                                                                 new TextControlDescriptor(
                                                                         LanguageMap.empty(),
                                                                         StringType.SIMPLE_STRING,
+                                                                        "en",
                                                                         LineMode.SINGLE_LINE,
                                                                         "Pattern",
                                                                         LanguageMap.empty()
