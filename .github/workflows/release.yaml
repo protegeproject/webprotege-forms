@@ -8,7 +8,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-
+    if: ${{ github.actor != 'protegeproject-bot[bot]' }}
     steps:
       - uses: actions/create-github-app-token@v1
         id: app-token
