@@ -19,7 +19,7 @@ public abstract class FormFieldData {
 
     @JsonCreator
     public static FormFieldData get(@JsonProperty(PropertyNames.FIELD) @Nonnull FormFieldDescriptor descriptor,
-                                    @JsonProperty(PropertyNames.CONTROL_DATA) @Nonnull Page<FormControlData> formControlData) {
+                                    @JsonProperty(PropertyNames.DATA) @Nonnull Page<FormControlData> formControlData) {
         return new AutoValue_FormFieldData(descriptor, formControlData);
     }
 
@@ -31,7 +31,7 @@ public abstract class FormFieldData {
      * Gets the page of form control values for this field.
      */
     @Nonnull
-    @JsonPropertyOrder(PropertyNames.CONTROL_DATA)
+    @JsonPropertyOrder(PropertyNames.DATA)
     public abstract Page<FormControlData> getFormControlData();
 
     @JsonIgnore
