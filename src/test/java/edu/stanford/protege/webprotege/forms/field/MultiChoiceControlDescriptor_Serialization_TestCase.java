@@ -39,8 +39,8 @@ public class MultiChoiceControlDescriptor_Serialization_TestCase {
         var descriptor = MultiChoiceControlDescriptor.get(FixedChoiceListSourceDescriptor.get(List.of()), ImmutableList.of());
         var written = tester.write(descriptor);
         System.out.println(written.getJson());
-        assertThat(written).hasJsonPathMapValue("source");
-        assertThat(written).hasJsonPathArrayValue("defaultChoices");
+        assertThat(written).hasJsonPathMapValue("choicesSource");
+        assertThat(written).hasJsonPathArrayValue("defaultChoice");
     }
 
 }
