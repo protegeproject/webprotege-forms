@@ -1,8 +1,8 @@
 package edu.stanford.protege.webprotege.forms.data;
 
-import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.*;
 import com.fasterxml.jackson.annotation.JsonSubTypes.Type;
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import edu.stanford.protege.webprotege.forms.PropertyNames;
 
 import javax.annotation.Nonnull;
 
@@ -15,5 +15,6 @@ public interface FormControlDataDto {
     @Nonnull
     FormControlData toFormControlData();
 
+    @JsonProperty(PropertyNames.DEPTH)
     int getDepth();
 }

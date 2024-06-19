@@ -1,9 +1,7 @@
 package edu.stanford.protege.webprotege.forms.data;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.*;
 import com.fasterxml.jackson.annotation.JsonSubTypes.Type;
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import org.semanticweb.owlapi.model.IRI;
@@ -63,6 +61,7 @@ public interface PrimitiveFormControlData {
     @Nonnull
     Optional<OWLLiteral> asLiteral();
 
+    @JsonIgnore
     @Nonnull
     OWLPrimitive getPrimitive();
 

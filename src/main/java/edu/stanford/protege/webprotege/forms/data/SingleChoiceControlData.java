@@ -1,9 +1,8 @@
 package edu.stanford.protege.webprotege.forms.data;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.*;
 import com.google.auto.value.AutoValue;
+import edu.stanford.protege.webprotege.forms.PropertyNames;
 import edu.stanford.protege.webprotege.forms.field.SingleChoiceControlDescriptor;
 
 import javax.annotation.Nonnull;
@@ -21,8 +20,8 @@ import java.util.Optional;
 public abstract class SingleChoiceControlData implements FormControlData {
 
     @JsonCreator
-    public static SingleChoiceControlData get(@JsonProperty("descriptor") @Nonnull SingleChoiceControlDescriptor descriptor,
-                                              @JsonProperty("choice") @Nullable PrimitiveFormControlData choice) {
+    public static SingleChoiceControlData get(@JsonProperty(PropertyNames.CONTROL) @Nonnull SingleChoiceControlDescriptor descriptor,
+                                              @JsonProperty(PropertyNames.CHOICE) @Nullable PrimitiveFormControlData choice) {
 
         return new AutoValue_SingleChoiceControlData(descriptor, choice);
     }
@@ -37,13 +36,15 @@ public abstract class SingleChoiceControlData implements FormControlData {
         visitor.visit(this);
     }
 
+    @JsonProperty(PropertyNames.CONTROL)
     @Nonnull
     public abstract SingleChoiceControlDescriptor getDescriptor();
 
-    @JsonProperty("choice")
+    @JsonProperty(PropertyNames.CHOICE)
     @Nullable
     protected abstract PrimitiveFormControlData getChoiceInternal();
 
+    @JsonIgnore
     @Nonnull
     public Optional<PrimitiveFormControlData> getChoice() {
         return Optional.ofNullable(getChoiceInternal());

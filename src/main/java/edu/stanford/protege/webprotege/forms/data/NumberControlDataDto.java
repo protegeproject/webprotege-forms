@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.google.auto.value.AutoValue;
+import edu.stanford.protege.webprotege.forms.PropertyNames;
 import edu.stanford.protege.webprotege.forms.field.NumberControlDescriptor;
 import org.semanticweb.owlapi.model.OWLLiteral;
 
@@ -21,16 +22,17 @@ public abstract class NumberControlDataDto implements FormControlDataDto, Compar
 
     @JsonCreator
     @Nonnull
-    public static NumberControlDataDto get(@JsonProperty("descriptor") @Nonnull NumberControlDescriptor descriptor,
-                                           @JsonProperty("value") @Nonnull OWLLiteral value,
-                                           @JsonProperty("depth") int depth) {
+    public static NumberControlDataDto get(@JsonProperty(PropertyNames.CONTROL) @Nonnull NumberControlDescriptor descriptor,
+                                           @JsonProperty(PropertyNames.VALUE) @Nonnull OWLLiteral value,
+                                           @JsonProperty(PropertyNames.DEPTH) int depth) {
         return new AutoValue_NumberControlDataDto(depth, descriptor, value);
     }
 
+    @JsonProperty(PropertyNames.CONTROL)
     @Nonnull
     public abstract NumberControlDescriptor getDescriptor();
 
-    @JsonProperty("value")
+    @JsonProperty(PropertyNames.VALUE)
     @Nullable
     protected abstract OWLLiteral getValueInternal();
 

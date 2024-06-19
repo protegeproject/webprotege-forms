@@ -1,11 +1,11 @@
 package edu.stanford.protege.webprotege.forms.field;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonSubTypes;
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.fasterxml.jackson.annotation.*;
+import edu.stanford.protege.webprotege.criteria.*;
+import edu.stanford.protege.webprotege.forms.PropertyNames;
 import org.semanticweb.owlapi.model.OWLProperty;
 
-import javax.annotation.Nonnull;
+import javax.annotation.*;
 import java.util.Optional;
 
 /**
@@ -16,8 +16,6 @@ import java.util.Optional;
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
 @JsonSubTypes({@JsonSubTypes.Type(value = OwlPropertyBinding.class, name = OwlPropertyBinding.TYPE), @JsonSubTypes.Type(value = OwlClassBinding.class, name = OwlClassBinding.TYPE), @JsonSubTypes.Type(value = OwlInstanceBinding.class, name = OwlInstanceBinding.TYPE), @JsonSubTypes.Type(value = OwlSubClassBinding.class, name = OwlSubClassBinding.TYPE)})
 public interface OwlBinding {
-
-    String VALUES_CRITERIA = "valuesCriteria";
 
     @JsonIgnore
     @Nonnull

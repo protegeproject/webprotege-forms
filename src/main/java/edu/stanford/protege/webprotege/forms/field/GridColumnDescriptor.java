@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.auto.value.AutoValue;
 import edu.stanford.protege.webprotege.common.LanguageMap;
+import edu.stanford.protege.webprotege.forms.PropertyNames;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -37,12 +38,12 @@ public abstract class GridColumnDescriptor implements BoundControlDescriptor {
 
     @JsonCreator
     @Nonnull
-    public static GridColumnDescriptor get(@Nonnull @JsonProperty("id") String id,
-                                           @Nullable @JsonProperty("optionality") Optionality optionality,
-                                           @Nullable @JsonProperty("repeatability") Repeatability repeatability,
-                                           @Nullable @JsonProperty("owlBinding") OwlBinding owlBinding,
-                                           @Nonnull @JsonProperty("label") LanguageMap columnLabel,
-                                           @Nonnull @JsonProperty("formControlDescriptor") FormControlDescriptor formControlDescriptor) {
+    public static GridColumnDescriptor get(@Nonnull @JsonProperty(PropertyNames.ID) String id,
+                                           @Nullable @JsonProperty(PropertyNames.OPTIONALITY) Optionality optionality,
+                                           @Nullable @JsonProperty(PropertyNames.REPEATABILITY) Repeatability repeatability,
+                                           @Nullable @JsonProperty(PropertyNames.OWL_BINDING) OwlBinding owlBinding,
+                                           @Nonnull @JsonProperty(PropertyNames.LABEL) LanguageMap columnLabel,
+                                           @Nonnull @JsonProperty(PropertyNames.CONTROL) FormControlDescriptor formControlDescriptor) {
         return new AutoValue_GridColumnDescriptor(GridColumnId.get(id),
                                                   optionality == null ? Optionality.REQUIRED : optionality,
                                                   repeatability == null ? Repeatability.NON_REPEATABLE : repeatability,
@@ -55,7 +56,7 @@ public abstract class GridColumnDescriptor implements BoundControlDescriptor {
     @Nonnull
     public abstract GridColumnId getId();
 
-    @JsonProperty("id")
+    @JsonProperty(PropertyNames.ID)
     public String getGridColumnId() {
         return getId().getId();
     }
@@ -83,27 +84,32 @@ public abstract class GridColumnDescriptor implements BoundControlDescriptor {
         return !(getFormControlDescriptor() instanceof GridControlDescriptor);
     }
 
+    @JsonProperty(PropertyNames.OPTIONALITY)
     @Nonnull
     public abstract Optionality getOptionality();
 
+    @JsonProperty(PropertyNames.REPEATABILITY)
     @Nonnull
     public abstract Repeatability getRepeatability();
 
-    @JsonIgnore
+    @JsonProperty(PropertyNames.OWL_BINDING)
     @Nullable
     protected abstract OwlBinding getOwlBindingInternal();
 
     @Override
     @Nonnull
+    @JsonIgnore
     public Optional<OwlBinding> getOwlBinding() {
         return Optional.ofNullable(getOwlBindingInternal());
     }
 
     @Nonnull
+    @JsonProperty(PropertyNames.LABEL)
     public abstract LanguageMap getLabel();
 
     @Override
     @Nonnull
+    @JsonProperty(PropertyNames.CONTROL)
     public abstract FormControlDescriptor getFormControlDescriptor();
 
     @JsonIgnore

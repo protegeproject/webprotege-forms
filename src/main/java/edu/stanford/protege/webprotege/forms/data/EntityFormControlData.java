@@ -1,7 +1,8 @@
 package edu.stanford.protege.webprotege.forms.data;
 
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.fasterxml.jackson.annotation.*;
 import com.google.auto.value.AutoValue;
+import com.google.common.annotations.GwtCompatible;
 import org.semanticweb.owlapi.model.IRI;
 import org.semanticweb.owlapi.model.OWLEntity;
 import org.semanticweb.owlapi.model.OWLLiteral;
@@ -16,9 +17,9 @@ import java.util.Optional;
  * 2019-11-30
  */
 @AutoValue
-
 public abstract class EntityFormControlData implements PrimitiveFormControlData {
 
+    @JsonCreator
     public static EntityFormControlData get(@Nonnull OWLEntity entity) {
         return new AutoValue_EntityFormControlData(entity);
     }
@@ -45,6 +46,7 @@ public abstract class EntityFormControlData implements PrimitiveFormControlData 
         return Optional.empty();
     }
 
+    @JsonIgnore
     @Nonnull
     @Override
     public OWLPrimitive getPrimitive() {

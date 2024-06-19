@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.google.auto.value.AutoValue;
 import com.google.common.collect.ImmutableList;
+import edu.stanford.protege.webprotege.forms.PropertyNames;
 
 import javax.annotation.Nonnull;
 
@@ -15,9 +16,9 @@ public abstract class SingleChoiceControlDescriptorDto implements FormControlDes
 
     @JsonCreator
     @Nonnull
-    public static SingleChoiceControlDescriptorDto get(@JsonProperty("widgetType") @Nonnull SingleChoiceControlType widgetType,
-                                                       @JsonProperty("availableChoices") @Nonnull ImmutableList<ChoiceDescriptorDto> availableChoices,
-                                                       @JsonProperty("choiceListSourceDescriptor") @Nonnull ChoiceListSourceDescriptor choiceListSourceDescriptor) {
+    public static SingleChoiceControlDescriptorDto get(@JsonProperty(PropertyNames.WIDGET_TYPE) @Nonnull SingleChoiceControlType widgetType,
+                                                       @JsonProperty(PropertyNames.CHOICES) @Nonnull ImmutableList<ChoiceDescriptorDto> availableChoices,
+                                                       @JsonProperty(PropertyNames.CHOICES_SOURCE) @Nonnull ChoiceListSourceDescriptor choiceListSourceDescriptor) {
         return new AutoValue_SingleChoiceControlDescriptorDto(availableChoices, choiceListSourceDescriptor, widgetType);
     }
 
@@ -25,6 +26,7 @@ public abstract class SingleChoiceControlDescriptorDto implements FormControlDes
     public abstract ImmutableList<ChoiceDescriptorDto> getAvailableChoices();
 
 
+    @JsonProperty("descriptor")
     @Nonnull
     public abstract ChoiceListSourceDescriptor getChoiceListSourceDescriptor();
 

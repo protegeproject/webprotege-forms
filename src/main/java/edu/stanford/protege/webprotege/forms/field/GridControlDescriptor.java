@@ -7,7 +7,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.google.auto.value.AutoValue;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
-import edu.stanford.protege.webprotege.forms.FormSubjectFactoryDescriptor;
+import edu.stanford.protege.webprotege.forms.*;
 import org.semanticweb.owlapi.model.EntityType;
 
 import javax.annotation.Nonnull;
@@ -33,8 +33,8 @@ public abstract class GridControlDescriptor implements FormControlDescriptor {
 
     @JsonCreator
     @Nonnull
-    public static GridControlDescriptor get(@Nonnull @JsonProperty("columns") ImmutableList<GridColumnDescriptor> columnDescriptors,
-                                            @Nullable @JsonProperty("subjectFactoryDescriptor") FormSubjectFactoryDescriptor subjectFactoryDescriptor) {
+    public static GridControlDescriptor get(@Nonnull @JsonProperty(PropertyNames.COLUMNS) ImmutableList<GridColumnDescriptor> columnDescriptors,
+                                            @Nullable @JsonProperty(PropertyNames.SUBJECT_FACTORY) FormSubjectFactoryDescriptor subjectFactoryDescriptor) {
         return new AutoValue_GridControlDescriptor(columnDescriptors == null ? ImmutableList.of() : columnDescriptors,
                                                    subjectFactoryDescriptor == null ? FormSubjectFactoryDescriptor.get(
                                                            EntityType.CLASS,
@@ -48,7 +48,7 @@ public abstract class GridControlDescriptor implements FormControlDescriptor {
         return getType();
     }
 
-    @JsonProperty("columns")
+    @JsonProperty(PropertyNames.COLUMNS)
     @Nonnull
     public abstract ImmutableList<GridColumnDescriptor> getColumns();
 
@@ -67,10 +67,11 @@ public abstract class GridControlDescriptor implements FormControlDescriptor {
     }
 
 
-    @JsonIgnore
+    @JsonProperty(PropertyNames.SUBJECT_FACTORY)
     @Nullable
     protected abstract FormSubjectFactoryDescriptor getSubjectFactoryDescriptorInternal();
 
+    @JsonIgnore
     public Optional<FormSubjectFactoryDescriptor> getSubjectFactoryDescriptor() {
         return Optional.ofNullable(getSubjectFactoryDescriptorInternal());
     }

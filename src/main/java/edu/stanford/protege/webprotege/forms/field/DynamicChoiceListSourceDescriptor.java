@@ -8,6 +8,7 @@ import com.google.common.collect.ImmutableList;
 import edu.stanford.protege.webprotege.criteria.CompositeRootCriteria;
 import edu.stanford.protege.webprotege.criteria.MultiMatchType;
 import edu.stanford.protege.webprotege.criteria.RootCriteria;
+import edu.stanford.protege.webprotege.forms.PropertyNames;
 
 import javax.annotation.Nonnull;
 
@@ -23,10 +24,8 @@ public abstract class DynamicChoiceListSourceDescriptor implements ChoiceListSou
 
     public static final String TYPE = "Dynamic";
 
-    private static final String CRITERIA = "criteria";
-
     @JsonCreator
-    public static DynamicChoiceListSourceDescriptor get(@JsonProperty(CRITERIA) @Nonnull RootCriteria criteria) {
+    public static DynamicChoiceListSourceDescriptor get(@JsonProperty(PropertyNames.CRITERIA) @Nonnull RootCriteria criteria) {
         if (criteria instanceof CompositeRootCriteria) {
             return new AutoValue_DynamicChoiceListSourceDescriptor((CompositeRootCriteria) criteria);
         }
@@ -36,7 +35,7 @@ public abstract class DynamicChoiceListSourceDescriptor implements ChoiceListSou
         }
     }
 
-    @JsonProperty(CRITERIA)
+    @JsonProperty(PropertyNames.CRITERIA)
     @Nonnull
     public abstract CompositeRootCriteria getCriteria();
 

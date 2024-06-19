@@ -11,6 +11,7 @@ import edu.stanford.protege.webprotege.common.LanguageMap;
 import edu.stanford.protege.webprotege.criteria.CompositeRootCriteria;
 import edu.stanford.protege.webprotege.criteria.EntityTypeIsOneOfCriteria;
 import edu.stanford.protege.webprotege.criteria.MultiMatchType;
+import edu.stanford.protege.webprotege.forms.PropertyNames;
 import org.semanticweb.owlapi.model.EntityType;
 
 import javax.annotation.Nonnull;
@@ -31,9 +32,9 @@ public abstract class EntityNameControlDescriptor implements FormControlDescript
 
     @JsonCreator
     @Nonnull
-    public static EntityNameControlDescriptor get(@Nullable @JsonProperty("placeholder") LanguageMap languageMap,
-                                                  @Nullable @JsonProperty("matchCriteria") CompositeRootCriteria criteria) {
-        return new AutoValue_EntityNameControlDescriptor(languageMap == null ? LanguageMap.empty() : languageMap,
+    public static EntityNameControlDescriptor get(@Nullable @JsonProperty(PropertyNames.PLACEHOLDER) LanguageMap placeholder,
+                                                  @Nullable @JsonProperty(PropertyNames.CRITERIA) CompositeRootCriteria criteria) {
+        return new AutoValue_EntityNameControlDescriptor(placeholder == null ? LanguageMap.empty() : placeholder,
                                                          criteria);
     }
 
@@ -64,12 +65,14 @@ public abstract class EntityNameControlDescriptor implements FormControlDescript
     }
 
     @Nonnull
+    @JsonProperty(PropertyNames.PLACEHOLDER)
     public abstract LanguageMap getPlaceholder();
 
-    @JsonIgnore
     @Nullable
+    @JsonProperty(PropertyNames.CRITERIA)
     protected abstract CompositeRootCriteria getMatchCriteriaInternal();
 
+    @JsonIgnore
     @Nonnull
     public Optional<CompositeRootCriteria> getMatchCriteria() {
         return Optional.ofNullable(getMatchCriteriaInternal());

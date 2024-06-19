@@ -7,7 +7,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.google.auto.value.AutoValue;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
-import edu.stanford.protege.webprotege.forms.FormSubjectFactoryDescriptor;
+import edu.stanford.protege.webprotege.forms.*;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -23,17 +23,20 @@ public abstract class GridControlDescriptorDto implements FormControlDescriptorD
 
     @JsonCreator
     @Nonnull
-    public static GridControlDescriptorDto get(@JsonProperty("columns") @Nonnull ImmutableList<GridColumnDescriptorDto> columns,
-                                               @JsonProperty("formSubjectFactoryDescriptor") @Nullable FormSubjectFactoryDescriptor formSubjectFactoryDescriptor) {
+    public static GridControlDescriptorDto get(@JsonProperty(PropertyNames.COLUMNS) @Nonnull ImmutableList<GridColumnDescriptorDto> columns,
+                                               @JsonProperty(PropertyNames.SUBJECT_FACTORY) @Nullable FormSubjectFactoryDescriptor formSubjectFactoryDescriptor) {
         return new AutoValue_GridControlDescriptorDto(columns, formSubjectFactoryDescriptor);
     }
 
+    @JsonProperty(PropertyNames.COLUMNS)
     @Nonnull
     public abstract ImmutableList<GridColumnDescriptorDto> getColumns();
 
+    @JsonProperty(PropertyNames.SUBJECT_FACTORY)
     @Nullable
     protected abstract FormSubjectFactoryDescriptor getSubjectFactoryDescriptorInternal();
 
+    @JsonIgnore
     @Nonnull
     public Optional<FormSubjectFactoryDescriptor> getSubjectFactoryDescriptor() {
         return Optional.ofNullable(getSubjectFactoryDescriptorInternal());
@@ -52,6 +55,7 @@ public abstract class GridControlDescriptorDto implements FormControlDescriptorD
                                          getSubjectFactoryDescriptorInternal());
     }
 
+    @JsonIgnore
     public int getNestedColumnCount() {
         int count = 0;
         for (GridColumnDescriptorDto columnDescriptor : getColumns()) {

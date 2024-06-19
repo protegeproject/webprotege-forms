@@ -6,8 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.google.auto.value.AutoValue;
 import com.google.common.collect.ImmutableList;
-import edu.stanford.protege.webprotege.forms.FormDescriptor;
-import edu.stanford.protege.webprotege.forms.FormId;
+import edu.stanford.protege.webprotege.forms.*;
 import org.semanticweb.owlapi.model.OWLEntity;
 
 import javax.annotation.Nonnull;
@@ -25,9 +24,9 @@ import java.util.Optional;
 public abstract class FormData implements FormControlData {
 
     @JsonCreator
-    public static FormData get(@JsonProperty("subject") @Nonnull Optional<FormEntitySubject> subject,
-                               @JsonProperty("formDescriptor") @Nonnull FormDescriptor formDescriptor,
-                               @JsonProperty("formFieldData") @Nonnull ImmutableList<FormFieldData> formFieldData) {
+    public static FormData get(@JsonProperty(PropertyNames.SUBJECT) @Nonnull Optional<FormEntitySubject> subject,
+                               @JsonProperty(PropertyNames.FORM) @Nonnull FormDescriptor formDescriptor,
+                               @JsonProperty(PropertyNames.FIELDS) @Nonnull ImmutableList<FormFieldData> formFieldData) {
         return new AutoValue_FormData(subject.orElse(null), formDescriptor, formFieldData);
     }
 
@@ -45,17 +44,20 @@ public abstract class FormData implements FormControlData {
         visitor.visit(this);
     }
 
+    @JsonIgnore
     @Nonnull
     public Optional<FormEntitySubject> getSubject() {
         return Optional.ofNullable(getSubjectInternal());
     }
 
-    @JsonIgnore
+    @JsonProperty(PropertyNames.SUBJECT)
     @Nullable
     protected abstract FormEntitySubject getSubjectInternal();
 
+    @JsonProperty(PropertyNames.FORM)
     public abstract FormDescriptor getFormDescriptor();
 
+    @JsonProperty(PropertyNames.FIELDS)
     public abstract ImmutableList<FormFieldData> getFormFieldData();
 
     @Nonnull
