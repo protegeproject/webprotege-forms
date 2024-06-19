@@ -4,7 +4,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.databind.PropertyName;
 import com.google.auto.value.AutoValue;
+import com.google.common.annotations.GwtCompatible;
+import edu.stanford.protege.webprotege.forms.PropertyNames;
 import edu.stanford.protege.webprotege.forms.field.EntityNameControlDescriptor;
 import org.semanticweb.owlapi.model.OWLEntity;
 
@@ -18,13 +21,12 @@ import java.util.Optional;
  * 2020-01-08
  */
 @AutoValue
-
 @JsonTypeName("EntityNameControlData")
 public abstract class EntityNameControlData implements FormControlData {
 
     @JsonCreator
-    public static EntityNameControlData get(@JsonProperty("descriptor") @Nonnull EntityNameControlDescriptor descriptor,
-                                            @JsonProperty("term") @Nullable OWLEntity entity) {
+    public static EntityNameControlData get(@JsonProperty(PropertyNames.CONTROL) @Nonnull EntityNameControlDescriptor descriptor,
+                                            @JsonProperty(PropertyNames.ENTITY) @Nullable OWLEntity entity) {
         return new AutoValue_EntityNameControlData(descriptor, entity);
     }
 
@@ -38,11 +40,12 @@ public abstract class EntityNameControlData implements FormControlData {
         visitor.visit(this);
     }
 
+    @JsonProperty(PropertyNames.CONTROL)
     @Nonnull
     public abstract EntityNameControlDescriptor getDescriptor();
 
     @Nullable
-    @JsonProperty("term")
+    @JsonProperty(PropertyNames.ENTITY)
     protected abstract OWLEntity getEntityInternal();
 
     @JsonIgnore

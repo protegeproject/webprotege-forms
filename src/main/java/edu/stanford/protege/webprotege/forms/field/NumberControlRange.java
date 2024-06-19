@@ -1,7 +1,9 @@
 package edu.stanford.protege.webprotege.forms.field;
 
+import com.fasterxml.jackson.annotation.*;
 import com.google.common.base.Objects;
 import com.google.common.collect.Range;
+import edu.stanford.protege.webprotege.forms.PropertyNames;
 
 import static com.google.common.base.MoreObjects.toStringHelper;
 
@@ -25,10 +27,11 @@ public class NumberControlRange {
 
     private BoundType upperBoundType = BoundType.INCLUSIVE;
 
-    private NumberControlRange(double lowerBound,
-                               BoundType lowerBoundType,
-                               double upperBound,
-                               BoundType upperBoundType) {
+    @JsonCreator
+    private NumberControlRange(@JsonProperty(PropertyNames.LOWER_BOUND) double lowerBound,
+                               @JsonProperty(PropertyNames.LOWER_BOUND_TYPE) BoundType lowerBoundType,
+                               @JsonProperty(PropertyNames.UPPER_BOUND) double upperBound,
+                               @JsonProperty(PropertyNames.UPPER_BOUND_TYPE) BoundType upperBoundType) {
         this.lowerBound = lowerBound;
         this.lowerBoundType = lowerBoundType;
         this.upperBound = upperBound;
@@ -50,6 +53,7 @@ public class NumberControlRange {
         return ANY_NUMBER;
     }
 
+    @JsonIgnore
     public boolean isAnyNumber() {
         return this.equals(ANY_NUMBER);
     }
@@ -79,18 +83,22 @@ public class NumberControlRange {
                            this.getUpperBoundType() == NumberControlRange.BoundType.INCLUSIVE ? com.google.common.collect.BoundType.CLOSED : com.google.common.collect.BoundType.OPEN);
     }
 
+    @JsonProperty(PropertyNames.LOWER_BOUND)
     public double getLowerBound() {
         return lowerBound;
     }
 
+    @JsonProperty(PropertyNames.LOWER_BOUND_TYPE)
     public BoundType getLowerBoundType() {
         return lowerBoundType;
     }
 
+    @JsonProperty(PropertyNames.UPPER_BOUND)
     public double getUpperBound() {
         return upperBound;
     }
 
+    @JsonProperty(PropertyNames.UPPER_BOUND_TYPE)
     public BoundType getUpperBoundType() {
         return upperBoundType;
     }

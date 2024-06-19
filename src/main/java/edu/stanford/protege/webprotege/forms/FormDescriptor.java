@@ -39,10 +39,10 @@ public class FormDescriptor {
     }
 
     @JsonCreator
-    public FormDescriptor(@JsonProperty("id") FormId id,
-                          @JsonProperty("label") LanguageMap label,
-                          @JsonProperty("fields") List<FormFieldDescriptor> formFieldDescriptors,
-                          @JsonProperty("subjectFactoryDescriptor") Optional<FormSubjectFactoryDescriptor> subjectFactoryDescriptor) {
+    public FormDescriptor(@JsonProperty(PropertyNames.ID) FormId id,
+                          @JsonProperty(PropertyNames.LABEL) LanguageMap label,
+                          @JsonProperty(PropertyNames.FIELDS) List<FormFieldDescriptor> formFieldDescriptors,
+                          @JsonProperty(PropertyNames.SUBJECT_FACTORY) Optional<FormSubjectFactoryDescriptor> subjectFactoryDescriptor) {
         this.formId = id;
         this.label = label;
         this.elements = new ArrayList<>(formFieldDescriptors);
@@ -62,19 +62,23 @@ public class FormDescriptor {
         return new FormDescriptor(formId, label, filteredFields, getSubjectFactoryDescriptor());
     }
 
+    @JsonProperty(PropertyNames.ID)
     public FormId getFormId() {
         return formId;
     }
 
+    @JsonProperty(PropertyNames.LABEL)
     public LanguageMap getLabel() {
         return label;
     }
 
+    @JsonProperty(PropertyNames.SUBJECT_FACTORY)
     @Nonnull
     public Optional<FormSubjectFactoryDescriptor> getSubjectFactoryDescriptor() {
         return Optional.ofNullable(subjectFactoryDescriptor);
     }
 
+    @JsonProperty(PropertyNames.FIELDS)
     public List<FormFieldDescriptor> getFields() {
         return elements;
     }

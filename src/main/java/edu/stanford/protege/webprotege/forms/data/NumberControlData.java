@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.google.auto.value.AutoValue;
+import edu.stanford.protege.webprotege.forms.PropertyNames;
 import edu.stanford.protege.webprotege.forms.field.NumberControlDescriptor;
 import org.semanticweb.owlapi.model.OWLLiteral;
 
@@ -23,7 +24,8 @@ import java.util.Optional;
 public abstract class NumberControlData implements FormControlData {
 
     @JsonCreator
-    public static NumberControlData get(@Nonnull NumberControlDescriptor descriptor, @Nullable OWLLiteral value) {
+    public static NumberControlData get(@JsonProperty(PropertyNames.CONTROL) @Nonnull NumberControlDescriptor descriptor,
+                                        @JsonProperty(PropertyNames.VALUE) @Nullable OWLLiteral value) {
         return new AutoValue_NumberControlData(descriptor, value);
     }
 
@@ -37,10 +39,11 @@ public abstract class NumberControlData implements FormControlData {
         visitor.visit(this);
     }
 
+    @JsonProperty(PropertyNames.CONTROL)
     @Nonnull
     public abstract NumberControlDescriptor getDescriptor();
 
-    @JsonProperty("value")
+    @JsonProperty(PropertyNames.VALUE)
     @Nullable
     protected abstract OWLLiteral getValueInternal();
 

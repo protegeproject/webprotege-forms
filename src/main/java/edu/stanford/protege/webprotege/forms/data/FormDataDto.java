@@ -7,8 +7,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.google.auto.value.AutoValue;
 import com.google.common.collect.ImmutableList;
 import edu.stanford.protege.webprotege.common.Page;
-import edu.stanford.protege.webprotege.forms.FormDescriptorDto;
-import edu.stanford.protege.webprotege.forms.FormId;
+import edu.stanford.protege.webprotege.forms.*;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -17,16 +16,15 @@ import java.util.Optional;
 import static com.google.common.collect.ImmutableList.toImmutableList;
 
 @AutoValue
-
 @JsonTypeName("FormDataDto")
 public abstract class FormDataDto implements FormControlDataDto {
 
     @JsonCreator
     @Nonnull
-    public static FormDataDto get(@JsonProperty("subject") @Nonnull FormSubjectDto subject,
-                                  @JsonProperty("formDescriptor") @Nonnull FormDescriptorDto formDescriptor,
-                                  @JsonProperty("formFieldData") @Nonnull ImmutableList<FormFieldDataDto> formFieldData,
-                                  @JsonProperty("depth") int depth) {
+    public static FormDataDto get(@JsonProperty(PropertyNames.SUBJECT) @Nonnull FormSubjectDto subject,
+                                  @JsonProperty(PropertyNames.FORM) @Nonnull FormDescriptorDto formDescriptor,
+                                  @JsonProperty(PropertyNames.FIELDS) @Nonnull ImmutableList<FormFieldDataDto> formFieldData,
+                                  @JsonProperty(PropertyNames.DEPTH) int depth) {
         return new AutoValue_FormDataDto(depth, subject, formDescriptor, formFieldData);
     }
 
@@ -59,17 +57,20 @@ public abstract class FormDataDto implements FormControlDataDto {
         return new AutoValue_FormDataDto(depth, null, formDescriptor, formFieldData);
     }
 
+    @JsonIgnore
     @Nonnull
     public Optional<FormSubjectDto> getSubject() {
         return Optional.ofNullable(getSubjectInternal());
     }
 
-    @JsonIgnore
+    @JsonProperty(PropertyNames.SUBJECT)
     @Nullable
     protected abstract FormSubjectDto getSubjectInternal();
 
+    @JsonProperty(PropertyNames.FORM)
     public abstract FormDescriptorDto getFormDescriptor();
 
+    @JsonProperty(PropertyNames.FIELDS)
     public abstract ImmutableList<FormFieldDataDto> getFormFieldData();
 
     @Override
@@ -96,6 +97,7 @@ public abstract class FormDataDto implements FormControlDataDto {
                                               .collect(toImmutableList()));
     }
 
+    @JsonIgnore
     @Nonnull
     public FormId getFormId() {
         return getFormDescriptor().getFormId();

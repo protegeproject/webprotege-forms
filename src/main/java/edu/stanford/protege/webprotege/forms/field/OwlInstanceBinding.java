@@ -1,10 +1,9 @@
 package edu.stanford.protege.webprotege.forms.field;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.*;
 import com.google.auto.value.AutoValue;
 import edu.stanford.protege.webprotege.criteria.EntityMatchCriteria;
+import edu.stanford.protege.webprotege.forms.PropertyNames;
 import org.semanticweb.owlapi.model.OWLProperty;
 
 import javax.annotation.Nonnull;
@@ -25,8 +24,8 @@ public abstract class OwlInstanceBinding implements OwlBinding {
 
     @JsonCreator
     @Nonnull
-    public static OwlInstanceBinding get(@JsonProperty(VALUES_CRITERIA) @Nullable EntityMatchCriteria valuesFilter) {
-        return new AutoValue_OwlInstanceBinding();
+    public static OwlInstanceBinding get(@JsonProperty(PropertyNames.CRITERIA) @Nullable EntityMatchCriteria valuesFilter) {
+        return new AutoValue_OwlInstanceBinding(valuesFilter);
     }
 
     @Nonnull
@@ -38,6 +37,16 @@ public abstract class OwlInstanceBinding implements OwlBinding {
     @Override
     public Optional<OWLProperty> getOwlProperty() {
         return Optional.empty();
+    }
+
+
+    @JsonProperty(PropertyNames.CRITERIA)
+    @Nullable
+    public abstract EntityMatchCriteria getCriteriaInternal();
+
+    @JsonIgnore
+    public Optional<EntityMatchCriteria> getCriteria() {
+        return Optional.ofNullable(getCriteriaInternal());
     }
 
 }

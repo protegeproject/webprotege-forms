@@ -1,5 +1,6 @@
 package edu.stanford.protege.webprotege.forms.data;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.google.auto.value.AutoValue;
 import org.semanticweb.owlapi.model.IRI;
 import org.semanticweb.owlapi.model.OWLEntity;
@@ -15,7 +16,6 @@ import java.util.Optional;
  * 2020-01-07
  */
 @AutoValue
-
 public abstract class IriFormControlData implements PrimitiveFormControlData {
 
     public static IriFormControlData get(@Nonnull IRI iri) {
