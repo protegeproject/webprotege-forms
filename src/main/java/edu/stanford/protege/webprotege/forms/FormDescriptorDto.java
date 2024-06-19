@@ -26,7 +26,7 @@ public abstract class FormDescriptorDto {
 
     @JsonProperty(PropertyNames.ID)
     @Nonnull
-    public abstract FormId getFormId();
+    public abstract FormId getId();
 
     @Nonnull
     @JsonProperty(PropertyNames.LABEL)
@@ -47,7 +47,7 @@ public abstract class FormDescriptorDto {
 
     @Nonnull
     public FormDescriptor toFormDescriptor() {
-        return new FormDescriptor(getFormId(),
+        return new FormDescriptor(getId(),
                                   getLabel(),
                                   getFields().stream()
                                              .map(FormFieldDescriptorDto::toFormFieldDescriptor)

@@ -100,6 +100,6 @@ public abstract class FormDataDto implements FormControlDataDto {
     @JsonIgnore
     @Nonnull
     public FormId getFormId() {
-        return getFormDescriptor().getFormId();
+        return getFormDescriptor().getId();
     }
 }
