@@ -1,5 +1,6 @@
 package edu.stanford.protege.webprotege.forms.data;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.google.auto.value.AutoValue;
@@ -18,6 +19,8 @@ import javax.annotation.Nonnull;
 @JsonTypeName("MultiChoiceControlData")
 public abstract class MultiChoiceControlData implements FormControlData {
 
+
+    @JsonCreator
     public static MultiChoiceControlData get(@JsonProperty("descriptor") @Nonnull MultiChoiceControlDescriptor descriptor,
                                              @JsonProperty("values") @Nonnull ImmutableList<PrimitiveFormControlData> values) {
         return new AutoValue_MultiChoiceControlData(descriptor, values);

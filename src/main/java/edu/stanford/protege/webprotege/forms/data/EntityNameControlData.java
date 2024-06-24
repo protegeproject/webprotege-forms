@@ -24,7 +24,7 @@ public abstract class EntityNameControlData implements FormControlData {
 
     @JsonCreator
     public static EntityNameControlData get(@JsonProperty("descriptor") @Nonnull EntityNameControlDescriptor descriptor,
-                                            @JsonProperty("term") @Nullable OWLEntity entity) {
+                                            @JsonProperty("entity") @Nullable OWLEntity entity) {
         return new AutoValue_EntityNameControlData(descriptor, entity);
     }
 
@@ -39,6 +39,7 @@ public abstract class EntityNameControlData implements FormControlData {
     }
 
     @Nonnull
+    @JsonProperty("descriptor")
     public abstract EntityNameControlDescriptor getDescriptor();
 
     @Nullable

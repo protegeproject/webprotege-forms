@@ -38,6 +38,7 @@ public abstract class SingleChoiceControlData implements FormControlData {
     }
 
     @Nonnull
+    @JsonProperty("descriptor")
     public abstract SingleChoiceControlDescriptor getDescriptor();
 
     @JsonProperty("choice")
