@@ -22,7 +22,7 @@ public abstract class GridControlData implements ComplexFormControlValue {
 
     @JsonCreator
     @Nonnull
-    public static GridControlData get(@JsonProperty(PropertyNames.CONTROL) @Nonnull GridControlDescriptor descriptor,
+    public static GridControlData get(@JsonProperty(PropertyNames.CONTROL) @JsonAlias(PropertyNames.DESCRIPTOR) @Nonnull GridControlDescriptor descriptor,
                                       @JsonProperty(PropertyNames.ROWS) @Nonnull Page<GridRowData> rows,
                                       @JsonProperty(PropertyNames.ORDERING) @Nonnull ImmutableSet<FormRegionOrdering> ordering) {
         return new AutoValue_GridControlData(descriptor, rows, ordering);

@@ -1,9 +1,6 @@
 package edu.stanford.protege.webprotege.forms.data;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.*;
 import com.fasterxml.jackson.databind.PropertyName;
 import com.google.auto.value.AutoValue;
 import com.google.common.annotations.GwtCompatible;
@@ -25,7 +22,7 @@ import java.util.Optional;
 public abstract class EntityNameControlData implements FormControlData {
 
     @JsonCreator
-    public static EntityNameControlData get(@JsonProperty(PropertyNames.CONTROL) @Nonnull EntityNameControlDescriptor descriptor,
+    public static EntityNameControlData get(@JsonProperty(PropertyNames.CONTROL) @JsonAlias(PropertyNames.DESCRIPTOR) @Nonnull EntityNameControlDescriptor descriptor,
                                             @JsonProperty(PropertyNames.ENTITY) @Nullable OWLEntity entity) {
         return new AutoValue_EntityNameControlData(descriptor, entity);
     }

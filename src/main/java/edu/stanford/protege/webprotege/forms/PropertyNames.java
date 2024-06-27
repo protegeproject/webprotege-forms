@@ -7,7 +7,7 @@ package edu.stanford.protege.webprotege.forms;
  */
 public interface PropertyNames {
 
-//    String DESCRIPTOR = "descriptor";
+    String DESCRIPTOR = "descriptor";
 
     String CONTROL = "control";
 
@@ -130,6 +130,8 @@ public interface PropertyNames {
     String TARGET_ONTOLOGY_IRI = "targetOntologyIri";
 
     String FORM = "form";
+
+    String DATA = "data";
 
     String CONTROL_DATA = "controlData";
 

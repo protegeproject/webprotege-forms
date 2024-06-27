@@ -1,6 +1,8 @@
 package edu.stanford.protege.webprotege.forms.data;
 
-import com.fasterxml.jackson.annotation.*;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.auto.value.AutoValue;
 import com.google.common.collect.ImmutableList;
 import edu.stanford.protege.webprotege.forms.PropertyNames;
@@ -17,6 +19,7 @@ import java.util.Optional;
 @AutoValue
 public abstract class GridRowData implements Comparable<GridRowData> {
 
+    @JsonCreator
     public static GridRowData get(@JsonProperty(PropertyNames.SUBJECT) @Nullable FormEntitySubject subject,
                                   @JsonProperty(PropertyNames.CELLS) @Nonnull ImmutableList<GridCellData> cellData) {
         return new AutoValue_GridRowData(subject, cellData);

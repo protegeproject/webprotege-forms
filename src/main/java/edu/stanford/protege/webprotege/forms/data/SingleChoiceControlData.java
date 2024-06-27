@@ -20,7 +20,7 @@ import java.util.Optional;
 public abstract class SingleChoiceControlData implements FormControlData {
 
     @JsonCreator
-    public static SingleChoiceControlData get(@JsonProperty(PropertyNames.CONTROL) @Nonnull SingleChoiceControlDescriptor descriptor,
+    public static SingleChoiceControlData get(@JsonProperty(PropertyNames.CONTROL) @JsonAlias(PropertyNames.DESCRIPTOR) @Nonnull SingleChoiceControlDescriptor descriptor,
                                               @JsonProperty(PropertyNames.CHOICE) @Nullable PrimitiveFormControlData choice) {
 
         return new AutoValue_SingleChoiceControlData(descriptor, choice);
@@ -38,6 +38,7 @@ public abstract class SingleChoiceControlData implements FormControlData {
 
     @JsonProperty(PropertyNames.CONTROL)
     @Nonnull
+    @JsonAlias(PropertyNames.DESCRIPTOR)
     public abstract SingleChoiceControlDescriptor getDescriptor();
 
     @JsonProperty(PropertyNames.CHOICE)
