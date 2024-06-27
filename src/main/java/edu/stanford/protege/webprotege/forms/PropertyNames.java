@@ -133,5 +133,7 @@ public interface PropertyNames {
 
     String DATA = "data";
 
+    String CONTROL_DATA = "controlData";
+
     String FIELD = "field";
 }

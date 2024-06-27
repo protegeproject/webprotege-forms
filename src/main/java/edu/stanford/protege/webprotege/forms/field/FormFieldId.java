@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.google.auto.value.AutoValue;
 import edu.stanford.protege.webprotege.common.UUIDUtil;
+import edu.stanford.protege.webprotege.forms.PropertyNames;
 
 import javax.annotation.Nonnull;
 
@@ -20,7 +21,7 @@ public abstract class FormFieldId implements FormRegionId {
 
     @JsonCreator
     @Nonnull
-    public static FormFieldId get(@JsonProperty("id") @Nonnull String id) {
+    public static FormFieldId get(@JsonProperty(PropertyNames.ID) @Nonnull String id) {
         checkFormat(id);
         return new AutoValue_FormFieldId(id);
     }
@@ -40,6 +41,8 @@ public abstract class FormFieldId implements FormRegionId {
         return getId();
     }
 
+
+    @JsonProperty(PropertyNames.ID)
     @Override
     public abstract String getId();
 }

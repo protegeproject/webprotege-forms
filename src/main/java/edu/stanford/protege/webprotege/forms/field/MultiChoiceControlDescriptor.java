@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.google.auto.value.AutoValue;
 import com.google.common.collect.ImmutableList;
+import edu.stanford.protege.webprotege.forms.PropertyNames;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -24,8 +25,8 @@ public abstract class MultiChoiceControlDescriptor implements FormControlDescrip
     public static final String TYPE = "MULTI_CHOICE";
 
     @JsonCreator
-    public static MultiChoiceControlDescriptor get(@JsonProperty("source") ChoiceListSourceDescriptor source,
-                                                   @JsonProperty("defaultChoices") @Nullable ImmutableList<ChoiceDescriptor> defaultChoices) {
+    public static MultiChoiceControlDescriptor get(@JsonProperty(PropertyNames.CHOICES_SOURCE) ChoiceListSourceDescriptor source,
+                                                   @JsonProperty(PropertyNames.DEFAULT_CHOICE) @Nullable ImmutableList<ChoiceDescriptor> defaultChoices) {
 
         return new AutoValue_MultiChoiceControlDescriptor(source == null ? FixedChoiceListSourceDescriptor.get(
                 ImmutableList.of()) : source, defaultChoices == null ? ImmutableList.of() : defaultChoices);
@@ -38,9 +39,11 @@ public abstract class MultiChoiceControlDescriptor implements FormControlDescrip
     }
 
     @Nonnull
+    @JsonProperty(PropertyNames.CHOICES_SOURCE)
     public abstract ChoiceListSourceDescriptor getSource();
 
     @Nonnull
+    @JsonProperty(PropertyNames.DEFAULT_CHOICE)
     public abstract ImmutableList<ChoiceDescriptor> getDefaultChoices();
 
     @Nonnull

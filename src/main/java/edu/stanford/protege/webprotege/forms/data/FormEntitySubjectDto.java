@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.google.auto.value.AutoValue;
 import com.google.auto.value.extension.memoized.Memoized;
 import edu.stanford.protege.webprotege.entity.OWLEntityData;
+import edu.stanford.protege.webprotege.forms.PropertyNames;
 import org.semanticweb.owlapi.model.IRI;
 
 import javax.annotation.Nonnull;
@@ -18,11 +19,11 @@ public abstract class FormEntitySubjectDto extends FormSubjectDto {
 
     @JsonCreator
     @Nonnull
-    public static FormEntitySubjectDto get(@JsonProperty("entityData") @Nonnull OWLEntityData entityData) {
+    public static FormEntitySubjectDto get(@JsonProperty(PropertyNames.ENTITY) @Nonnull OWLEntityData entityData) {
         return new AutoValue_FormEntitySubjectDto(entityData);
     }
 
-
+    @JsonProperty(PropertyNames.ENTITY)
     @Nonnull
     public abstract OWLEntityData getEntityData();
 

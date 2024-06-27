@@ -17,7 +17,6 @@ import java.util.Optional;
  * 2019-11-30
  */
 @AutoValue
-
 public abstract class GridRowData implements Comparable<GridRowData> {
 
     @JsonCreator

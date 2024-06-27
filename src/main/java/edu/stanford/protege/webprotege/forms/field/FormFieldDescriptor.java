@@ -6,48 +6,25 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.google.auto.value.AutoValue;
 import edu.stanford.protege.webprotege.common.LanguageMap;
-import edu.stanford.protege.webprotege.forms.ExpansionState;
-import edu.stanford.protege.webprotege.forms.HasFormFieldId;
+import edu.stanford.protege.webprotege.forms.*;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.Optional;
 
 import static com.google.common.base.Preconditions.checkNotNull;
-import static edu.stanford.protege.webprotege.forms.field.FormFieldDescriptor.*;
+import static edu.stanford.protege.webprotege.forms.PropertyNames.*;
 
 /**
  * Matthew Horridge
  * Stanford Center for Biomedical Informatics Research
  * 30/03/16
  */
-@JsonPropertyOrder({ID, OWL_BINDING, LABEL, FIELD_RUN, FORM_CONTROL_DESCRIPTOR, REPEATABILITY, OPTIONALITY, READ_ONLY, HELP})
+@JsonPropertyOrder({ID, OWL_BINDING, LABEL, FIELD_RUN, CONTROL, REPEATABILITY, OPTIONALITY, READ_ONLY, HELP})
 
 @AutoValue
 public abstract class FormFieldDescriptor implements HasFormFieldId, HasRepeatability, BoundControlDescriptor {
 
-
-    public static final String ID = "id";
-
-    public static final String OWL_BINDING = "owlBinding";
-
-    public static final String LABEL = "label";
-
-    public static final String FIELD_RUN = "fieldRun";
-
-    public static final String FORM_CONTROL_DESCRIPTOR = "formControlDescriptor";
-
-    public static final String REPEATABILITY = "repeatability";
-
-    public static final String OPTIONALITY = "optionality";
-
-    public static final String READ_ONLY = "readOnly";
-
-    public static final String INITIAL_EXPANSIONS_STATE = "initialExpansionState";
-
-    public static final String HELP = "help";
-
-    public static final String DEPRECATION_STRATEGY = "deprecationStrategy";
 
     @Nonnull
     public static FormFieldDescriptor get(@Nonnull FormFieldId id,
@@ -81,7 +58,7 @@ public abstract class FormFieldDescriptor implements HasFormFieldId, HasRepeatab
                                                   @JsonProperty(LABEL) @Nullable LanguageMap formLabel,
                                                   @JsonProperty(FIELD_RUN) @Nullable FieldRun fieldRun,
                                                   @JsonProperty(DEPRECATION_STRATEGY) @Nullable FormFieldDeprecationStrategy deprecationStrategy,
-                                                  @JsonProperty(FORM_CONTROL_DESCRIPTOR) @Nonnull FormControlDescriptor fieldDescriptor,
+                                                  @JsonProperty(CONTROL) @Nonnull FormControlDescriptor fieldDescriptor,
                                                   @JsonProperty(REPEATABILITY) @Nullable Repeatability repeatability,
                                                   @JsonProperty(OPTIONALITY) @Nullable Optionality optionality,
                                                   @JsonProperty(READ_ONLY) boolean readOnly,
@@ -106,29 +83,33 @@ public abstract class FormFieldDescriptor implements HasFormFieldId, HasRepeatab
     @JsonIgnore
     public abstract FormFieldId getId();
 
-    @JsonProperty("id")
+    @JsonProperty(PropertyNames.ID)
     protected String getFormFieldId() {
         return getId().getId();
     }
 
-    @JsonIgnore
+    @JsonProperty(OWL_BINDING)
     @Nullable
     protected abstract OwlBinding getOwlBindingInternal();
 
     @Override
     @Nonnull
+    @JsonIgnore
     public Optional<OwlBinding> getOwlBinding() {
         return Optional.ofNullable(getOwlBindingInternal());
     }
 
     @Nonnull
+    @JsonProperty(LABEL)
     public abstract LanguageMap getLabel();
 
     @Nonnull
+    @JsonProperty(FIELD_RUN)
     public abstract FieldRun getFieldRun();
 
     @Override
     @Nonnull
+    @JsonProperty(CONTROL)
     public abstract FormControlDescriptor getFormControlDescriptor();
 
     @Nonnull
@@ -141,6 +122,7 @@ public abstract class FormFieldDescriptor implements HasFormFieldId, HasRepeatab
     @Nonnull
     public abstract FormFieldDeprecationStrategy getDeprecationStrategy();
 
+    @JsonProperty(READ_ONLY)
     public abstract boolean isReadOnly();
 
     @JsonProperty(INITIAL_EXPANSIONS_STATE)
@@ -148,6 +130,7 @@ public abstract class FormFieldDescriptor implements HasFormFieldId, HasRepeatab
     public abstract ExpansionState getInitialExpansionState();
 
     @Nonnull
+    @JsonProperty(HELP)
     public abstract LanguageMap getHelp();
 
     @JsonIgnore

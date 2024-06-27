@@ -16,21 +16,21 @@ import javax.annotation.Nonnull;
  * 2020-04-22
  */
 @JsonTypeName("FormPageRequest")
-public record FormPageRequest(FormId formId,
-                              FormSubject subject,
-                              FormRegionId regionId,
-                              SourceType sourceType,
-                              PageRequest pageRequest) {
+public record FormPageRequest(@JsonProperty(PropertyNames.FORM_ID) FormId formId,
+                              @JsonProperty(PropertyNames.SUBJECT) FormSubject subject,
+                              @JsonProperty(PropertyNames.REGION_ID) FormRegionId regionId,
+                              @JsonProperty(PropertyNames.SOURCE_TYPE) SourceType sourceType,
+                              @JsonProperty(PropertyNames.PAGE_REQUEST) PageRequest pageRequest) {
 
     public static final int DEFAULT_PAGE_SIZE = 10;
 
     @JsonCreator
     @Nonnull
-    public static FormPageRequest get(@JsonProperty("formId") @Nonnull FormId formId,
-                                      @JsonProperty("subject") @Nonnull FormSubject subject,
-                                      @JsonProperty("regionId") @Nonnull FormRegionId formFieldId,
-                                      @JsonProperty("sourceType") @Nonnull SourceType sourceType,
-                                      @JsonProperty("pageRequest") @Nonnull PageRequest pageRequest) {
+    public static FormPageRequest get(@JsonProperty(PropertyNames.FORM_ID) @Nonnull FormId formId,
+                                      @JsonProperty(PropertyNames.SUBJECT) @Nonnull FormSubject subject,
+                                      @JsonProperty(PropertyNames.REGION_ID) @Nonnull FormRegionId formFieldId,
+                                      @JsonProperty(PropertyNames.SOURCE_TYPE) @Nonnull SourceType sourceType,
+                                      @JsonProperty(PropertyNames.PAGE_REQUEST) @Nonnull PageRequest pageRequest) {
         return new FormPageRequest(formId, subject, formFieldId, sourceType, pageRequest);
     }
 

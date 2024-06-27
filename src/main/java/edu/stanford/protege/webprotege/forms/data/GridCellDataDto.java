@@ -1,9 +1,9 @@
 package edu.stanford.protege.webprotege.forms.data;
 
+import com.fasterxml.jackson.annotation.*;
 import com.google.auto.value.AutoValue;
 import edu.stanford.protege.webprotege.common.Page;
-import edu.stanford.protege.webprotege.forms.FilterState;
-import edu.stanford.protege.webprotege.forms.HasFilterState;
+import edu.stanford.protege.webprotege.forms.*;
 import edu.stanford.protege.webprotege.forms.field.GridColumnId;
 
 import javax.annotation.Nonnull;
@@ -13,18 +13,22 @@ import javax.annotation.Nullable;
 
 public abstract class GridCellDataDto implements HasFilterState {
 
-    public static GridCellDataDto get(@Nonnull GridColumnId columnId,
-                                      @Nullable Page<FormControlDataDto> values,
-                                      @Nonnull FilterState filterState) {
+    @JsonCreator
+    public static GridCellDataDto get(@JsonProperty(PropertyNames.COLUMN_ID) @Nonnull GridColumnId columnId,
+                                      @JsonProperty(PropertyNames.VALUES) @Nullable Page<FormControlDataDto> values,
+                                      @JsonProperty(PropertyNames.FILTER_STATE) @Nonnull FilterState filterState) {
         return new AutoValue_GridCellDataDto(columnId, values, filterState);
     }
 
+    @JsonProperty(PropertyNames.COLUMN_ID)
     @Nonnull
     public abstract GridColumnId getColumnId();
 
+    @JsonProperty(PropertyNames.COLUMN_ID)
     @Nonnull
     public abstract Page<FormControlDataDto> getValues();
 
+    @JsonProperty(PropertyNames.COLUMN_ID)
     @Nonnull
     @Override
     public abstract FilterState getFilterState();
@@ -35,6 +39,7 @@ public abstract class GridCellDataDto implements HasFilterState {
      * @return true if this cel data is filtered empty (all values have been filtered out)
      * otherwise false.
      */
+    @JsonIgnore
     public boolean isFilteredEmpty() {
         return getFilterState().equals(FilterState.FILTERED) && getValues().getPageElements().isEmpty();
     }
