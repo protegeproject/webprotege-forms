@@ -1,8 +1,6 @@
 package edu.stanford.protege.webprotege.forms.data;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.*;
 import org.semanticweb.owlapi.model.*;
 import uk.ac.manchester.cs.owl.owlapi.*;
 
@@ -16,7 +14,7 @@ import javax.annotation.Nullable;
 public record PrimitiveFormControlDataProxy(@JsonInclude(JsonInclude.Include.NON_EMPTY) @Nullable String iri,
                                             @JsonInclude(JsonInclude.Include.NON_EMPTY) @JsonProperty("@type") @Nullable String type,
                                             @JsonInclude(JsonInclude.Include.NON_EMPTY) @Nullable String value,
-                                            @JsonInclude(JsonInclude.Include.NON_EMPTY) @Nullable String datatype,
+                                            @JsonInclude(JsonInclude.Include.NON_EMPTY) @JsonProperty("type") @Nullable String datatype,
                                             @JsonInclude(JsonInclude.Include.NON_EMPTY) @Nullable String lang) {
 
     public PrimitiveFormControlData toPrimitiveFormControlData() {
