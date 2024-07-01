@@ -17,14 +17,14 @@ import static com.google.common.collect.ImmutableList.toImmutableList;
 public abstract class FormDescriptorDto {
 
     @JsonCreator
-    public static FormDescriptorDto get(@JsonProperty(PropertyNames.ID) @Nonnull FormId formId,
+    public static FormDescriptorDto get(@JsonProperty(PropertyNames.FORM_ID) @Nonnull FormId formId,
                                         @JsonProperty(PropertyNames.LABEL) @Nonnull LanguageMap label,
                                         @JsonProperty(PropertyNames.FIELDS) @Nonnull ImmutableList<FormFieldDescriptorDto> fields,
                                         @JsonProperty(PropertyNames.SUBJECT_FACTORY) @Nullable FormSubjectFactoryDescriptor subjectFactoryDescriptor) {
         return new AutoValue_FormDescriptorDto(formId, label, fields, subjectFactoryDescriptor);
     }
 
-    @JsonProperty(PropertyNames.ID)
+    @JsonProperty(PropertyNames.FORM_ID)
     @Nonnull
     public abstract FormId getFormId();
 
