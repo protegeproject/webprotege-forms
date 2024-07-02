@@ -20,7 +20,7 @@ public abstract class EntityNameControlDataDto implements FormControlDataDto {
 
     @JsonCreator
     public static EntityNameControlDataDto get(@JsonProperty(PropertyNames.CONTROL) @Nonnull EntityNameControlDescriptor descriptor,
-                                               @JsonProperty(PropertyNames.ENTITY) @Nonnull OWLEntityData entityData,
+                                               @JsonProperty(PropertyNames.ENTITY) @Nullable OWLEntityData entityData,
                                                @JsonProperty(PropertyNames.DEPTH) int depth) {
         return new AutoValue_EntityNameControlDataDto(depth, descriptor, entityData);
     }
@@ -30,7 +30,7 @@ public abstract class EntityNameControlDataDto implements FormControlDataDto {
     public abstract EntityNameControlDescriptor getDescriptor();
 
     @Nullable
-    @JsonProperty(PropertyNames.ENTITY)
+    @JsonProperty(PropertyNames.VALUE)
     protected abstract OWLEntityData getEntityInternal();
 
     @JsonIgnore

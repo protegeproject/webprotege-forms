@@ -1,9 +1,6 @@
 package edu.stanford.protege.webprotege.forms.field;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.*;
 import com.google.auto.value.AutoValue;
 import edu.stanford.protege.webprotege.common.LanguageMap;
 import edu.stanford.protege.webprotege.criteria.CompositeRootCriteria;
@@ -16,6 +13,7 @@ import java.util.Optional;
 
 @AutoValue
 @JsonTypeName("EntityNameControlDescriptorDto")
+@JsonInclude(JsonInclude.Include.NON_EMPTY)
 public abstract class EntityNameControlDescriptorDto implements FormControlDescriptorDto {
 
     @JsonCreator

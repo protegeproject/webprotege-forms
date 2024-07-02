@@ -1,9 +1,6 @@
 package edu.stanford.protege.webprotege.forms.field;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.*;
 import com.google.auto.value.AutoValue;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableSet;
@@ -25,7 +22,7 @@ import java.util.Optional;
  */
 @JsonTypeName(EntityNameControlDescriptor.TYPE)
 @AutoValue
-
+@JsonInclude(JsonInclude.Include.NON_EMPTY)
 public abstract class EntityNameControlDescriptor implements FormControlDescriptor {
 
     protected static final String TYPE = "ENTITY_NAME";
