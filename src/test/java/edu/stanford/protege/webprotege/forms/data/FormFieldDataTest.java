@@ -30,7 +30,7 @@ class FormFieldDataTest {
 
     @Test
     void shouldSerializeFormFieldDataWithCorrectFields() throws IOException {
-        var data = FormFieldData.get(FormFieldDescriptor.get(FormFieldId.get(UUID.randomUUID().toString()),
+        var data = FormFieldData.get(FormFieldDescriptor.get(FormRegionId.generate(),
                                                              null,
                                                              LanguageMap.empty(),
                                                              null,

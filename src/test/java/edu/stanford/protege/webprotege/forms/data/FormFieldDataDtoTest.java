@@ -31,7 +31,8 @@ class FormFieldDataDtoTest {
 
     @Test
     void shouldSerializeFormFieldDataWithCorrectFields() throws IOException {
-        var data = FormFieldDataDto.get(FormFieldDescriptorDto.get(FormFieldId.get(UUID.randomUUID().toString()),
+        var data = FormFieldDataDto.get(FormFieldDescriptorDto.get(
+                FormRegionId.generate(),
                                                              null,
                                                              LanguageMap.empty(),
                                                              FieldRun.START,
@@ -52,7 +53,7 @@ class FormFieldDataDtoTest {
     @Test
     void shouldDeserializeFormFieldData() throws IOException {
         var json = """
-                {"field":{"id":{"type":"FormFieldId","id":"4eeb6550-58e3-4103-a875-7c0002f2fc93"},"owlBinding":null,"label":{},"fieldRun":"START","control":{"type":"TextControlDescriptorDto","control":{"type":"TEXT","placeholder":{},"stringType":"SIMPLE_STRING","specificLangTag":"","lineMode":"SINGLE_LINE","pattern":"","patternViolationErrorMessage":{}}},"optionality":"OPTIONAL","repeatability":"NON_REPEATABLE","deprecationStrategy":"DELETE_VALUES","readOnly":true,"initialExpansionState":"COLLAPSED","help":{}},"data":{"pageElements":[],"pageSize":0,"totalElements":0,"pageNumber":1,"pageCount":1}}
+                {"field":{"id":"4eeb6550-58e3-4103-a875-7c0002f2fc93","owlBinding":null,"label":{},"fieldRun":"START","control":{"type":"TextControlDescriptorDto","control":{"type":"TEXT","placeholder":{},"stringType":"SIMPLE_STRING","specificLangTag":"","lineMode":"SINGLE_LINE","pattern":"","patternViolationErrorMessage":{}}},"optionality":"OPTIONAL","repeatability":"NON_REPEATABLE","deprecationStrategy":"DELETE_VALUES","readOnly":true,"initialExpansionState":"COLLAPSED","help":{}},"data":{"pageElements":[],"pageSize":0,"totalElements":0,"pageNumber":1,"pageCount":1}}
                 """;
         var read = tester.read(new StringReader(json));
         assertThat(read).isNotNull();

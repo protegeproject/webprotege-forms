@@ -1,7 +1,7 @@
 package edu.stanford.protege.webprotege.forms;
 
 
-import edu.stanford.protege.webprotege.forms.field.GridColumnId;
+import edu.stanford.protege.webprotege.forms.field.FormRegionId;
 
 import javax.annotation.Nonnull;
 
@@ -14,9 +14,9 @@ import static com.google.common.base.Preconditions.checkNotNull;
  */
 public class GridColumnBindingMissingException extends RuntimeException {
 
-    private GridColumnId columnId;
+    private FormRegionId columnId;
 
-    public GridColumnBindingMissingException(GridColumnId columnId) {
+    public GridColumnBindingMissingException(FormRegionId columnId) {
         super("Grid column binding missing for " + columnId + ".  Form is not configured properly");
         this.columnId = checkNotNull(columnId);
     }
@@ -26,7 +26,7 @@ public class GridColumnBindingMissingException extends RuntimeException {
     }
 
     @Nonnull
-    public GridColumnId getColumnId() {
+    public FormRegionId getColumnId() {
         return columnId;
     }
 }

@@ -32,7 +32,7 @@ public class GridColumnDescriptor_Serialization_Test {
     @Test
     void shouldSerialize() throws IOException {
         var descriptor = GridColumnDescriptor.get(
-                GridColumnId.get("12345678-1234-1234-1234-123456789abc"),
+                FormRegionId.get("12345678-1234-1234-1234-123456789abc"),
                 Optionality.OPTIONAL,
                 Repeatability.NON_REPEATABLE,
                 OwlPropertyBinding.get(new OWLAnnotationPropertyImpl(IRI.create("http://example.org/p"))),

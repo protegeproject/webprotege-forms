@@ -12,8 +12,7 @@ import static org.hamcrest.Matchers.equalTo;
 @JsonTest
 public class FormRegionOrdering_TestCase {
 
-    @Mock
-    private GridColumnId columnId;
+    private FormRegionId columnId;
 
     private final FormRegionOrderingDirection direction = FormRegionOrderingDirection.ASC;
 
@@ -21,6 +20,7 @@ public class FormRegionOrdering_TestCase {
 
     @BeforeEach
     public void setUp() throws Exception {
+        columnId = FormRegionId.generate();
         orderBy = FormRegionOrdering.get(columnId, direction);
     }
 

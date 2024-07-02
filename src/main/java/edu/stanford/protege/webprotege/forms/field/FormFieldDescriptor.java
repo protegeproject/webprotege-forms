@@ -23,11 +23,11 @@ import static edu.stanford.protege.webprotege.forms.PropertyNames.*;
 @JsonPropertyOrder({ID, OWL_BINDING, LABEL, FIELD_RUN, CONTROL, REPEATABILITY, OPTIONALITY, READ_ONLY, HELP})
 
 @AutoValue
-public abstract class FormFieldDescriptor implements HasFormFieldId, HasRepeatability, BoundControlDescriptor {
+public abstract class FormFieldDescriptor implements HasFormRegionId, HasRepeatability, BoundControlDescriptor {
 
 
     @Nonnull
-    public static FormFieldDescriptor get(@Nonnull FormFieldId id,
+    public static FormFieldDescriptor get(@Nonnull FormRegionId id,
                                           @Nullable OwlBinding owlBinding,
                                           @Nullable LanguageMap formLabel,
                                           @Nullable FieldRun fieldRun,
@@ -53,7 +53,7 @@ public abstract class FormFieldDescriptor implements HasFormFieldId, HasRepeatab
 
     @JsonCreator
     @Nonnull
-    public static FormFieldDescriptor getFromJson(@JsonProperty(ID) @Nonnull String id,
+    public static FormFieldDescriptor getFromJson(@JsonProperty(ID) @Nonnull FormRegionId id,
                                                   @JsonProperty(OWL_BINDING) @Nullable OwlBinding owlBinding,
                                                   @JsonProperty(LABEL) @Nullable LanguageMap formLabel,
                                                   @JsonProperty(FIELD_RUN) @Nullable FieldRun fieldRun,
@@ -64,8 +64,7 @@ public abstract class FormFieldDescriptor implements HasFormFieldId, HasRepeatab
                                                   @JsonProperty(READ_ONLY) boolean readOnly,
                                                   @JsonProperty(INITIAL_EXPANSIONS_STATE) @Nullable ExpansionState expansionState,
                                                   @JsonProperty(HELP) @Nullable LanguageMap help) {
-        final FormFieldId formFieldId = FormFieldId.get(checkNotNull(id));
-        return get(formFieldId,
+        return get(id,
                    owlBinding,
                    formLabel,
                    fieldRun,
@@ -80,13 +79,7 @@ public abstract class FormFieldDescriptor implements HasFormFieldId, HasRepeatab
 
     @Nonnull
     @Override
-    @JsonIgnore
-    public abstract FormFieldId getId();
-
-    @JsonProperty(PropertyNames.ID)
-    protected String getFormFieldId() {
-        return getId().getId();
-    }
+    public abstract FormRegionId getId();
 
     @JsonProperty(OWL_BINDING)
     @Nullable

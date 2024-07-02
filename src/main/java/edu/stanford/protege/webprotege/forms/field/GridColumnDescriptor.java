@@ -22,7 +22,7 @@ import java.util.stream.Stream;
 public abstract class GridColumnDescriptor implements BoundControlDescriptor {
 
     @Nonnull
-    public static GridColumnDescriptor get(@Nonnull GridColumnId id,
+    public static GridColumnDescriptor get(@Nonnull FormRegionId id,
                                            @Nullable Optionality optionality,
                                            @Nullable Repeatability repeatability,
                                            @Nullable OwlBinding owlBinding,
@@ -44,7 +44,7 @@ public abstract class GridColumnDescriptor implements BoundControlDescriptor {
                                            @Nullable @JsonProperty(PropertyNames.OWL_BINDING) OwlBinding owlBinding,
                                            @Nonnull @JsonProperty(PropertyNames.LABEL) LanguageMap columnLabel,
                                            @Nonnull @JsonProperty(PropertyNames.CONTROL) FormControlDescriptor formControlDescriptor) {
-        return new AutoValue_GridColumnDescriptor(GridColumnId.get(id),
+        return new AutoValue_GridColumnDescriptor(FormRegionId.get(id),
                                                   optionality == null ? Optionality.REQUIRED : optionality,
                                                   repeatability == null ? Repeatability.NON_REPEATABLE : repeatability,
                                                   owlBinding,
@@ -54,11 +54,11 @@ public abstract class GridColumnDescriptor implements BoundControlDescriptor {
 
     @JsonIgnore
     @Nonnull
-    public abstract GridColumnId getId();
+    public abstract FormRegionId getId();
 
     @JsonProperty(PropertyNames.ID)
     public String getGridColumnId() {
-        return getId().getId();
+        return getId().value();
     }
 
     @JsonIgnore
@@ -75,7 +75,7 @@ public abstract class GridColumnDescriptor implements BoundControlDescriptor {
     }
 
     @JsonIgnore
-    public Stream<GridColumnId> getLeafColumnIds() {
+    public Stream<FormRegionId> getLeafColumnIds() {
         return getLeafColumnDescriptors().map(GridColumnDescriptor::getId);
     }
 
