@@ -44,7 +44,7 @@ public abstract class FormFieldDescriptorDto implements HasFormFieldId {
 
     @Nonnull
     @Override
-    @JsonProperty("id")
+    @JsonProperty(PropertyNames.ID)
     public abstract FormFieldId getId();
 
     @JsonProperty(PropertyNames.OWL_BINDING)
