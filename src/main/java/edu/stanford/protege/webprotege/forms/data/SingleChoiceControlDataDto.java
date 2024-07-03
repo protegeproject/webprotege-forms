@@ -17,15 +17,16 @@ public abstract class SingleChoiceControlDataDto implements FormControlDataDto {
     @JsonCreator
     @Nonnull
     public static SingleChoiceControlDataDto get(@JsonProperty(PropertyNames.CONTROL) @Nonnull SingleChoiceControlDescriptor descriptor,
-                                                 @JsonProperty(PropertyNames.CHOICE) @Nullable PrimitiveFormControlDataDto choice,
+                                                 @JsonProperty(PropertyNames.VALUE) @Nullable PrimitiveFormControlDataDto choice,
                                                  @JsonProperty(PropertyNames.DEPTH) int depth) {
         return new AutoValue_SingleChoiceControlDataDto(depth, descriptor, choice);
     }
 
     @Nonnull
+    @JsonProperty(PropertyNames.CONTROL)
     public abstract SingleChoiceControlDescriptor getDescriptor();
 
-    @JsonProperty(PropertyNames.CONTROL)
+    @JsonProperty(PropertyNames.VALUE)
     @Nullable
     protected abstract PrimitiveFormControlDataDto getChoiceInternal();
 
