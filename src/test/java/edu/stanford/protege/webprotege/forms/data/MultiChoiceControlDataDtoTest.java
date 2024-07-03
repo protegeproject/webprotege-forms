@@ -48,7 +48,7 @@ class MultiChoiceControlDataDtoTest {
                                                          "http://example.org/A"), ImmutableMap.of()))),
                                                  3);
         var json = """
-                {"@type":"MultiChoiceControlDataDto","depth":3,"control":{"@type":"MULTI_CHOICE","choicesSource":{"type":"Fixed","choices":[]},"defaultChoice":[]},"values":[{"type":"IriFormControlDataDto","iri":{"@type":"IRIData","iri":"http://example.org/A"}}]}
+                {"@type":"MultiChoiceControlDataDto","depth":3,"control":{"@type":"MULTI_CHOICE","choicesSource":{"type":"Fixed","choices":[]},"defaultChoice":[]},"values":[{"@type":"IriFormControlDataDto","iri":{"@type":"IRIData","iri":"http://example.org/A"}}]}
                 """;
         var read = tester.read(new StringReader(json));
         assertThat(read.getObject()).isEqualTo(expected);

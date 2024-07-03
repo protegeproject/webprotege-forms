@@ -54,7 +54,7 @@ public class SingleChoiceControlDataDtoTest {
                                                           "http://example.org/A"), ImmutableMap.of())),
                                                   3);
         var json = """
-                {"@type":"SingleChoiceControlDataDto","depth":3,"control":{"@type":"SINGLE_CHOICE","widgetType":"ComboBox","choicesSource":{"type":"Fixed","choices":[]},"defaultChoice":null},"value":{"type":"IriFormControlDataDto","iri":{"@type":"IRIData","iri":"http://example.org/A"}}}
+                {"@type":"SingleChoiceControlDataDto","depth":3,"control":{"@type":"SINGLE_CHOICE","widgetType":"ComboBox","choicesSource":{"type":"Fixed","choices":[]},"defaultChoice":null},"value":{"@type":"IriFormControlDataDto","iri":{"@type":"IRIData","iri":"http://example.org/A"}}}
                 """;
         var read = tester.read(new StringReader(json));
         assertThat(read.getObject()).isEqualTo(expected);
