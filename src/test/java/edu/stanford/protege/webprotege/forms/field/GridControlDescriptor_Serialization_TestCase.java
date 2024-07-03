@@ -45,6 +45,23 @@ public class GridControlDescriptor_Serialization_TestCase {
                                             null, Optional.empty())));
         System.out.println(written.getJson());
         assertThat(written).hasJsonPathArrayValue("columns");
+        assertThat(written).hasJsonPathMapValue("subjectFactory");
+    }
+
+    @Test
+    void shouldSerializeWithNullSubjectFactory() throws IOException {
+        var written = tester.write(GridControlDescriptor.get(ImmutableList.of(
+                GridColumnDescriptor.get(
+                        FormRegionId.generate(),
+                        Optionality.OPTIONAL,
+                        Repeatability.NON_REPEATABLE,
+                        null,
+                        LanguageMap.empty(),
+                        EntityNameControlDescriptor.getDefault()
+                )
+        ), null));
+        System.out.println(written.getJson());
+        assertThat(written).hasJsonPathArrayValue("columns");
         assertThat(written).hasJsonPath("subjectFactory");
     }
 
@@ -64,6 +81,18 @@ public class GridControlDescriptor_Serialization_TestCase {
     void shouldDeserializeWithNullSubjectFactory() throws IOException {
         var json = """
                 {"@type":"GRID","columns":[],"subjectFactory":null}
+                """;
+        var read = tester.read(new StringReader(json));
+        assertThat(read.getObject()).isInstanceOf(GridControlDescriptor.class);
+        var obj = (GridControlDescriptor) read.getObject();
+        assertThat(obj.getSubjectFactoryDescriptor()).isEmpty();
+
+    }
+
+    @Test
+    void shouldDeserializeWithMissingSubjectFactory() throws IOException {
+        var json = """
+                {"@type":"GRID","columns":[]}
                 """;
         var read = tester.read(new StringReader(json));
         assertThat(read.getObject()).isInstanceOf(GridControlDescriptor.class);

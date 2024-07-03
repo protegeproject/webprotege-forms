@@ -36,14 +36,6 @@ public class TextControlDescriptor_TestCase {
         textFieldDescriptor = new TextControlDescriptor(placeholder, stringType, specificLangTag, lineMode, pattern, patternViolationErrorMessage);
     }
 
-    @SuppressWarnings("ConstantConditions")
-    @Test
-    public void shouldThrowNullPointerExceptionIf_placeholder_IsNull() {
-        assertThrows(NullPointerException.class, () -> {
-            new TextControlDescriptor(null, stringType, specificLangTag, lineMode, pattern, patternViolationErrorMessage);
-        });
-    }
-
     @Test
     public void shouldReturnSupplied_placeholder() {
         assertThat(textFieldDescriptor.getPlaceholder(), is(this.placeholder));

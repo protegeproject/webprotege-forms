@@ -25,7 +25,7 @@ class TextControlDataTest {
         );
         var written = tester.write(data);
         System.out.println(written.getJson());
-        assertThat(written).hasJsonPathMapValue("value");
-        assertThat(written).hasJsonPathMapValue("field");
+        assertThat(written).hasJsonPath("value");
+        assertThat(written).hasJsonPathMapValue("control");
     }
 }

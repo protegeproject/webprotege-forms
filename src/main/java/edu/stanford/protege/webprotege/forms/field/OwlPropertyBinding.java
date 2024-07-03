@@ -19,7 +19,6 @@ import java.util.Optional;
  * 2019-11-24
  */
 @AutoValue
-
 @JsonTypeName(OwlPropertyBinding.TYPE)
 public abstract class OwlPropertyBinding implements OwlBinding {
 

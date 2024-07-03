@@ -51,7 +51,7 @@ class FormFieldDataTest {
     @Test
     void shouldDeserializeFormFieldData() throws IOException {
         var json = """
-                {"field":{"id":"5831c0f4-482a-4d72-9a05-bef6180dbc95","owlBinding":null,"label":{},"fieldRun":"START","control":{"type":"TEXT","placeholder":{},"stringType":"SIMPLE_STRING","specificLangTag":"","lineMode":"SINGLE_LINE","pattern":"","patternViolationErrorMessage":{}},"repeatability":"NON_REPEATABLE","optionality":"OPTIONAL","readOnly":true,"help":{},"deprecationStrategy":"DELETE_VALUES","initialExpansionState":"COLLAPSED"},"data":{"pageElements":[],"pageSize":0,"totalElements":0,"pageNumber":1,"pageCount":1}}
+                {"field":{"id":"5831c0f4-482a-4d72-9a05-bef6180dbc95","owlBinding":null,"label":{},"fieldRun":"START","control":{"@type":"TEXT","placeholder":{},"stringType":"SIMPLE_STRING","specificLangTag":"","lineMode":"SINGLE_LINE","pattern":"","patternViolationErrorMessage":{}},"repeatability":"NON_REPEATABLE","optionality":"OPTIONAL","readOnly":true,"help":{},"deprecationStrategy":"DELETE_VALUES","initialExpansionState":"COLLAPSED"},"data":{"pageElements":[],"pageSize":0,"totalElements":0,"pageNumber":1,"pageCount":1}}
                 """;
         var read = tester.read(new StringReader(json));
         assertThat(read).isNotNull();
