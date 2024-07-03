@@ -32,7 +32,7 @@ class GridRowDataDtoTest {
         var written = tester.write(data);
         System.out.println(written.getJson());
         assertThat(written).hasJsonPathArrayValue("cells");
-        assertThat(written).hasJsonPathValue("subject");
+        assertThat(written).hasJsonPath("subject");
     }
 
     @Test
