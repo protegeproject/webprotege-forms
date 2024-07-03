@@ -24,11 +24,11 @@ public abstract class GridCellDataDto implements HasFilterState {
     @Nonnull
     public abstract FormRegionId getColumnId();
 
-    @JsonProperty(PropertyNames.COLUMN_ID)
+    @JsonProperty(PropertyNames.VALUES)
     @Nonnull
     public abstract Page<FormControlDataDto> getValues();
 
-    @JsonProperty(PropertyNames.COLUMN_ID)
+    @JsonProperty(PropertyNames.FILTER_STATE)
     @Nonnull
     @Override
     public abstract FilterState getFilterState();
