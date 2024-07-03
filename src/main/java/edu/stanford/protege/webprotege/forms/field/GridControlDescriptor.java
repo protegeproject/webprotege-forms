@@ -36,10 +36,7 @@ public abstract class GridControlDescriptor implements FormControlDescriptor {
     public static GridControlDescriptor get(@Nonnull @JsonProperty(PropertyNames.COLUMNS) ImmutableList<GridColumnDescriptor> columnDescriptors,
                                             @Nullable @JsonProperty(PropertyNames.SUBJECT_FACTORY) FormSubjectFactoryDescriptor subjectFactoryDescriptor) {
         return new AutoValue_GridControlDescriptor(columnDescriptors == null ? ImmutableList.of() : columnDescriptors,
-                                                   subjectFactoryDescriptor == null ? FormSubjectFactoryDescriptor.get(
-                                                           EntityType.CLASS,
-                                                           null,
-                                                           Optional.empty()) : subjectFactoryDescriptor);
+                                                   subjectFactoryDescriptor);
     }
 
     @Nonnull
