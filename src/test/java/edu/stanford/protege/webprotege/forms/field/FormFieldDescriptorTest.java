@@ -28,7 +28,7 @@ class FormFieldDescriptorTest {
     @Test
     void shouldSerialize() throws IOException {
         var descriptor = FormFieldDescriptor.get(
-                FormFieldId.get(UUID.randomUUID().toString()),
+                FormRegionId.generate(),
                 OwlPropertyBinding.get(new OWLAnnotationPropertyImpl(IRI.create("http://example.org"))),
                 LanguageMap.empty(),
                 FieldRun.START,

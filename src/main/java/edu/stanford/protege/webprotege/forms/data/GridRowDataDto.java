@@ -12,7 +12,6 @@ import java.util.Optional;
 import static com.google.common.collect.ImmutableList.toImmutableList;
 
 @AutoValue
-
 public abstract class GridRowDataDto {
 
     @JsonCreator
@@ -38,7 +37,7 @@ public abstract class GridRowDataDto {
         return Optional.ofNullable(getSubjectInternal());
     }
 
-    @JsonProperty("cells")
+    @JsonProperty(PropertyNames.CELLS)
     @Nonnull
     public abstract ImmutableList<GridCellDataDto> getCells();
 

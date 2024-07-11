@@ -17,7 +17,7 @@ public abstract class GridColumnDescriptorDto {
 
     @JsonCreator
     @Nonnull
-    public static GridColumnDescriptorDto get(@JsonProperty(PropertyNames.ID) @Nonnull GridColumnId columnId,
+    public static GridColumnDescriptorDto get(@JsonProperty(PropertyNames.ID) @Nonnull FormRegionId columnId,
                                               @JsonProperty(PropertyNames.OPTIONALITY) @Nonnull Optionality optionality,
                                               @JsonProperty(PropertyNames.REPEATABILITY) @Nonnull Repeatability repeatability,
                                               @JsonProperty(PropertyNames.OWL_BINDING) @Nullable OwlBinding binding,
@@ -34,7 +34,7 @@ public abstract class GridColumnDescriptorDto {
 
     @Nonnull
     @JsonProperty(PropertyNames.ID)
-    public abstract GridColumnId getId();
+    public abstract FormRegionId getId();
 
     @Nonnull
     @JsonProperty(PropertyNames.OPTIONALITY)

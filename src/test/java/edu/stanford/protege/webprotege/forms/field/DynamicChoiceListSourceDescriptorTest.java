@@ -23,14 +23,14 @@ class DynamicChoiceListSourceDescriptorTest {
     void shouldSerialize() throws IOException {
         var written = tester.write(DynamicChoiceListSourceDescriptor.get(CompositeRootCriteria.get(List.of(), MultiMatchType.ALL)));
         System.out.println(written.getJson());
-        assertThat(written).hasJsonPathStringValue("type", "Dynamic");
+        assertThat(written).hasJsonPathStringValue("['@type']", "Dynamic");
         assertThat(written).hasJsonPathValue("criteria");
     }
 
     @Test
     void shouldDeserialize() throws IOException {
         var json = """
-                {"type":"Dynamic","criteria":{"match":"CompositeCriteria","criteria":[],"matchType":"ALL"}}
+                {"@type":"Dynamic","criteria":{"match":"CompositeCriteria","criteria":[],"matchType":"ALL"}}
                 """;
         var read = tester.read(new StringReader(json));
         assertThat(read).isInstanceOf(DynamicChoiceListSourceDescriptor.class);

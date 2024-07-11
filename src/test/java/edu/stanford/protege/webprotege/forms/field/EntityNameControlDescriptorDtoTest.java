@@ -15,14 +15,15 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @JsonTest
 @AutoConfigureJsonTesters
-class EntityNameControlDescriptorTest {
+class EntityNameControlDescriptorDtoTest {
+
 
     @Autowired
-    private JacksonTester<EntityNameControlDescriptor> tester;
+    private JacksonTester<EntityNameControlDescriptorDto> tester;
 
     @Test
     public void shouldSerializeNonEmpty() throws IOException {
-        var descriptor = EntityNameControlDescriptor.get(LanguageMap.of("en", "Hello"),
+        var descriptor = EntityNameControlDescriptorDto.get(LanguageMap.of("en", "Hello"),
                                                          CompositeRootCriteria.get(List.of(), MultiMatchType.ALL));
         var written = tester.write(descriptor);
         System.out.println(written.getJson());
@@ -32,7 +33,7 @@ class EntityNameControlDescriptorTest {
 
     @Test
     void shouldNotSerializeEmptyFields() throws IOException {
-        var descriptor = EntityNameControlDescriptor.get(LanguageMap.empty(),
+        var descriptor = EntityNameControlDescriptorDto.get(LanguageMap.empty(),
                                                          null);
         var written = tester.write(descriptor);
         System.out.println(written.getJson());

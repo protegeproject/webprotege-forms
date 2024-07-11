@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.*;
 import com.google.auto.value.AutoValue;
 import edu.stanford.protege.webprotege.common.Page;
 import edu.stanford.protege.webprotege.forms.*;
-import edu.stanford.protege.webprotege.forms.field.GridColumnId;
+import edu.stanford.protege.webprotege.forms.field.FormRegionId;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -14,7 +14,7 @@ import javax.annotation.Nullable;
 public abstract class GridCellDataDto implements HasFilterState {
 
     @JsonCreator
-    public static GridCellDataDto get(@JsonProperty(PropertyNames.COLUMN_ID) @Nonnull GridColumnId columnId,
+    public static GridCellDataDto get(@JsonProperty(PropertyNames.COLUMN_ID) @Nonnull FormRegionId columnId,
                                       @JsonProperty(PropertyNames.VALUES) @Nullable Page<FormControlDataDto> values,
                                       @JsonProperty(PropertyNames.FILTER_STATE) @Nonnull FilterState filterState) {
         return new AutoValue_GridCellDataDto(columnId, values, filterState);
@@ -22,13 +22,13 @@ public abstract class GridCellDataDto implements HasFilterState {
 
     @JsonProperty(PropertyNames.COLUMN_ID)
     @Nonnull
-    public abstract GridColumnId getColumnId();
+    public abstract FormRegionId getColumnId();
 
-    @JsonProperty(PropertyNames.COLUMN_ID)
+    @JsonProperty(PropertyNames.VALUES)
     @Nonnull
     public abstract Page<FormControlDataDto> getValues();
 
-    @JsonProperty(PropertyNames.COLUMN_ID)
+    @JsonProperty(PropertyNames.FILTER_STATE)
     @Nonnull
     @Override
     public abstract FilterState getFilterState();

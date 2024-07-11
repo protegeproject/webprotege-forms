@@ -14,7 +14,7 @@ import javax.annotation.Nonnull;
 import java.util.Optional;
 
 @JsonSubTypes({@Type(EntityFormControlDataDto.class), @Type(LiteralFormControlDataDto.class), @Type(IriFormControlDataDto.class)})
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "type")
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME)
 public abstract class PrimitiveFormControlDataDto implements Comparable<PrimitiveFormControlDataDto> {
 
     public static final int BEFORE = -1;

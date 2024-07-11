@@ -13,11 +13,11 @@ import java.util.Optional;
 
 
 @AutoValue
-public abstract class FormFieldDescriptorDto implements HasFormFieldId {
+public abstract class FormFieldDescriptorDto implements HasFormRegionId {
 
     @JsonCreator
     @Nonnull
-    public static FormFieldDescriptorDto get(@JsonProperty(PropertyNames.ID) FormFieldId formFieldId,
+    public static FormFieldDescriptorDto get(@JsonProperty(PropertyNames.ID) FormRegionId formRegionId,
                                              @JsonProperty(PropertyNames.OWL_BINDING) OwlBinding owlBinding,
                                              @JsonProperty(PropertyNames.LABEL) LanguageMap newlabel,
                                              @JsonProperty(PropertyNames.FIELD_RUN) FieldRun fieldRun,
@@ -28,7 +28,7 @@ public abstract class FormFieldDescriptorDto implements HasFormFieldId {
                                              @JsonProperty(PropertyNames.READ_ONLY) boolean newReadOnly,
                                              @JsonProperty(PropertyNames.INITIAL_EXPANSIONS_STATE) ExpansionState initialExpansionState,
                                              @JsonProperty(PropertyNames.HELP) LanguageMap help) {
-        return new AutoValue_FormFieldDescriptorDto(formFieldId,
+        return new AutoValue_FormFieldDescriptorDto(formRegionId,
                                                     owlBinding,
                                                     newlabel,
                                                     fieldRun,
@@ -44,8 +44,8 @@ public abstract class FormFieldDescriptorDto implements HasFormFieldId {
 
     @Nonnull
     @Override
-    @JsonProperty("id")
-    public abstract FormFieldId getId();
+    @JsonProperty(PropertyNames.ID)
+    public abstract FormRegionId getId();
 
     @JsonProperty(PropertyNames.OWL_BINDING)
     @Nullable

@@ -24,14 +24,14 @@ class FixedChoiceListSourceDescriptorTest {
     void shouldSerialize() throws IOException {
         var written = tester.write(FixedChoiceListSourceDescriptor.get(ImmutableList.of()));
         System.out.println(written.getJson());
-        assertThat(written).hasJsonPathStringValue("type", "Dynamic");
+        assertThat(written).hasJsonPathStringValue("['@type']", "Fixed");
         assertThat(written).hasJsonPathValue("choices");
     }
 
     @Test
     void shouldDeserialize() throws IOException {
         var json = """
-                {"type":"Fixed","choices":[]}
+                {"@type":"Fixed","choices":[]}
                 """;
         var read = tester.read(new StringReader(json));
         assertThat(read).isInstanceOf(FixedChoiceListSourceDescriptor.class);

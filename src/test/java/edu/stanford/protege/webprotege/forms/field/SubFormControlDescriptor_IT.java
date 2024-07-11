@@ -40,7 +40,7 @@ public class SubFormControlDescriptor_IT {
                                                 LanguageMap.of("en", "The sub form"),
                                                 singletonList(
                                                         FormFieldDescriptor.get(
-                                                                FormFieldId.get(UUID.randomUUID().toString()),
+                                                                FormRegionId.generate(),
                                                                 OwlPropertyBinding.get(new OWLObjectPropertyImpl(
                                                                                                OWLRDFVocabulary.RDFS_LABEL.getIRI()),
                                                                                        null),

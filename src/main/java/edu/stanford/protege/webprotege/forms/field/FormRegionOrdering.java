@@ -19,8 +19,6 @@ public abstract class FormRegionOrdering {
 
     @JsonProperty(PropertyNames.REGION_ID)
     @Nonnull
-    @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.WRAPPER_OBJECT)
-    @JsonSubTypes({@JsonSubTypes.Type(value = FormFieldId.class), @JsonSubTypes.Type(value = GridColumnId.class)})
     public abstract FormRegionId getRegionId();
 
     @JsonProperty(PropertyNames.DIRECTION)
