@@ -23,14 +23,16 @@ public abstract class SingleChoiceControlDescriptorDto implements FormControlDes
     }
 
     @Nonnull
+    @JsonProperty(PropertyNames.CHOICES)
     public abstract ImmutableList<ChoiceDescriptorDto> getAvailableChoices();
 
 
-    @JsonProperty("descriptor")
+    @JsonProperty(PropertyNames.CHOICES_SOURCE)
     @Nonnull
     public abstract ChoiceListSourceDescriptor getChoiceListSourceDescriptor();
 
     @Nonnull
+    @JsonProperty(PropertyNames.WIDGET_TYPE)
     public abstract SingleChoiceControlType getWidgetType();
 
     @Override
